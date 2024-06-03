@@ -1,47 +1,32 @@
 {{!< default}}
+{{#page}}
+<article class="gh-article p-0 {{page_class}} font-body post-full-content">
+    <header class="relative w-full h-48 mb-4 md:h-64 bg-cover bg-center" style="background-image: url('{{img_url feature_image size="xl"}}');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 flex items-center justify-center h-full">
+            <div class="text-center text-white">
+                <h1 class="text-4xl font-heading leading-10 tracking-tight sm:text-5xl lg:text-6xl">
+                    {{title}}
+                </h1>
+                <div class="py-2 my-4 text-sm">
+                    <span class="text-sm gh-post-authors">
+                        Written by
+                        {{#foreach authors}}
+                            <a href="{{url}}" class="font-bold">
+                                {{#if profile_image}}
+                                <img class="inline-block w-4 h-4 rounded-full mr-1" src="{{profile_image}}" alt="{{name}} Profile Picture"/>
+                                {{/if}}
+                                {{name}}
+                            </a>
+                        {{/foreach}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-{{!-- The tag above means: insert everything in this file
-into the {body} tag of the default.hbs template --}}
-
-
-{{#post}}
-{{!-- Everything inside the #post block pulls data from the page --}}
-
-<main id="site-main" class="site-main">
-<article class="article {{post_class}}">
-
-    {{#match @page.show_title_and_feature_image}}
-        <header class="article-header gh-canvas">
-
-            <h1 class="article-title">{{title}}</h1>
-
-            {{#if feature_image}}
-                <figure class="article-image">
-                    {{!-- This is a responsive image, it loads different sizes depending on device
-                    https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-                    <img
-                        srcset="{{img_url feature_image size="s"}} 300w,
-                                {{img_url feature_image size="m"}} 600w,
-                                {{img_url feature_image size="l"}} 1000w,
-                                {{img_url feature_image size="xl"}} 2000w"
-                        sizes="(min-width: 1400px) 1400px, 92vw"
-                        src="{{img_url feature_image size="xl"}}"
-                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                    />
-                    {{#if feature_image_caption}}
-                        <figcaption>{{feature_image_caption}}</figcaption>
-                    {{/if}}
-                </figure>
-            {{/if}}
-
-        </header>
-    {{/match}}
-
-    <section class="gh-content gh-canvas">
+    <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-code:text-orangeValencia prose-p:text-anthracite prose-ul:text-anthracite prose-strong:text-anthracite prose-th:text-anthracite prose-h1:text-anthracite prose-h2:text-anthracite prose-h3:text-anthracite prose-strong:font-bold gh-content max-w-none">
         {{content}}
-    </section>
-
+    </div>
 </article>
-</main>
-
-{{/post}}
+{{/page}}

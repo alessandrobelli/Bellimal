@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+/* Custom Styles */
+@layer utilities {
+    .hover\:scale-101:hover {
+        transform: scale(1.01);
+    }
+
+    .hover\:bg-orangeValencia-700:hover {
+        background-color: theme('colors.orangeValencia.700');
+    }
+
+    .bg-orangeValencia {
+        background-color: theme('colors.orangeValencia.700');
+    }
+
+    .text-orangeValencia {
+        color: theme('colors.orangeValencia.600');
+    }
+
+    .hover\:text-orangeValencia:hover {
+        color: theme('colors.orangeValencia.600');
+    }
+
+    .bg-anthracite {
+        background-color: theme('colors.anthracite');
+    }
+
+    .text-anthracite {
+        color: theme('colors.anthracite');
+    }
+
+    .font-heading {
+        font-family: theme('fontFamily.heading');
+    }
+
+    .font-body {
+        font-family: theme('fontFamily.body');
+    }
+}
+
+.bg-gradient-to-r-from-orangeValencia-to-anthracite {
+    background-image: linear-gradient(to right, theme('colors.orangeValencia.600'), theme('colors.anthracite'));
+}
+
+/* Bookmark Card Styles */
+.kg-card.kg-bookmark-card {
+    @apply flex bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden transition-transform transform hover:scale-101;
+}
+
+.kg-bookmark-container {
+    @apply flex w-full text-left no-underline text-anthracite;
+}
+
+.kg-bookmark-content {
+    @apply p-4 flex-grow;
+}
+
+.kg-bookmark-title {
+    @apply text-lg font-heading text-orangeValencia mb-2;
+}
+
+.kg-bookmark-description {
+    @apply text-sm mb-4;
+}
+
+.kg-bookmark-metadata {
+    @apply flex items-center text-xs text-gray-500 space-x-2;
+}
+
+.kg-bookmark-icon {
+    @apply w-6 h-6 rounded-full mr-2;
+}
+
+.kg-bookmark-author,
+.kg-bookmark-publisher {
+    @apply mr-2;
+}
+
+.kg-bookmark-thumbnail {
+    @apply w-32 h-32 flex-shrink-0;
+}
+
+.kg-bookmark-thumbnail img {
+    @apply w-full h-full object-cover;
+}
+
+/* Header */
+header {
+    @apply text-center;
+}
+
+header h1 {
+    @apply text-4xl font-heading text-orangeValencia;
+}
+
+header .meta {
+    @apply py-2 my-4 text-xs text-gray-500;
+}
+
+
+/* Read More Section */
+.gh-readmore {
+    @apply w-full pb-4;
+}
+
+.gh-readmore-inner {
+    @apply flex justify-between text-base font-heading;
+}
+
+.gh-readmore-next, .gh-readmore-prev {
+    @apply hover:text-orangeValencia transition duration-300 ease-in-out;
+}
+
+/* Progress Bar */
+#progress-bar {
+    @apply fixed top-0 left-0 z-20 w-full h-1 bg-gradient-to-r from-pink-500 to-violet-500;
+}
+
+/* Comments Section */
+.comments {
+    @apply pt-8;
+}
+
+.comment {
+    @apply mb-4 p-4 border border-gray-200 rounded-lg;
+}
+
+.comment .meta {
+    @apply text-sm text-gray-500;
+}
+
+.comment p {
+    @apply mt-2;
+}
+
+.comment-form textarea {
+    @apply w-full p-4 border border-gray-200 rounded-lg;
+}
+
+.comment-form button {
+    @apply mt-4 px-4 py-2 bg-orangeValencia text-white rounded-lg hover:bg-orangeValencia-700 transition duration-300;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        stroke: #D84727; /* Main color */
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.10);
+        stroke: #F75946; /* Lighter shade */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        stroke: #A0361D; /* Darker shade */
+    }
+}
+
+.flame-icon svg path {
+    animation: flicker 1s infinite alternate;
+}
