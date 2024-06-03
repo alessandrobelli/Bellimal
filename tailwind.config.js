@@ -15,7 +15,8 @@ module.exports = {
                     600: '#D84727', // Default color
                     700: '#A0361D',
                     800: '#682513',
-                    900: '#301308'
+                    900: '#301308',
+                    DEFAULT: '#D84727',
                 }
             },
             fontFamily: {
@@ -27,5 +28,5 @@ module.exports = {
             }
         },
     },
-    plugins: [require('@tailwindcss/typography'),],
+    plugins: [],
 };

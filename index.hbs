@@ -1,29 +1,26 @@
 {{!< default}}
 
-
-<div class="site-header">
-    {{#match @custom.navigation_layout "Logo on cover"}}
-        {{#if @site.logo}}
-            <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}">
-        {{else}}
-            <h1 class="site-title">{{@site.title}}</h1>
+<header class="site-header py-8 bg-orangeValencia-100 text-center">
+    <div class="container mx-auto">
+        {{#match @custom.navigation_layout "Logo on cover"}}
+            {{#if @site.logo}}
+                <img class="site-logo mx-auto mb-4" src="{{@site.logo}}" alt="{{@site.title}}">
+            {{else}}
+                <h1 class="site-title text-4xl font-heading text-anthracite">{{@site.title}}</h1>
+            {{/if}}
+        {{/match}}
+        {{#if @site.description}}
+            <p class="site-description text-xl text-anthracite">{{@site.description}}</p>
         {{/if}}
-    {{/match}}
-    {{#if @site.description}}
-        <p class="site-description">{{@site.description}}</p>
-    {{/if}}
-</div>
+    </div>
+</header>
 
+<main class="container mx-auto py-8">
+    <div class="post-cards grid grid-cols-1 gap-8">
+        {{#foreach posts}}
+            {{> "post-card"}}
+        {{/foreach}}
+    </div>
 
-{{!-- The main content area --}}
-
-<div class="post-cards grid grid-cols-1 gap-8">
-    {{#foreach posts}}
-        {{> "post-card"}}
-    {{/foreach}}
-</div>
-
-
-{{pagination}}
-
-
+    {{pagination}}
+</main>

@@ -1,16 +1,17 @@
 <article
-        class="post-card bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-orangeValencia-100 transition ease-in-out duration-300 flex">
+        class="post-card bg-white border border-gray-200 rounded-lg shadow-sm p-4 hover:bg-orangeValencia-100 transition ease-in-out duration-300 flex items-center">
     {{#if feature_image}}
-        <div class="flex-shrink-0 w-32 h-full mr-4">
+        <div class="flex-shrink-0 w-32 h-32 mr-4">
             <img class="object-cover w-full h-full rounded-lg" src="{{img_url feature_image size="small"}}" alt="">
         </div>
     {{/if}}
     <div class="post-card-content flex-1">
         <a class="post-card-content-link block" href="{{url}}">
             <header class="post-card-header mb-2">
-                <div class="post-card-tags mb-1">
+                <div class="post-card-tags mb-1 flex items-center">
                     {{#primary_tag}}
-                        <span class="post-card-primary-tag text-xs text-orangeValencia-600">{{name}}</span>
+                        <span class="hashtag text-xs mr-1">#</span>
+                        <span class="post-card-primary-tag text-xs">{{name}}</span>
                     {{/primary_tag}}
                 </div>
                 <div class="flex items-center justify-center">
@@ -34,7 +35,11 @@
                 <span class="post-card-meta-length ml-4">{{reading_time}}</span>
             {{/if}}
             {{#if @site.comments_enabled}}
-                <span class="ml-4">{{comment_count}} comments</span>
+                {{#if comment_count}}
+                    {{#if (comment_count '>' 0)}}
+                        <span class="ml-4">{{comment_count}} comments</span>
+                    {{/if}}
+                {{/if}}
             {{/if}}
         </footer>
     </div>

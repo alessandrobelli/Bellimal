@@ -1,0 +1,22 @@
+{{!< default}}
+
+<section class="subscribe-section bg-orangeValencia-100 py-12">
+    <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-heading text-anthracite mb-6">Subscribe to Our Newsletter</h2>
+        <p class="text-lg text-anthracite mb-8">Stay updated with the latest posts and updates directly to your
+            inbox.</p>
+        <form action="{{@site.url}}/subscribe/" method="post" class="max-w-xl mx-auto">
+            <input type="email" name="email" placeholder="Your email address" required
+                   class="w-full p-4 border border-gray-300 rounded-lg mb-4">
+            <button type="submit"
+                    class="w-full py-4 bg-orangeValencia text-white rounded-lg font-bold hover:bg-orangeValencia-600 transition duration-300">
+                Subscribe
+            </button>
+        </form>
+        {{#if @site.subscription_success}}
+            <p class="text-green-500 mt-4">Thank you for subscribing!</p>
+        {{else if @site.subscription_error}}
+            <p class="text-red-500 mt-4">Oops! Something went wrong. Please try again.</p>
+        {{/if}}
+    </div>
+</section>

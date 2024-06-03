@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Lexend+Deca&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries" ></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
     <link rel="stylesheet" href="{{asset "css/main.css"}}">
     <script>
         tailwind.config = {
@@ -48,6 +48,7 @@
             font-family: 'Fira Mono', monospace;
         }
     </style>
+        {{ghost_head}}
 </head>
 <body class="bg-white text-anthracite">
 <div class="flex min-h-screen">
@@ -61,6 +62,8 @@
     <main class="ml-64 w-3/4 p-8 flex-grow h-scroll max-h-screen overflow-auto">
         {{{body}}}
     </main>
+        {{ghost_foot}}
+
 </div>
 </body>
 </html>

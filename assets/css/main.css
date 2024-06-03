@@ -606,6 +606,8 @@ video {
   margin-bottom: 0.5rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
   font-family: "Fira Mono", monospace;
 }
@@ -652,6 +654,16 @@ video {
   flex-shrink: 0;
 }
 
+.post-card .kg-bookmark-thumbnail img {
+  height: 8rem;
+  /* Fixed height */
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* Cover effect */
+  width: 8rem;
+  /* Fixed width */
+}
+
 .kg-bookmark-thumbnail img {
   height: 100%;
   width: 100%;
@@ -668,6 +680,8 @@ header {
 header h1 {
   font-size: 2.25rem;
   line-height: 2.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
   font-family: "Fira Mono", monospace;
 }
@@ -707,6 +721,8 @@ header .meta {
 }
 
 .gh-readmore-next:hover, .gh-readmore-prev:hover {
+  --tw-text-opacity: 1;
+  color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
 }
 
@@ -764,6 +780,8 @@ header .meta {
 .comment-form button {
   margin-top: 1rem;
   border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(216 71 39 / var(--tw-bg-opacity));
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
@@ -808,4 +826,47 @@ header .meta {
 
 .flame-icon svg path {
   animation: flicker 1s infinite alternate;
+}
+
+@keyframes rotate-hashtag {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(20deg);
+  }
+}
+
+.hashtag {
+  display: inline-block;
+  animation: rotate-hashtag 1s infinite ease-in-out;
+}
+
+.post-card .flex-shrink-0 img {
+  height: 8rem;
+  /* Fixed height */
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* Cover effect */
+  width: 8rem;
+  /* Fixed width */
+}
+
+.post-card-primary-tag {
+  transition: color 0.3s ease;
+}
+
+.post-card-primary-tag:hover {
+  color: #D84727;
+  /* Orange Valencia */
+}
+
+.hover-orangeValencia {
+  transition: color 0.3s ease-in-out;
+}
+
+.hover-orangeValencia:hover {
+  color: #D84727;
+  /* Orange Valencia */
 }
