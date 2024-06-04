@@ -1,67 +1,108 @@
 {{!< default}}
+
 {{#post}}
-<article class="gh-article p-0 {{post_class}} font-body post-full-content">
-    <header class="relative w-full mb-4 h-64 md:h-96 bg-cover bg-center" style="background-image: url('{{img_url feature_image size="xl"}}');">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
-        <div class="relative z-10 flex items-center justify-center h-full">
-            <div class="text-center text-white">
-                <h1 class="text-4xl font-heading leading-10 tracking-tight sm:text-5xl lg:text-6xl">
-                    {{title}}
-                </h1>
-                <div class="py-2 my-4 text-sm">
-                    <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
-                    <span class="bull">•</span> {{reading_time}}
-                    {{#if tags}}
-                        <span class="bull">•</span>
-                        {{#foreach tags}}
-                            <span class="inline-flex items-center">{{name}}</span>
-                        {{/foreach}}
-                    {{/if}}
-                    <span class="bull">•</span>
-                    <span class="text-sm gh-post-authors">
+    <article class="gh-article p-0 {{post_class}} font-body post-full-content">
+        {{#if feature_image}}
+            <header class="relative w-full mb-4 h-64 md:h-96 bg-cover bg-center"
+                    style="background-image: url('{{img_url feature_image size="xl"}}');">
+                <div class="absolute inset-0 bg-black opacity-50"></div>
+                <div class="relative z-10 flex items-center justify-center h-full">
+                    <div class="text-center text-white">
+                        <h1 class="text-4xl font-heading leading-10 tracking-tight sm:text-5xl lg:text-6xl">{{title}}</h1>
+                        <div class="py-2 my-4 text-sm">
+                            <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
+                            <span class="bull">•</span> {{reading_time}}
+                            {{#if tags}}
+                                <span class="bull">•</span>
+                                {{#foreach tags}}
+                                    <span class="inline-flex items-center">{{name}}</span>
+                                {{/foreach}}
+                            {{/if}}
+                            <span class="bull">•</span>
+                            <span class="text-sm gh-post-authors">
                         Written by
-                        {{#foreach authors}}
-                            <a href="{{url}}" class="font-bold">
+                                {{#foreach authors}}
+                                    <a href="{{url}}" class="font-bold">
                                 {{#if profile_image}}
-                                <img class="inline-block w-4 h-4 rounded-full mr-1" src="{{profile_image}}" alt="{{name}} Profile Picture"/>
+                                    <img class="inline-block w-4 h-4 rounded-full mr-1" src="{{profile_image}}"
+                                         alt="{{name}} Profile Picture"/>
                                 {{/if}}
-                                {{name}}
+                                        {{name}}
                             </a>
-                        {{/foreach}}
+                                {{/foreach}}
                     </span>
+                        </div>
+                    </div>
                 </div>
+            </header>
+        {{else}}
+
+            <h1 class="text-4xl font-heading leading-5 mb-4 tracking-tight text-center sm:text-5xl lg:text-6xl text-anthracite">{{title}}</h1>
+            <div class="py-2 my-4 text-sm text-center">
+                <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
+                <span class="bull">•</span> {{reading_time}}
+                {{#if tags}}
+                    <span class="bull">•</span>
+                    {{#foreach tags}}
+                        <span class="inline-flex items-center">{{name}}</span>
+                    {{/foreach}}
+                {{/if}}
+                <span class="bull">•</span>
+                <span class="text-sm gh-post-authors">
+                        Written by
+                    {{#foreach authors}}
+                        <a href="{{url}}" class="font-bold">
+                                {{#if profile_image}}
+                                    <img class="inline-block w-4 h-4 rounded-full mr-1" src="{{profile_image}}"
+                                         alt="{{name}} Profile Picture"/>
+                                {{/if}}
+                            {{name}}
+                            </a>
+                    {{/foreach}}
+                    </span>
+            </div>
+        {{/if}}
+
+        <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-code:text-orangeValencia prose-p:text-anthracite prose-ul:text-anthracite prose-strong:text-anthracite prose-th:text-anthracite prose-h1:text-anthracite prose-h2:text-anthracite prose-h3:text-anthracite prose-strong:font-bold gh-content max-w-none">
+            {{content}}
+        </div>
+
+        <footer class="pt-4">
+            {{> "share-block"}}
+            {{#if comments}}
+                <div class="font-body text-anthracite">
+                    {{comments}}
+                </div>
+            {{/if}}
+        </footer>
+    </article>
+
+    <aside class="w-full pb-4 gh-readmore">
+        <div class="flex justify-between text-base gh-readmore-inner font-heading">
+            <div class="gh-readmore-next flex items-center">
+                {{#next_post in="primary_tag"}}
+                    <a href="{{url}}"
+                       class="hover:text-orangeValencia transition ease-in-out duration-300 flex items-center">
+                        <svg class="w-6 h-6 mr-2" viewBox="0 0 17 27" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.54 2.426l-13.143 11.5 13.143 11.5" stroke-width="3" stroke="currentColor"
+                                  fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="truncate w-48">{{title}}</p>
+                    </a>
+                {{/next_post}}
+            </div>
+            <div class="gh-readmore-prev flex items-center">
+                {{#prev_post in="primary_tag"}}
+                    <a href="{{url}}"
+                       class="hover:text-orangeValencia transition ease-in-out duration-300 flex items-center">
+                        <p class="truncate w-48">{{title}}</p>
+                        <svg class="w-6 h-6 ml-2" viewBox="0 0 18 27" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.397 25.426l13.143-11.5-13.143-11.5" stroke-width="3" stroke="currentColor"
+                                  fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                {{/prev_post}}
             </div>
         </div>
-    </header>
-
-    <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-code:text-orangeValencia prose-p:text-anthracite prose-ul:text-anthracite prose-strong:text-anthracite prose-th:text-anthracite prose-h1:text-anthracite prose-h2:text-anthracite prose-h3:text-anthracite prose-strong:font-bold gh-content max-w-none">
-        {{content}}
-    </div>
-
-    <footer class="pt-4">
-        {{> "share-block"}}
-        {{comments}}
-    </footer>
-</article>
-
-<aside class="w-full pb-4 gh-readmore">
-    <div class="flex justify-between text-base gh-readmore-inner font-heading">
-        <div class="gh-readmore-next">
-            {{#next_post in="primary_tag"}}
-            <a href="{{url}}" class="hover:text-orangeValencia transition ease-in-out duration-300">
-                {{> "icons/arrow-left"}}
-                <p class="ml-1">{{title}}</p>
-            </a>
-            {{/next_post}}
-        </div>
-        <div class="gh-readmore-prev">
-            {{#prev_post in="primary_tag"}}
-            <a href="{{url}}" class="hover:text-orangeValencia transition ease-in-out duration-300">
-                <p class="mr-1">{{title}}</p>
-                {{> "icons/arrow-right"}}
-            </a>
-            {{/prev_post}}
-        </div>
-    </div>
-</aside>
+    </aside>
 {{/post}}

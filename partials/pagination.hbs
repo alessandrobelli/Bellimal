@@ -1,0 +1,26 @@
+{{#if pagination.pages}}
+    <nav class="pagination mt-8">
+        <div class="flex justify-between text-base font-heading">
+            {{#if pagination.prev}}
+                <a href="{{page_url pagination.prev}}"
+                   class="flex items-center hover:text-orangeValencia transition ease-in-out duration-300">
+                    Previous {{> "icons/arrow-left"}}
+                </a>
+            {{/if}}
+
+            <span>Page {{pagination.page}} of {{pagination.pages}}</span>
+
+            {{#if pagination.next}}
+                <a href="{{page_url pagination.next}}"
+                   class="flex items-center hover:text-orangeValencia transition ease-in-out duration-300">
+                    Next {{> "icons/arrow-right"}}
+                </a>
+            {{else}}
+                <span class="flex items-center text-gray-400">
+                Next
+                    {{> "icons/arrow-right"}}
+            </span>
+            {{/if}}
+        </div>
+    </nav>
+{{/if}}

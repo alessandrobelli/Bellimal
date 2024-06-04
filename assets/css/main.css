@@ -556,6 +556,17 @@ video {
 
 /* Custom Styles */
 
+a:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+a:hover:hover {
+  --tw-text-opacity: 1;
+  color: rgb(216 71 39 / var(--tw-text-opacity));
+  color: #D84727;
+}
+
 .bg-gradient-to-r-from-orangeValencia-to-anthracite {
   background-image: linear-gradient(to right, #D84727, #292C2F);
 }
@@ -604,12 +615,13 @@ video {
 
 .kg-bookmark-title {
   margin-bottom: 0.5rem;
+  font-family: "Fira Mono", monospace;
   font-size: 1.125rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
   color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
-  font-family: "Fira Mono", monospace;
+  font-family: "Fira Mono", monospace, serif;
 }
 
 .kg-bookmark-description {
@@ -678,12 +690,13 @@ header {
 }
 
 header h1 {
+  font-family: "Fira Mono", monospace;
   font-size: 2.25rem;
   line-height: 2.5rem;
   --tw-text-opacity: 1;
   color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
-  font-family: "Fira Mono", monospace;
+  font-family: "Fira Mono", monospace, serif;
 }
 
 header .meta {
@@ -707,9 +720,10 @@ header .meta {
 .gh-readmore-inner {
   display: flex;
   justify-content: space-between;
+  font-family: "Fira Mono", monospace;
   font-size: 1rem;
   line-height: 1.5rem;
-  font-family: "Fira Mono", monospace;
+  font-family: "Fira Mono", monospace, serif;
 }
 
 .gh-readmore-next, .gh-readmore-prev {

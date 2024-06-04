@@ -38,12 +38,20 @@
     }
 
     .font-heading {
-        font-family: theme('fontFamily.heading');
+        font-family: theme('fontFamily.heading'), serif;
     }
 
     .font-body {
-        font-family: theme('fontFamily.body');
+        font-family: theme('fontFamily.body'), sans-serif;
     }
+}
+
+a:focus {
+    @apply outline-none;
+}
+
+a:hover {
+    @apply hover:text-orangeValencia;
 }
 
 .bg-gradient-to-r-from-orangeValencia-to-anthracite {
@@ -198,10 +206,11 @@ header .meta {
 .post-card-primary-tag:hover {
     color: #D84727; /* Orange Valencia */
 }
+
 .hover-orangeValencia {
-  transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
 }
 
 .hover-orangeValencia:hover {
-  color: #D84727; /* Orange Valencia */
+    color: #D84727; /* Orange Valencia */
 }
