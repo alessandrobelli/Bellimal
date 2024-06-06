@@ -567,10 +567,6 @@ a:hover:hover {
   color: #D84727;
 }
 
-.bg-gradient-to-r-from-orangeValencia-to-anthracite {
-  background-image: linear-gradient(to right, #D84727, #292C2F);
-}
-
 /* Bookmark Card Styles */
 
 .kg-card.kg-bookmark-card {
@@ -621,7 +617,7 @@ a:hover:hover {
   --tw-text-opacity: 1;
   color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
-  font-family: "Fira Mono", monospace, serif;
+  font-family: "Fira Mono", monospace, monospace;
 }
 
 .kg-bookmark-description {
@@ -696,8 +692,30 @@ header h1 {
   --tw-text-opacity: 1;
   color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
-  font-family: "Fira Mono", monospace, serif;
+  font-family: "Fira Mono", monospace, monospace;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fira Mono", monospace !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(216 71 39 / var(--tw-text-opacity)) !important;
+  color: #D84727 !important;
+  font-family: "Fira Mono", monospace, monospace !important;
+}
+
+/* Body */
+
+body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  --tw-text-opacity: 1;
+  color: rgb(41 44 47 / var(--tw-text-opacity));
+  color: #292C2F;
+  font-family: "Atkinson Hyperlegible", sans-serif, sans-serif;
+}
+
+/* Post Meta */
 
 header .meta {
   margin-top: 1rem;
@@ -723,7 +741,7 @@ header .meta {
   font-family: "Fira Mono", monospace;
   font-size: 1rem;
   line-height: 1.5rem;
-  font-family: "Fira Mono", monospace, serif;
+  font-family: "Fira Mono", monospace, monospace;
 }
 
 .gh-readmore-next, .gh-readmore-prev {
@@ -738,22 +756,6 @@ header .meta {
   --tw-text-opacity: 1;
   color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
-}
-
-/* Progress Bar */
-
-#progress-bar {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: 20;
-  height: 0.25rem;
-  width: 100%;
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
-  --tw-gradient-from: #ec4899 var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(236 72 153 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-  --tw-gradient-to: #8b5cf6 var(--tw-gradient-to-position);
 }
 
 /* Comments Section */
@@ -883,4 +885,26 @@ header .meta {
 .hover-orangeValencia:hover {
   color: #D84727;
   /* Orange Valencia */
+}
+
+.post-card-primary-tag {
+  color: #D84727;
+  /* Anthracite */
+}
+
+.prose {
+  color: #292C2F;
+  /* anthracite color */
+}
+
+.prose a {
+  color: #D84727;
+  /* orangeValencia color */
+  text-decoration: none;
+}
+
+.prose a:hover {
+  transition: color 0.3s ease-in-out;
+  color: #F75946;
+  /* orangeValencia color */
 }

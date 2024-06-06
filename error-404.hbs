@@ -12,20 +12,22 @@ Keep this template as lightweight as you can!
 
 --}}
 
-<section class="outer error-content">
-    <div class="inner">
+<section class="outer error-content flex items-center justify-center min-h-screen bg-white text-anthracite">
+    <div class="inner text-center">
         <section class="error-message">
-            <h1 class="error-code">{{statusCode}}</h1>
-            <p class="error-description">{{message}}</p>
-            <a class="error-link" href="{{@site.url}}">Go to the front page →</a>
+            <h1 class="error-code text-6xl font-heading text-orangeValencia mb-4">{{statusCode}}</h1>
+            <p class="error-description text-lg mb-4">{{message}}</p>
+            <p class="error-description text-lg mb-4">Why are you here?</p>
+            <a class="error-link text-orangeValencia hover:text-orangeValencia-700 transition duration-300 ease-in-out text-lg font-heading"
+               href="{{@site.url}}">Go to the front page →</a>
         </section>
     </div>
 </section>
 
 {{!-- Given that people landing on this page didn't find what they
 were looking for, let's give them some alternative stuff to read. --}}
-<aside class="read-more-wrap outer">
-    <div class="read-more inner">
+<aside class="read-more-wrap outer py-8">
+    <div class="read-more inner grid grid-cols-1 gap-8">
         {{#get "posts" include="authors" limit="3" as |more_posts|}}
             {{#if more_posts}}
                 {{#foreach more_posts}}

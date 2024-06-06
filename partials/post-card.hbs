@@ -1,35 +1,33 @@
 <article
-        class="post-card bg-white border border-gray-200 rounded-lg shadow-sm p-4 hover:bg-orangeValencia-100 transition ease-in-out duration-300 flex items-center">
+        class=" bg-white border-gray-100 border-b-2 p-4 flex items-center hover:border-gray-300">
     {{#if feature_image}}
-        <div class="flex-shrink-0 w-32 h-32 mr-4">
-            <img class="object-cover w-full h-full rounded-lg" src="{{img_url feature_image size="small"}}" alt="">
+        <div class="flex-shrink-0 w-24 h-24 mr-4 overflow-hidden rounded-lg">
+            <img class="object-cover w-full h-full" src="{{img_url feature_image size="small"}}" alt="">
         </div>
     {{/if}}
-    <div class="post-card-content flex-1">
+    <div class=" flex-1">
         <a class="post-card-content-link block" href="{{url}}">
             <header class="post-card-header mb-2">
                 <div class="post-card-tags mb-1 flex items-center">
                     {{#primary_tag}}
                         <span class="hashtag text-xs mr-1">#</span>
-                        <span class="post-card-primary-tag text-xs px-1 py-1 bg-orange-200/20">{{name}}</span>
+                        <span class="post-card-primary-tag text-xs hover-orangeValencia">{{name}}</span>
                     {{/primary_tag}}
                 </div>
                 <div class="flex items-center justify-center">
                     {{#if featured}}
                         <span class="post-card-featured text-xs text-orangeValencia mr-2 flame-icon">{{> "icons/fire"}}</span>
                     {{/if}}
-                    <h2 class="post-card-title text-2xl font-heading text-orangeValencia-600">
-                        {{title}}
-                    </h2>
+                    <h2 class="text-xl font-bold">{{title}}</h2>
                 </div>
             </header>
             {{#if excerpt}}
-                <div class="post-card-excerpt text-base text-anthracite font-mono">
-                    {{excerpt words="100"}}
+                <div class="text-sm text-anthracite">
+                    {{excerpt words="50"}}
                 </div>
             {{/if}}
         </a>
-        <footer class="post-card-meta mt-4 text-sm text-gray-500">
+        <footer class="post-card-meta mt-4 text-xs text-gray-500">
             <time class="post-card-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
             {{#if reading_time}}
                 <span class="post-card-meta-length ml-4">{{reading_time}}</span>

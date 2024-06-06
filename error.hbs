@@ -1,74 +1,57 @@
-{{!--
-
-There are two error files in this theme, one for 404s and one for all other errors.
-This file is the latter, and handles all 400/500 errors that might occur.
-
-Because 500 errors in particular usually happen when a server is struggling, this
-template is as simple as possible. No template dependencies, no JS, no API calls.
-This is to prevent rendering the error-page itself compounding the issue causing
-the error in the first place.
-
-Keep this template as lightweight as you can!
-
---}}
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{{meta_title}}</title>
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Lexend+Deca&display=swap" rel="stylesheet">
+    <title>Error - {{error.code}}</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Lexend Deca', sans-serif;
+            background-color: #f7f7f7;
+            color: #292C2F;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            font-family: 'Fira Mono', monospace;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #D84727;
+        }
+        .description {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #666666;
+        }
+        .link {
+            font-size: 1rem;
+            color: #D84727;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .link:hover {
+            color: #A0361D;
+        }
+    </style>
 </head>
 <body>
-    <div class="site-wrapper">
-
-        <header class="site-header no-image">
-            <div class="site-nav-main outer">
-                <div class="inner">
-                    <nav class="site-nav-center">
-                        {{#if @site.logo}}
-                        <a class="site-nav-logo" href="{{@site.url}}"><img src="{{img_url @site.logo size="xs"}}"
-                                alt="{{@site.title}}" /></a>
-                        {{else}}
-                        <a class="site-nav-logo" href="{{@site.url}}">{{@site.title}}</a>
-                        {{/if}}
-                    </nav>
-                </div>
-            </div>
-        </header>
-
-        <main class="outer error-content">
-            <div class="inner">
-
-                <section class="error-message">
-                    <h1 class="error-code">{{statusCode}}</h1>
-                    <p class="error-description">{{message}}</p>
-                    <a class="error-link" href="{{@site.url}}">Go to the front page →</a>
-                </section>
-
-                {{#if errorDetails}}
-                <section class="error-stack">
-                    <h3>Theme errors</h3>
-                    <ul class="error-stack-list">
-                        {{#foreach errorDetails}}
-                            <li>
-                                <em class="error-stack-function">{{{rule}}}</em>
-
-                                {{#foreach failures}}
-                                    <p><span class="error-stack-file">Ref: {{ref}}</span></p>
-                                    <p><span class="error-stack-file">Message: {{message}}</span></p>
-                                {{/foreach}}
-                            </li>
-                        {{/foreach}}
-                    </ul>
-                </section>
-                {{/if}}
-
-            </div>
-        </main>
+    <div class="container">
+        <h1 class="title">{{error.code}} Error</h1>
+        <p class="description">{{error.message}}</p>
+        <a class="link" href="{{@site.url}}">Go back to Home</a>
     </div>
 </body>
 </html>
