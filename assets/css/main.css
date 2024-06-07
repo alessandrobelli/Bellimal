@@ -611,13 +611,13 @@ a:hover:hover {
 
 .kg-bookmark-title {
   margin-bottom: 0.5rem;
-  font-family: "Fira Mono", monospace;
+  font-family: "Atkinson Hyperlegible", sans-serif;
   font-size: 1.125rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
   color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
-  font-family: "Fira Mono", monospace, monospace;
+  font-family: "Atkinson Hyperlegible", sans-serif, monospace;
 }
 
 .kg-bookmark-description {
@@ -686,21 +686,21 @@ header {
 }
 
 header h1 {
-  font-family: "Fira Mono", monospace;
+  font-family: "Atkinson Hyperlegible", sans-serif;
   font-size: 2.25rem;
   line-height: 2.5rem;
   --tw-text-opacity: 1;
   color: rgb(216 71 39 / var(--tw-text-opacity));
   color: #D84727;
-  font-family: "Fira Mono", monospace, monospace;
+  font-family: "Atkinson Hyperlegible", sans-serif, monospace;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Fira Mono", monospace !important;
+  font-family: "Atkinson Hyperlegible", sans-serif !important;
   --tw-text-opacity: 1 !important;
   color: rgb(216 71 39 / var(--tw-text-opacity)) !important;
   color: #D84727 !important;
-  font-family: "Fira Mono", monospace, monospace !important;
+  font-family: "Atkinson Hyperlegible", sans-serif, monospace !important;
 }
 
 /* Body */
@@ -708,11 +708,11 @@ h1, h2, h3, h4, h5, h6 {
 body {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-family: "Fira Mono", monospace;
   --tw-text-opacity: 1;
   color: rgb(41 44 47 / var(--tw-text-opacity));
   color: #292C2F;
-  font-family: "Atkinson Hyperlegible", sans-serif, sans-serif;
+  font-family: "Fira Mono", monospace, sans-serif;
 }
 
 /* Post Meta */
@@ -738,10 +738,10 @@ header .meta {
 .gh-readmore-inner {
   display: flex;
   justify-content: space-between;
-  font-family: "Fira Mono", monospace;
+  font-family: "Atkinson Hyperlegible", sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
-  font-family: "Fira Mono", monospace, monospace;
+  font-family: "Atkinson Hyperlegible", sans-serif, monospace;
 }
 
 .gh-readmore-next, .gh-readmore-prev {
@@ -809,7 +809,7 @@ header .meta {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
-  background-color: #A0361D;
+  background-color: #D84727;
 }
 
 .comment-form button:hover {
@@ -887,11 +887,6 @@ header .meta {
   /* Orange Valencia */
 }
 
-.post-card-primary-tag {
-  color: #D84727;
-  /* Anthracite */
-}
-
 .prose {
   color: #292C2F;
   /* anthracite color */
@@ -907,4 +902,83 @@ header .meta {
   transition: color 0.3s ease-in-out;
   color: #F75946;
   /* orangeValencia color */
+}
+
+/* Subscriber-Only Section */
+
+.gh-post-upgrade-cta {
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  padding: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(41 44 47 / var(--tw-text-opacity));
+  color: #292C2F;
+}
+
+.gh-post-upgrade-cta-content {
+  border-radius: 0.5rem !important;
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+  padding: 2rem !important;
+  text-align: center !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(41 44 47 / var(--tw-text-opacity)) !important;
+  color: #292C2F !important;
+}
+
+.gh-post-upgrade-cta h2 {
+  margin-bottom: 1rem;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  --tw-text-opacity: 1;
+  color: rgb(216 71 39 / var(--tw-text-opacity));
+  color: #D84727;
+  font-family: "Atkinson Hyperlegible", sans-serif, monospace;
+}
+
+.gh-btn.gh-portal-close {
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(216 71 39 / var(--tw-bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  background-color: #D84727;
+}
+
+.gh-btn.gh-portal-close:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(160 54 29 / var(--tw-bg-opacity));
+}
+
+.gh-post-upgrade-cta-content p {
+  margin-top: 1rem;
+}
+
+.gh-post-upgrade-cta-content p a {
+  --tw-text-opacity: 1;
+  color: rgb(216 71 39 / var(--tw-text-opacity));
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  color: #D84727;
+}
+
+.gh-post-upgrade-cta-content p a:hover {
+  --tw-text-opacity: 1;
+  color: rgb(160 54 29 / var(--tw-text-opacity));
 }

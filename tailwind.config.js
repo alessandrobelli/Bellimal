@@ -20,8 +20,8 @@ module.exports = {
                 }
             },
             fontFamily: {
-                heading: ['"Fira Mono"', 'monospace'],
-                body: ['"Atkinson Hyperlegible"', 'sans-serif'],
+                body: ['"Fira Mono"', 'monospace'],
+                heading: ['"Atkinson Hyperlegible"', 'sans-serif'],
             },
             scale: {
                 '101': '1.01',

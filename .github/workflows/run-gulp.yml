@@ -1,0 +1,11 @@
+name: Gulp Action
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Gulp Runner
+        uses: 2KAbhishek/gulp-runner@v0.3

@@ -1,0 +1,56 @@
+<section class="you-might-like py-8">
+    <h2 class="text-2xl font-heading text-anthracite mb-4">You Might Like</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {{#get "posts" include="authors" limit="3" as |related_posts|}}
+            {{#if related_posts}}
+                {{#foreach related_posts}}
+                    <article class="bg-white border-gray-100 border-b-2 p-4 flex items-center hover:border-gray-300">
+                        {{#if feature_image}}
+                            <div class="flex-shrink-0 w-24 h-24 mr-4 overflow-hidden rounded-lg">
+                                <img class="object-cover w-full h-full" src="{{img_url feature_image size="small"}}"
+                                     alt="">
+                            </div>
+                        {{/if}}
+                        <div class="flex-1">
+                            <a class="post-card-content-link block" href="{{url}}">
+                                <header class="post-card-header mb-2">
+                                    <div class="post-card-tags mb-1 flex items-center">
+                                        {{#primary_tag}}
+                                            <span class="hashtag text-xs mr-1">#</span>
+                                            <span class="post-card-primary-tag text-xs hover-orangeValencia">{{name}}</span>
+                                        {{/primary_tag}}
+                                    </div>
+                                    <div class="flex items-center justify-center">
+                                        {{#if featured}}
+                                            <span class="post-card-featured text-xs text-orangeValencia mr-2 flame-icon">{{> "icons/fire"}}</span>
+                                        {{/if}}
+                                        <h2 class="text-xl font-bold font-heading">{{title}}</h2>
+                                    </div>
+                                </header>
+                                {{#if excerpt}}
+                                    <div class="text-sm text-anthracite">
+                                        {{excerpt words="50"}}
+                                    </div>
+                                {{/if}}
+                            </a>
+                            <footer class="post-card-meta mt-4 text-xs text-gray-500">
+                                <time class="post-card-meta-date"
+                                      datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
+                                {{#if reading_time}}
+                                    <span class="post-card-meta-length ml-4">{{reading_time}}</span>
+                                {{/if}}
+                                {{#if @site.comments_enabled}}
+                                    {{#if comment_count}}
+                                        {{#if (comment_count '>' 0)}}
+                                            <span class="ml-4">{{comment_count}} comments</span>
+                                        {{/if}}
+                                    {{/if}}
+                                {{/if}}
+                            </footer>
+                        </div>
+                    </article>
+                {{/foreach}}
+            {{/if}}
+        {{/get}}
+    </div>
+</section>
