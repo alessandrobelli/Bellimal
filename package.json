@@ -83,10 +83,6 @@
     },
     "card_assets": true,
     "custom": {
-      "homepage_image": {
-        "type": "image",
-        "group": "homepage"
-      },
       "hero_description": {
         "type": "text",
         "group": "homepage",

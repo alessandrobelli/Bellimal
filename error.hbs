@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Lexend+Deca&display=swap" rel="stylesheet">
-    <title>Error - {{error.code}}</title>
+    <title>Error - {{error.statusCode}}</title>
     <style>
         body {
             display: flex;
@@ -49,7 +49,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">{{error.code}} Error</h1>
+        <h1 class="title">{{error.statusCode}} Error</h1>
         <p class="description">{{error.message}}</p>
         <a class="link" href="{{@site.url}}">Go back to Home</a>
     </div>

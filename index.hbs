@@ -2,13 +2,7 @@
 
 <header class="site-header py-8 bg-orangeValencia-100 text-center">
     <div class="container mx-auto">
-        {{#match @custom.navigation_layout "Logo on cover"}}
-            {{#if @site.logo}}
-                <img class="site-logo mx-auto mb-4" src="{{@site.logo}}" alt="{{@site.title}}">
-            {{else}}
-                <h1 class="site-title text-4xl font-heading text-anthracite">{{@site.title}}</h1>
-            {{/if}}
-        {{/match}}
+        <h1 class="site-title text-4xl font-heading text-anthracite">{{@site.title}}</h1>
         {{#if @site.description}}
             <p class="site-description text-xl text-anthracite">{{@site.description}}</p>
         {{/if}}
