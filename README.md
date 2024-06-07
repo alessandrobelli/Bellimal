@@ -1,69 +1,46 @@
-# Casper
+# Bellimal Ghost Theme
 
-The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Casper! If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Casper/releases) page.
+## Introduction
+Welcome to Bellimal, a minimalist Ghost theme designed for a sleek and professional online presence. Whether you are a blogger, software engineer, or a game developer, Bellimal offers a clean and modern layout with subtle animations and customizations to enhance your content.
 
-&nbsp;
+## Features
+- **Minimalist Design**: Clean, modern layout with subtle animations.
+- **Custom Colors**: Anthracite and Orange Valencia for a cohesive aesthetic.
+- **Responsive Layout**: Fully responsive, ensuring your site looks great on all devices.
+- **Custom Components**: Includes tailored components like the "You Might Like" section and more.
+- **SEO Optimized**: Built with best SEO practices in mind to help your site rank better.
 
-![screenshot-desktop](https://user-images.githubusercontent.com/1418797/183329195-8e8f2ee5-a473-4694-a813-a2575491209e.png)
+## Installation
+1. **Download** the theme from the [GitHub repository](#).
+2. **Upload** the theme via the Ghost Admin interface.
+3. **Activate** the theme from the settings.
 
-&nbsp;
+## Customization
+To customize the theme:
+1. **Edit CSS**: Modify `assets/css/input.css` for custom styles.
+2. **Tailwind Config**: Adjust `tailwind.config.js` for color and font changes.
+3. **Build css**: Run `npm run build:css` to compile the CSS.
+4. **Templates**: Customize template files in the theme directory for layout changes.
 
-# First time using a Ghost theme?
+## Tailwind CSS
+Bellimal uses Tailwind CSS for styling. The Tailwind configuration is found in `tailwind.config.js`, where you can extend the theme's colors, fonts, and more.
 
-Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
+## Misc
 
-This theme has lots of code comments to help explain what's going on just by reading the code. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://ghost.org/docs/themes/) which explains every possible Handlebars helper and template.
+### Ghost General Information
+[Ghost](https://ghost.org/) uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
 
-**The main files are:**
+I developed this theme using this tutorial: https://dev.to/mattlehrer/how-to-setup-tailwindcss-with-a-custom-ghost-theme-5hmk
 
-- `default.hbs` - The parent template file, which includes your global header/footer
-- `index.hbs` - The main template to generate a list of posts, usually the home page
-- `post.hbs` - The template used to render individual posts
-- `page.hbs` - Used for individual pages
-- `tag.hbs` - Used for tag archives, eg. "all posts tagged with `news`"
-- `author.hbs` - Used for author archives, eg. "all posts written by Jamie"
+### Contributing
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-One neat trick is that you can also create custom one-off templates by adding the slug of a page to a template file. For example:
+### Security
+If you discover any security related issues, please email alessandrobelli90@gmail.com instead of using the issue tracker.
 
-- `page-about.hbs` - Custom template for an `/about/` page
-- `tag-news.hbs` - Custom template for `/tag/news/` archive
-- `author-ali.hbs` - Custom template for `/author/ali/` archive
+### Credits
+- [Alessandro Belli](https://github.com/AlessandroBelli)
+- [All Contributors](../../contributors)
 
-
-# Development
-
-Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
-
-```bash
-# install dependencies
-yarn install
-
-# run development server
-yarn dev
-```
-
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
-
-The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
-
-```bash
-# create .zip file
-yarn zip
-```
-
-# PostCSS Features Used
-
-- Autoprefixer - Don't worry about writing browser prefixes of any kind, it's all done automatically with support for the latest 2 major versions of every browser.
-- [Color Mod](https://github.com/jonathantneal/postcss-color-mod-function)
-
-
-# SVG Icons
-
-Casper uses inline SVG icons, included via Handlebars partials. You can find all icons inside `/partials/icons`. To use an icon just include the name of the relevant file, eg. To include the SVG icon in `/partials/icons/rss.hbs` - use `{{> "icons/rss"}}`.
-
-You can add your own SVG icons in the same manner.
-
-
-# Copyright & License
-
-Copyright (c) 2013-2023 Ghost Foundation - Released under the [MIT license](LICENSE).
+### License
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
