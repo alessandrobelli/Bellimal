@@ -2,7 +2,7 @@
   "name": "bellimal",
   "description": "ma theme",
   "demo": "https://alessandrobelli.it",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "engines": {
     "ghost": ">=5.0.0"
   },
@@ -94,10 +94,5 @@
         "default": "Welcome to Bellimal"
       }
     }
-  },
-  "renovate": {
-    "extends": [
-      "@tryghost:theme"
-    ]
   }
 }
