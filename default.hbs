@@ -6,25 +6,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Atkinson+Hyperlegible&display=swap"
           rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
-
     <link rel="stylesheet" href="{{asset "css/main.css"}}">
     <title>{{meta_title}}</title>
     {{ghost_head}}
 </head>
 <body class="bg-white text-anthracite">
-<div class="flex min-h-screen">
+<div class="flex flex-col lg:flex-row min-h-screen">
     <!-- Navigation Section -->
-    <div class="flex flex-col items-center justify-center w-64 bg-white h-screen border-r p-6 fixed">
-        <nav class="flex flex-col items-center justify-center h-full">
+    <div class="w-full lg:w-64 bg-white border-r p-6 lg:fixed lg:h-screen flex lg:flex-col items-center justify-center">
+        <nav class="flex flex-col items-center justify-center w-full">
             {{navigation}}
         </nav>
     </div>
 
-    <main class="ml-64 w-3/4 p-8 flex-grow h-scroll max-h-screen overflow-auto">
+    <main class="w-full lg:ml-64 p-8 flex-grow overflow-auto">
         {{{body}}}
     </main>
     {{ghost_foot}}
-
 </div>
 </body>
 </html>

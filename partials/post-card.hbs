@@ -1,11 +1,10 @@
-<article
-        class=" bg-white border-gray-100 border-b-2 p-4 flex items-center hover:border-gray-300">
+<article class="bg-white border-gray-100 border-b-2 p-4 flex flex-col sm:flex-row items-center hover:border-gray-300">
     {{#if feature_image}}
-        <div class="flex-shrink-0 w-24 h-24 mr-4 overflow-hidden rounded-lg">
+        <div class="flex-shrink-0 w-full sm:w-24 h-24 mb-4 sm:mb-0 sm:mr-4 overflow-hidden rounded-lg">
             <img class="object-cover w-full h-full" src="{{img_url feature_image size="small"}}" alt="">
         </div>
     {{/if}}
-    <div class=" flex-1">
+    <div class="flex-1">
         <a class="post-card-content-link block" href="{{url}}">
             <header class="post-card-header mb-2">
                 <div class="post-card-tags mb-1 flex items-center">
@@ -14,11 +13,11 @@
                         <span class="post-card-primary-tag text-xs hover-orangeValencia">{{name}}</span>
                     {{/primary_tag}}
                 </div>
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center sm:justify-start">
                     {{#if featured}}
                         <span class="post-card-featured text-xs text-orangeValencia mr-2 flame-icon">{{> "icons/fire"}}</span>
                     {{/if}}
-                    <h2 class="text-xl font-bold font-heading">{{title}}</h2>
+                    <h2 class="text-xl font-bold font-heading text-center sm:text-left">{{title}}</h2>
                 </div>
             </header>
             {{#if excerpt}}

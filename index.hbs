@@ -1,7 +1,7 @@
 {{!< default}}
 
 <header class="site-header py-8 bg-orangeValencia-100 text-center">
-    <div class="container mx-auto">
+    <div class="container mx-auto px-4">
         <h1 class="site-title text-4xl font-heading text-anthracite">{{@site.title}}</h1>
         {{#if @site.description}}
             <p class="site-description text-xl text-anthracite">{{@site.description}}</p>
@@ -9,8 +9,8 @@
     </div>
 </header>
 
-<main class="container mx-auto py-8">
-    <div class="post-cards grid grid-cols-2 gap-8">
+<main class="container mx-auto py-8 px-4">
+    <div class="post-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {{#foreach posts}}
             {{> "post-card"}}
         {{/foreach}}
