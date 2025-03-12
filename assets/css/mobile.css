@@ -1,0 +1,82 @@
+/* Mobile menu styles */
+/* Mobile header styles */
+@media (max-width: 1023px) {
+    #sideNav {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    /* Add top padding to account for fixed header */
+    .site-main.outer {
+        padding-top: 4rem;
+    }
+    
+    /* Mobile menu open animation */
+    #sideNav.menu-open {
+        transform: translateX(0);
+    }
+    
+    /* Hamburger button hover effect */
+    #hamburgerBtn:hover svg {
+        color: var(--color-orangeValencia);
+    }
+    
+    /* Close button hover effect */
+    #closeNavBtn:hover svg {
+        color: var(--color-orangeValencia);
+    }
+    
+    /* Mobile nav styling */
+    #sideNav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding-top: 4rem;
+    }
+    
+    /* Mobile navigation items spacing */
+    #sideNav nav a {
+        padding: 0.75rem 0;
+        font-size: 1.125rem;
+    }
+    
+    /* Dark mode toggle positioning */
+    #darkModeToggleMobile {
+        margin-right: 0.5rem;
+    }
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Overlay styles */
+#mobileMenuOverlay {
+    animation: fadeIn 0.3s ease;
+}
+
+#sideNav:not(.-translate-x-full) {
+    animation: slideIn 0.3s ease;
+}
+
+/* Fix for scrollbar jump on menu open */
+html.mobile-menu-open {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width, 0px);
+}

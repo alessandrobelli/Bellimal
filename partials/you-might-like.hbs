@@ -1,10 +1,10 @@
 <section class="you-might-like py-8">
-    <h2 class="text-2xl font-heading text-anthracite mb-4">You Might Like</h2>
+    <h2 class="text-2xl font-heading text-anthracite dark:text-darkText mb-4">You Might Like</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {{#get "posts" include="authors" limit="3" as |related_posts|}}
             {{#if related_posts}}
                 {{#foreach related_posts}}
-                    <article class="bg-white border-gray-100 border-b-2 p-4 flex items-center hover:border-gray-300">
+                    <article class="bg-white dark:bg-darkSecondary border-gray-100 dark:border-gray-700 border-b-2 p-4 flex items-center hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-300">
                         {{#if feature_image}}
                             <div class="flex-shrink-0 w-24 h-24 mr-4 overflow-hidden rounded-lg">
                                 <img class="object-cover w-full h-full" src="{{img_url feature_image size="small"}}"
@@ -24,16 +24,16 @@
                                         {{#if featured}}
                                             <span class="post-card-featured text-xs text-orangeValencia mr-2 flame-icon">{{> "icons/fire"}}</span>
                                         {{/if}}
-                                        <h2 class="text-xl font-bold font-heading">{{title}}</h2>
+                                        <h2 class="text-xl font-bold font-heading text-anthracite dark:text-darkText">{{title}}</h2>
                                     </div>
                                 </header>
                                 {{#if excerpt}}
-                                    <div class="text-sm text-anthracite">
+                                    <div class="text-sm text-anthracite dark:text-darkMuted">
                                         {{excerpt words="50"}}
                                     </div>
                                 {{/if}}
                             </a>
-                            <footer class="post-card-meta mt-4 text-xs text-gray-500">
+                            <footer class="post-card-meta mt-4 text-xs text-gray-500 dark:text-gray-400">
                                 <time class="post-card-meta-date"
                                       datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
                                 {{#if reading_time}}

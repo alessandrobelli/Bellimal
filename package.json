@@ -83,16 +83,22 @@
     },
     "card_assets": true,
     "custom": {
-      "hero_description": {
-        "type": "text",
-        "group": "homepage",
-        "description": "HTML is allowed. For links use: <a href='url' class='text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300 transition-colors duration-200'>link text</a>",
-        "default": "I'm Alessandro Belli, a <a href='#' class='text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300 transition-colors duration-200'>university software engineer</a> with a passion for writing, technology, and a dream to create my own game. 🎮 🚀 Join me on a journey through insightful articles, from tackling the challenges of productivity and organization to exploring new technologies. 📊 ✨"
-      },
       "hero_title": {
         "type": "text",
         "group": "homepage",
         "default": "Welcome to Bellimal"
+      },
+      "hero_description": {
+        "type": "text",
+        "group": "homepage",
+        "description": "HTML is allowed. For links use: <a href='url' class='transition-colors duration-200 text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300'>link text</a>",
+        "default": "I'm Alessandro Belli, a <a href='#' class='transition-colors duration-200 text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300'>university software engineer</a> with a passion for writing, technology, and a dream to create my own game. 🎮 🚀 Join me on a journey through insightful articles, from tackling the challenges of productivity and organization to exploring new technologies. 📊 ✨"
+      },
+      "featured_page_slug": {
+        "type": "text",
+        "group": "homepage",
+        "description": "Slug of the page to feature on homepage",
+        "default": "about"
       }
     }
   }

@@ -5,63 +5,65 @@
         <!-- Main Content -->
         {{#page}}
             <article class="gh-article p-0 {{page_class}} font-body post-full-content">
-                {{#if feature_image}}
-                    <header class="relative w-full mb-4 h-48 md:h-64 bg-cover bg-center"
-                            style="background-image: url('{{img_url feature_image size="xl"}}');">
-                        <div class="absolute inset-0 bg-black opacity-50"></div>
-                        <div class="relative z-10 flex items-center justify-center h-full">
-                            <div class="text-center text-white px-4 overflow-ellipsis sm:text-wrap">
-                                <h1 class="text-2xl sm:text-4xl lg:text-5xl tracking-tight font-heading leading-6 sm:leading-4 max-w-full">{{title}}</h1>
-                                <div class="py-2 my-4 text-sm">
-                                    <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
-                                    {{#if tags}}
+                {{#if @page.show_title_and_feature_image}}
+                    {{#if feature_image}}
+                        <header class="relative w-full mb-4 h-48 md:h-64 bg-cover bg-center"
+                                style="background-image: url('{{img_url feature_image size="xl"}}');">
+                            <div class="absolute inset-0 bg-black opacity-50"></div>
+                            <div class="relative z-10 flex items-center justify-center h-full">
+                                <div class="text-center text-white px-4 overflow-ellipsis sm:text-wrap">
+                                    <h1 class="text-2xl sm:text-4xl lg:text-5xl tracking-tight font-heading leading-6 sm:leading-4 max-w-full">{{title}}</h1>
+                                    <div class="py-2 my-4 text-sm">
+                                        <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
+                                        {{#if tags}}
+                                            <span class="bull">•</span>
+                                            {{#foreach tags}}
+                                                <span class="inline-flex items-center">{{name}}</span>
+                                            {{/foreach}}
+                                        {{/if}}
                                         <span class="bull">•</span>
-                                        {{#foreach tags}}
-                                            <span class="inline-flex items-center">{{name}}</span>
-                                        {{/foreach}}
-                                    {{/if}}
-                                    <span class="bull">•</span>
-                                    <span class="text-sm gh-post-authors">
-                                        Written by
-                                        {{#foreach authors}}
-                                            <a href="{{url}}" class="font-bold">
-                                                {{#if profile_image}}
-                                                    <img class="inline-block w-4 h-4 rounded-full mr-1"
-                                                         src="{{profile_image}}" alt="{{name}} Profile Picture"/>
-                                                {{/if}}
-                                                {{name}}
-                                            </a>
-                                        {{/foreach}}
-                                    </span>
+                                        <span class="text-sm gh-post-authors">
+                                            Written by
+                                            {{#foreach authors}}
+                                                <a href="{{url}}" class="font-bold">
+                                                    {{#if profile_image}}
+                                                        <img class="inline-block w-4 h-4 rounded-full mr-1"
+                                                             src="{{profile_image}}" alt="{{name}} Profile Picture"/>
+                                                    {{/if}}
+                                                    {{name}}
+                                                </a>
+                                            {{/foreach}}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </header>
-                {{else}}
-                    <h1 class="text-4xl font-heading leading-5 mb-4 tracking-tight text-center sm:text-5xl lg:text-6xl text-anthracite">{{title}}</h1>
-                    <div class="py-2 my-4 text-sm text-center">
-                        <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
-                        <span class="bull">•</span> {{reading_time}}
-                        {{#if tags}}
+                        </header>
+                    {{else}}
+                        <h1 class="text-4xl font-heading leading-5 mb-4 tracking-tight text-center sm:text-5xl lg:text-6xl text-anthracite">{{title}}</h1>
+                        <div class="py-2 my-4 text-sm text-center">
+                            <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
+                            <span class="bull">•</span> {{reading_time}}
+                            {{#if tags}}
+                                <span class="bull">•</span>
+                                {{#foreach tags}}
+                                    <span class="inline-flex items-center">{{name}}</span>
+                                {{/foreach}}
+                            {{/if}}
                             <span class="bull">•</span>
-                            {{#foreach tags}}
-                                <span class="inline-flex items-center">{{name}}</span>
-                            {{/foreach}}
-                        {{/if}}
-                        <span class="bull">•</span>
-                        <span class="text-sm gh-post-authors">
-                            Written by
-                            {{#foreach authors}}
-                                <a href="{{url}}" class="font-bold">
-                                    {{#if profile_image}}
-                                        <img class="inline-block w-4 h-4 rounded-full mr-1" src="{{profile_image}}"
-                                             alt="{{name}} Profile Picture"/>
-                                    {{/if}}
-                                    {{name}}
-                                </a>
-                            {{/foreach}}
-                        </span>
-                    </div>
+                            <span class="text-sm gh-post-authors">
+                                Written by
+                                {{#foreach authors}}
+                                    <a href="{{url}}" class="font-bold">
+                                        {{#if profile_image}}
+                                            <img class="inline-block w-4 h-4 rounded-full mr-1" src="{{profile_image}}"
+                                                 alt="{{name}} Profile Picture"/>
+                                        {{/if}}
+                                        {{name}}
+                                    </a>
+                                {{/foreach}}
+                            </span>
+                        </div>
+                    {{/if}}
                 {{/if}}
                 <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-code:text-orangeValencia prose-p:text-anthracite prose-ul:text-anthracite prose-strong:text-anthracite prose-th:text-anthracite prose-h1:text-anthracite prose-h2:text-anthracite prose-h3:text-anthracite prose-strong:font-bold gh-content max-w-none">
                     {{content}}

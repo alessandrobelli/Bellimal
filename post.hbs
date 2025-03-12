@@ -69,32 +69,45 @@
             {{comments}}
         </footer>
     </article>
-    <aside class="w-full pb-4 gh-readmore">
-        <div class="flex justify-between text-base gh-readmore-inner font-heading">
-            <div class="gh-readmore-next flex items-center">
-                {{#next_post in="primary_tag"}}
-                    <a href="{{url}}"
-                       class="hover:text-orangeValencia transition ease-in-out duration-300 flex items-center">
-                        <svg class="w-6 h-6 mr-2" viewBox="0 0 17 27" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.54 2.426l-13.143 11.5 13.143 11.5" stroke-width="3" stroke="currentColor"
-                                  fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <p class="truncate w-48">{{title}}</p>
+    <aside class="w-full pb-8 pt-8 mt-12 border-t dark:border-gray-800">
+        <h3 class="text-xl font-heading mb-6 text-anthracite dark:text-darkText">Continue Reading</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {{#next_post in="primary_tag"}}
+                <div class="post-navigation-card bg-white dark:bg-darkSecondary p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                    <div class="flex items-center mb-2">
+                        <span class="text-orangeValencia dark:text-orangeValencia-400 text-sm font-semibold">Next Post</span>
+                    </div>
+                    <a href="{{url}}" class="group">
+                        <h4 class="text-lg font-bold font-heading mb-2 text-anthracite dark:text-darkText group-hover:text-orangeValencia dark:group-hover:text-orangeValencia-400 transition-colors duration-200">{{title}}</h4>
+                        <p class="text-sm text-anthracite dark:text-darkMuted line-clamp-2">{{excerpt words="15"}}...</p>
+                        <div class="flex items-center mt-3 text-orangeValencia dark:text-orangeValencia-400">
+                            <span class="text-sm">Read more</span>
+                            <svg class="w-4 h-4 ml-1" viewBox="0 0 18 27" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.397 25.426l13.143-11.5-13.143-11.5" stroke-width="3" stroke="currentColor"
+                                      fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </a>
-                {{/next_post}}
-            </div>
-            <div class="gh-readmore-prev flex items-center">
-                {{#prev_post in="primary_tag"}}
-                    <a href="{{url}}"
-                       class="hover:text-orangeValencia transition ease-in-out duration-300 flex items-center">
-                        <p class="truncate w-48">{{title}}</p>
-                        <svg class="w-6 h-6 ml-2" viewBox="0 0 18 27" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2.397 25.426l13.143-11.5-13.143-11.5" stroke-width="3" stroke="currentColor"
-                                  fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                </div>
+            {{/next_post}}
+            {{#prev_post in="primary_tag"}}
+                <div class="post-navigation-card bg-white dark:bg-darkSecondary p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                    <div class="flex items-center mb-2">
+                        <span class="text-orangeValencia dark:text-orangeValencia-400 text-sm font-semibold">Previous Post</span>
+                    </div>
+                    <a href="{{url}}" class="group">
+                        <h4 class="text-lg font-bold font-heading mb-2 text-anthracite dark:text-darkText group-hover:text-orangeValencia dark:group-hover:text-orangeValencia-400 transition-colors duration-200">{{title}}</h4>
+                        <p class="text-sm text-anthracite dark:text-darkMuted line-clamp-2">{{excerpt words="15"}}...</p>
+                        <div class="flex items-center mt-3 text-orangeValencia dark:text-orangeValencia-400">
+                            <span class="text-sm">Read more</span>
+                            <svg class="w-4 h-4 ml-1" viewBox="0 0 18 27" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.397 25.426l13.143-11.5-13.143-11.5" stroke-width="3" stroke="currentColor"
+                                      fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </a>
-                {{/prev_post}}
-            </div>
+                </div>
+            {{/prev_post}}
         </div>
     </aside>
 {{/post}}

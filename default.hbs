@@ -8,6 +8,12 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
     <link rel="stylesheet" href="{{asset "css/main.css"}}">
     <link rel="stylesheet" href="{{asset "css/animations.css"}}">
+    <link rel="stylesheet" href="{{asset "css/mobile.css"}}">
+    <link rel="stylesheet" href="{{asset "css/carousel-mobile.css"}}">
+    <link rel="stylesheet" href="{{asset "css/related-posts.css"}}">
+    <link rel="stylesheet" href="{{asset "css/bookmarks.css"}}">
+    <link rel="stylesheet" href="{{asset "css/bookmarks-fix.css"}}">
+    <link rel="stylesheet" href="{{asset "css/social-embeds.css"}}">
     <script>
         // Immediately apply dark mode if stored in localStorage (prevents flash)
         if (localStorage.getItem('darkMode') === 'true') {
@@ -20,9 +26,33 @@
     {{ghost_head}}
 </head>
 <body class="bg-white dark:bg-dark text-anthracite dark:text-darkText transition-colors duration-300">
+<!-- Mobile Header with Hamburger -->
+<header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white dark:bg-darkSecondary shadow-sm px-4 py-2 flex justify-between items-center transition-colors duration-300">
+    <a href="{{@site.url}}" class="text-xl font-heading text-anthracite dark:text-darkText">{{@site.title}}</a>
+    <div class="flex items-center space-x-3">
+        <button id="darkModeToggleMobile" class="p-2 rounded-full focus:outline-none transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 dark-icon hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 light-icon block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+        <button id="hamburgerBtn" class="text-anthracite dark:text-darkText focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+</header>
 <div class="flex flex-col lg:flex-row min-h-screen">
     <!-- Navigation Section -->
-    <div class="w-full lg:w-64 bg-white dark:bg-darkSecondary border-r dark:border-gray-800 p-6 lg:fixed lg:h-screen flex lg:flex-col items-center justify-center transition-colors duration-300">
+    <div id="sideNav" class="fixed inset-0 lg:inset-auto z-40 w-full lg:w-64 bg-white dark:bg-darkSecondary border-r dark:border-gray-800 p-6 lg:fixed lg:h-screen flex lg:flex-col items-center justify-center transition-transform duration-300 -translate-x-full lg:translate-x-0 shadow-xl lg:shadow-none">
+        <button id="closeNavBtn" class="absolute top-4 right-4 text-anthracite dark:text-darkText lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
         <nav class="flex flex-col items-center justify-center w-full">
             {{navigation}}
             <div class="mt-8">
@@ -38,11 +68,14 @@
         </nav>
     </div>
 
-    <main class="w-full lg:ml-64 p-8 flex-grow overflow-auto">
+    <main class="w-full lg:ml-64 p-8 pt-16 lg:pt-8 flex-grow overflow-auto">
         {{{body}}}
     </main>
     <script src="{{asset "js/darkmode.js"}}"></script>
     <script src="{{asset "js/animations.js"}}"></script>
+    <script src="{{asset "js/mobile-menu.js"}}"></script>
+    <script src="{{asset "js/carousel-mobile.js"}}"></script>
+    <script src="{{asset "js/social-embeds.js"}}"></script>
     {{ghost_foot}}
 </div>
 </body>

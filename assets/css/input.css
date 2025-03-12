@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --gh-font-heading: "Atkinson Hyperlegible", sans-serif;
+    --gh-font-body: "Fira Mono", monospace;
+}
+
 /* Prose List Styling */
 .prose ol li::marker,
 .prose ul li::marker {
@@ -75,7 +80,7 @@ a:hover {
 
 /* Bookmark Card Styles */
 .kg-card.kg-bookmark-card {
-    @apply flex bg-white dark:bg-darkSecondary border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden transition-transform transform hover:scale-101;
+    @apply flex bg-white dark:bg-darkSecondary border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md;
 }
 
 .kg-bookmark-container {
@@ -87,15 +92,15 @@ a:hover {
 }
 
 .kg-bookmark-title {
-    @apply text-lg font-heading text-orangeValencia mb-2;
+    @apply text-lg font-heading text-orangeValencia dark:text-orangeValencia-400 mb-2;
 }
 
 .kg-bookmark-description {
-    @apply text-sm mb-4;
+    @apply text-sm mb-4 text-anthracite dark:text-gray-300;
 }
 
 .kg-bookmark-metadata {
-    @apply flex items-center text-xs text-gray-500 space-x-2;
+    @apply flex items-center text-xs text-gray-500 dark:text-gray-400 space-x-2;
 }
 
 .kg-bookmark-icon {
@@ -108,7 +113,7 @@ a:hover {
 }
 
 .kg-bookmark-thumbnail {
-    @apply w-32 h-32 flex-shrink-0;
+    @apply w-32 h-32 flex-shrink-0 border-l border-gray-200 dark:border-gray-700;
 }
 
 .kg-bookmark-thumbnail img {
@@ -166,6 +171,116 @@ body {
 /* Primary tag with special styling */
 .primary-tag {
     @apply bg-gray-100 text-orangeValencia-600 dark:bg-gray-800 dark:text-orangeValencia-400 hover:bg-orangeValencia-100 dark:hover:bg-gray-700;
+}
+
+/* Featured content styling */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    @apply text-anthracite dark:text-darkText font-heading mt-8 mb-4;
+}
+
+.prose h1 {
+    @apply text-3xl;
+}
+
+.prose h2 {
+    @apply text-2xl text-orangeValencia dark:text-orangeValencia-400;
+}
+
+.prose h3 {
+    @apply text-xl text-orangeValencia dark:text-orangeValencia-400;
+}
+
+.prose p {
+    @apply mb-4 leading-relaxed;
+}
+
+.prose a {
+    @apply text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300 transition-colors duration-200;
+}
+
+.prose ul {
+    @apply list-disc pl-5 my-4;
+}
+
+.prose ol {
+    @apply list-decimal pl-5 my-4;
+}
+
+/* Dark mode prose styles */
+.dark .prose {
+    @apply text-darkText;
+}
+
+.dark .prose-dark a {
+    @apply text-orangeValencia-400 hover:text-orangeValencia-300;
+}
+
+.dark .prose-dark h1,
+.dark .prose-dark h2,
+.dark .prose-dark h3,
+.dark .prose-dark h4,
+.dark .prose-dark h5,
+.dark .prose-dark h6 {
+    @apply text-darkText;
+}
+
+.dark .prose-dark code {
+    @apply bg-gray-800 text-darkText;
+}
+
+.dark .prose-dark pre {
+    @apply bg-gray-900 text-darkText;
+}
+
+.dark .prose-dark hr {
+    @apply border-gray-700;
+}
+
+/* Table Styling */
+table {
+    @apply w-full border-collapse my-4;
+}
+
+thead {
+    @apply bg-gray-100 dark:bg-gray-800;
+}
+
+th {
+    @apply border p-2 text-left font-bold text-anthracite dark:text-white border-gray-300 dark:border-gray-700;
+}
+
+td {
+    @apply border p-2 text-anthracite dark:text-gray-300 border-gray-300 dark:border-gray-700;
+}
+
+tr:nth-child(even) {
+    @apply bg-gray-50 dark:bg-gray-900;
+}
+
+tr:hover {
+    @apply bg-gray-100 dark:bg-gray-800 transition-colors duration-200;
+}
+
+/* Prose tables */
+.prose table {
+    @apply w-full border-collapse my-4;
+}
+
+.prose thead {
+    @apply bg-gray-100 dark:bg-gray-800;
+}
+
+.prose th {
+    @apply border p-2 text-left font-bold text-anthracite dark:text-white border-gray-300 dark:border-gray-700;
+}
+
+.prose td {
+    @apply border p-2 text-anthracite dark:text-gray-300 border-gray-300 dark:border-gray-700;
+}
+
+.dark .prose th,
+.dark .prose td {
+    @apply border-gray-700;
 }
 
 /* Blockquote/Callout Styling */

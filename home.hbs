@@ -5,12 +5,41 @@
 
         <h1 class="mb-4 text-4xl leading-5 tracking-tight text-center font-heading sm:text-5xl lg:text-6xl text-anthracite dark:text-darkText hero-title"><span class="star-emoji">✨</span> {{@custom.hero_title}} <span class="star-emoji">✨</span></h1>
         <div class="py-2 my-4 text-lg text-center">{{{@custom.hero_description}}}</div>
+        
+        <!-- Featured Content Section -->
+        {{#if @custom.featured_page_slug}}
+        <section class="py-8">
+            <div class="transition-colors duration-300 bg-transparent">
+                {{#get "pages" filter="slug:{{@custom.featured_page_slug}}" include="authors" limit="1" as |featured_page|}}
+                    {{#foreach featured_page}}
+                        <div class="max-w-4xl mx-auto">
+                            <div class="prose dark:prose-dark max-w-none">
+                                {{{content}}}
+                            </div>
+                        </div>
+                    {{/foreach}}
+                {{else}}
+                    <!-- Fallback to a specific post if no about-me page exists -->
+                    {{#get "posts" limit="1" include="authors" as |featured_post|}}
+                        {{#foreach featured_post}}
+                            <div class="max-w-4xl mx-auto">
+                                <div class="prose dark:prose-dark max-w-none">
+                                    {{{content}}}
+                                </div>
+                            </div>
+                        {{/foreach}}
+                    {{/get}}
+                {{/get}}
+            </div>
+        </section>
+        {{/if}}
+
         <!-- Carousel Section -->
-        <section class="py-12 carousel">
+        <section class="relative pt-2 pb-12 carousel">
             <h2 class="mb-6 text-2xl font-heading text-anthracite dark:text-darkText">Latest Posts</h2>
             <div class="flex space-x-4 overflow-x-auto carousel-wrapper">
                 {{#foreach posts}}
-                    <div class="flex-shrink-0 p-4 bg-white dark:bg-darkSecondary border-r-2 border-gray-100 dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600 w-80 transition-colors duration-300">
+                    <div class="flex-shrink-0 p-4 transition-colors duration-300 bg-white border-r-2 border-gray-100 dark:bg-darkSecondary dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600 w-80">
                         <a href="{{url}}" class="block">
                             <div class="flex items-center mb-2 post-card-tags">
                                 {{#primary_tag}}
@@ -41,6 +70,12 @@
                         </a>
                     </div>
                 {{/foreach}}
+            </div>
+            <div class="carousel-nav-hint md:hidden">
+                <span>Swipe</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
             </div>
         </section>
     </div>

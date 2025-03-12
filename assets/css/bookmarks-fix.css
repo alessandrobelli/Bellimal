@@ -1,0 +1,120 @@
+/* Complete fix for bookmark cards in dark mode */
+
+/* Make the entire card respect dark mode */
+.dark .kg-bookmark-card {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+}
+
+.dark .kg-bookmark-container {
+    background-color: #1e1e1e !important;
+    color: #e2e2e2 !important;
+}
+
+.dark .kg-bookmark-content {
+    background-color: #1e1e1e !important;
+}
+
+.dark .kg-bookmark-title {
+    color: #F97D6E !important;
+}
+
+.dark .kg-bookmark-description {
+    color: #e2e2e2 !important;
+}
+
+.dark .kg-bookmark-metadata {
+    color: #a0a0a0 !important;
+}
+
+/* Force proper color inheritance */
+.dark * .kg-bookmark-card * {
+    color: inherit;
+}
+
+/* Handle long titles on mobile */
+@media (max-width: 767px) {
+    /* Card title handling */
+    .kg-bookmark-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 3em;
+        line-height: 1.5;
+    }
+    
+    /* Post title handling */
+    .post-title, h1.site-title, h1.text-4xl, h1.text-2xl {
+        word-break: break-word;
+        hyphens: auto;
+        overflow-wrap: break-word;
+    }
+    
+    /* Adjust card layout on very small screens */
+    @media (max-width: 400px) {
+        .kg-bookmark-card {
+            flex-direction: column;
+        }
+        
+        .kg-bookmark-thumbnail {
+            width: 100% !important;
+            height: auto !important;
+            min-height: 160px;
+        }
+    }
+}
+
+/* Completely override any inline styles that might be causing issues */
+.dark .kg-bookmark-card[style*="background"],
+.dark .kg-bookmark-container[style*="background"],
+.dark .kg-bookmark-content[style*="background"] {
+    background-color: #1e1e1e !important;
+}
+
+.dark .kg-bookmark-title[style*="color"] {
+    color: #F97D6E !important;
+}
+
+.dark .kg-bookmark-description[style*="color"] {
+    color: #e2e2e2 !important;
+}
+
+/* Fix for any nested elements */
+.dark .kg-bookmark-card * {
+    border-color: #333 !important;
+}
+
+/* Remove any unwanted background images */
+.dark .kg-bookmark-card [style*="background-image"] {
+    background-image: none !important;
+}
+
+/* Extra style for the bookmark card to make it more visually appealing */
+.kg-bookmark-card {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 1.5em 0 !important;
+}
+
+.dark .kg-bookmark-card {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Fix color of links in bookmark cards */
+.dark a.kg-bookmark-container {
+    color: #e2e2e2 !important;
+}
+
+/* Make sure cards stack properly on mobile */
+@media (max-width: 600px) {
+    .kg-bookmark-card {
+        flex-direction: column;
+    }
+    
+    .kg-bookmark-thumbnail {
+        width: 100% !important;
+        border-left: none !important;
+        border-top: 1px solid #333 !important;
+    }
+}

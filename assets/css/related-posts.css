@@ -1,0 +1,72 @@
+/* Improved styling for "You Might Like" and post navigation sections */
+
+/* Post navigation cards */
+.post-navigation-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-navigation-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Mobile optimizations for "You Might Like" section */
+@media (max-width: 768px) {
+    .you-might-like article {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .you-might-like article .flex-shrink-0 {
+        width: 100%;
+        height: 140px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .you-might-like article .flex-1 {
+        width: 100%;
+    }
+    
+    .you-might-like h2.text-2xl {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    
+    /* Apply card style to navigation on mobile */
+    .post-navigation-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Enhance navigation container on mobile */
+@media (max-width: 768px) {
+    aside h3.text-xl {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Add specific night mode styles */
+.dark .post-navigation-card {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark .post-navigation-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Add color transitions */
+.post-navigation-card a span,
+.post-navigation-card a svg {
+    transition: transform 0.2s ease;
+}
+
+.post-navigation-card:hover a span {
+    transform: translateX(2px);
+}
+
+.post-navigation-card:hover a svg {
+    transform: translateX(3px);
+}
