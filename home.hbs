@@ -12,10 +12,12 @@
                 {{#foreach posts}}
                     <div class="flex-shrink-0 p-4 bg-white dark:bg-darkSecondary border-r-2 border-gray-100 dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600 w-80 transition-colors duration-300">
                         <a href="{{url}}" class="block">
-                            <div class="flex items-center mb-1 post-card-tags">
+                            <div class="flex items-center mb-2 post-card-tags">
                                 {{#primary_tag}}
-                                    <span class="mr-1 text-xs hashtag">#</span>
-                                    <span class="text-xs post-card-primary-tag">{{name}}</span>
+                                    <div class="post-card-primary-tag">
+                                        <span class="mr-1 hashtag">#</span>
+                                        <span>{{name}}</span>
+                                    </div>
                                 {{/primary_tag}}
                             </div>
                             {{#if feature_image}}

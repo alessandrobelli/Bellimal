@@ -10,6 +10,19 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Tag animation */
+.post-card-primary-tag {
+    transition: all 0.3s ease;
+}
+
+.post-card-primary-tag:hover {
+    box-shadow: 0 0 8px rgba(216, 71, 39, 0.2);
+}
+
+.dark .post-card-primary-tag:hover {
+    box-shadow: 0 0 8px rgba(247, 89, 70, 0.3);
+}
+
 /* Subtle gradient shift on hero title */
 .hero-title {
     background-image: linear-gradient(90deg, #D84727, #F75946, #D84727);

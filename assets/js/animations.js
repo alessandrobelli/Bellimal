@@ -23,6 +23,18 @@ document.addEventListener('DOMContentLoaded', function() {
         githubLink.classList.add('shimmer-link');
     }
     
+    // Add animation to tags
+    const tags = document.querySelectorAll('.post-card-primary-tag');
+    tags.forEach((tag) => {
+        // Subtle pulse on hover
+        tag.addEventListener('mouseenter', function() {
+            this.classList.add('scale-105');
+        });
+        tag.addEventListener('mouseleave', function() {
+            this.classList.remove('scale-105');
+        });
+    });
+    
     // Add intersection observer for fade-in elements
     const fadeElements = document.querySelectorAll('.should-fade');
     const observer = new IntersectionObserver((entries) => {

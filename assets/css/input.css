@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prose List Styling */
+.prose ol li::marker,
+.prose ul li::marker {
+    @apply text-orangeValencia font-bold;
+}
+
+.prose ol li,
+.prose ul li {
+    @apply mb-3;
+}
+
+.prose ol,
+.prose ul {
+    @apply mb-6;
+}
+
 /* Custom Styles */
 @layer utilities {
     .hover\:scale-101:hover {
@@ -123,6 +139,99 @@ h1, h2, h3, h4, h5, h6 {
 /* Body */
 body {
     @apply bg-white dark:bg-dark text-anthracite dark:text-darkText font-body transition-colors duration-300;
+}
+
+/* Tag styling */
+.post-card-tags {
+    @apply flex flex-wrap items-center mb-2;
+}
+
+.post-card-primary-tag {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-orangeValencia-100 dark:hover:bg-orangeValencia-800 hover:text-orangeValencia-600 dark:hover:text-orangeValencia-400;
+}
+
+.hashtag {
+    @apply inline-flex text-orangeValencia dark:text-orangeValencia-400 transition-colors duration-200;
+}
+
+/* Multiple tags display */
+.tag-list {
+    @apply flex flex-wrap gap-2;
+}
+
+.tag-item {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-orangeValencia-100 dark:hover:bg-orangeValencia-800 hover:text-orangeValencia-600 dark:hover:text-orangeValencia-400;
+}
+
+/* Primary tag with special styling */
+.primary-tag {
+    @apply bg-gray-100 text-orangeValencia-600 dark:bg-gray-800 dark:text-orangeValencia-400 hover:bg-orangeValencia-100 dark:hover:bg-gray-700;
+}
+
+/* Blockquote/Callout Styling */
+blockquote {
+    @apply pl-4 border-l-4 border-orangeValencia dark:border-orangeValencia-400 py-2 my-4;
+}
+
+blockquote p {
+    @apply text-gray-500 dark:text-gray-400 font-normal;
+}
+
+blockquote strong,
+blockquote b {
+    @apply text-anthracite dark:text-white font-bold;
+}
+
+/* Prose specific blockquote */
+.prose blockquote {
+    @apply pl-4 border-l-4 border-orangeValencia dark:border-orangeValencia-400 py-2 my-4;
+}
+
+.prose blockquote p {
+    @apply text-gray-500 dark:text-gray-400 font-normal !important;
+}
+
+.prose blockquote strong,
+.prose blockquote b {
+    @apply text-anthracite dark:text-white font-bold !important;
+}
+
+/* List styling */
+ol, ul {
+    @apply pl-6 mb-4;
+}
+
+ol li, ul li {
+    @apply mb-2;
+}
+
+ol li::marker {
+    @apply text-orangeValencia font-bold;
+}
+
+ul li::marker {
+    @apply text-orangeValencia;
+}
+
+/* List styling for dark mode */
+.dark ol,
+.dark ul {
+    @apply text-darkText;
+}
+
+.dark ol li::marker,
+.dark ul li::marker {
+    @apply text-orangeValencia-400;
+}
+
+.dark .prose ol li::marker,
+.dark .prose ul li::marker {
+    @apply text-orangeValencia-400;
+}
+
+.dark .prose ol,
+.dark .prose ul {
+    @apply text-darkText;
 }
 
 /* Post Meta */

@@ -1,7 +1,8 @@
 module.exports = {
     darkMode: 'class',
     content: [
-        './**/*.hbs',
+        './*.hbs',
+        './partials/**/*.hbs',
         './assets/js/**/*.js',
     ],
     theme: {
@@ -17,6 +18,7 @@ module.exports = {
             colors: {
                 anthracite: '#292C2F',
                 orangeValencia: {
+                    50: '#FEF4F2',
                     100: '#FEEAE6',
                     200: '#FDC6BE',
                     300: '#FBA296',
