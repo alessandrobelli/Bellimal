@@ -3,39 +3,39 @@
 <main class="site-main outer">
     <div class="inner">
 
-        <h1 class="text-4xl font-heading leading-5 mb-4 tracking-tight text-center sm:text-5xl lg:text-6xl text-anthracite">{{@custom.hero_title}}</h1>
+        <h1 class="mb-4 text-4xl leading-5 tracking-tight text-center font-heading sm:text-5xl lg:text-6xl text-anthracite dark:text-darkText hero-title"><span class="star-emoji">✨</span> {{@custom.hero_title}} <span class="star-emoji">✨</span></h1>
         <div class="py-2 my-4 text-lg text-center">{{{@custom.hero_description}}}</div>
         <!-- Carousel Section -->
-        <section class="carousel py-12">
-            <h2 class="text-2xl font-heading text-anthracite mb-6">Latest Posts</h2>
-            <div class="carousel-wrapper flex overflow-x-auto space-x-4">
+        <section class="py-12 carousel">
+            <h2 class="mb-6 text-2xl font-heading text-anthracite dark:text-darkText">Latest Posts</h2>
+            <div class="flex space-x-4 overflow-x-auto carousel-wrapper">
                 {{#foreach posts}}
-                    <div class="post-card bg-white border-r-2 border-gray-100 hover:border-gray-300 p-4 w-80 flex-shrink-0">
+                    <div class="flex-shrink-0 p-4 bg-white dark:bg-darkSecondary border-r-2 border-gray-100 dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600 w-80 transition-colors duration-300">
                         <a href="{{url}}" class="block">
-                            <div class="post-card-tags mb-1 flex items-center">
+                            <div class="flex items-center mb-1 post-card-tags">
                                 {{#primary_tag}}
-                                    <span class="hashtag text-xs mr-1">#</span>
-                                    <span class="post-card-primary-tag text-xs">{{name}}</span>
+                                    <span class="mr-1 text-xs hashtag">#</span>
+                                    <span class="text-xs post-card-primary-tag">{{name}}</span>
                                 {{/primary_tag}}
                             </div>
                             {{#if feature_image}}
-                                <div class="post-card-image mb-4">
+                                <div class="mb-4 post-card-image">
                                     <img src="{{img_url feature_image size="small"}}" alt="{{title}}"
-                                         class="w-full h-40 object-cover rounded-lg">
+                                         class="object-cover w-full h-40 rounded-lg">
                                 </div>
                             {{else}}
-                                <div class="post-card-image mb-4">
+                                <div class="mb-4 post-card-image">
                                     <img src="https://placeimg.com/640/480/any" alt="Placeholder Image"
-                                         class="w-full h-40 object-cover rounded-lg">
+                                         class="object-cover w-full h-40 rounded-lg">
                                 </div>
                             {{/if}}
                             <div class="flex items-center justify-center">
                                 {{#if featured}}
-                                    <span class="post-card-featured text-xs text-orangeValencia mr-2 flame-icon">{{> "icons/fire"}}</span>
+                                    <span class="mr-2 text-xs post-card-featured text-orangeValencia flame-icon">{{> "icons/fire"}}</span>
                                 {{/if}}
                                 <h3 class="text-xl font-bold">{{title}}</h3>
                             </div>
-                            <p class="post-card-excerpt text-sm text-anthracite font-mono">{{excerpt words="20"}}</p>
+                            <p class="font-mono text-sm post-card-excerpt text-anthracite dark:text-darkMuted">{{excerpt words="20"}}</p>
                         </a>
                     </div>
                 {{/foreach}}

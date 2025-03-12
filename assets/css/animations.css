@@ -1,0 +1,115 @@
+/* Additional subtle animations for Bellimal Theme */
+
+/* Soft hover lift effect for post cards */
+.post-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle gradient shift on hero title */
+.hero-title {
+    background-image: linear-gradient(90deg, #D84727, #F75946, #D84727);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+/* Subtle shimmer effect for special links */
+.shimmer-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+/* Subtle pulse effect for emphasizing elements */
+.pulse-element {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+/* Text fade-in for elements that enter viewport */
+.fade-in-text {
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Subtle letter spacing animation for headlines */
+.breathe-text {
+    animation: breathe 5s infinite ease-in-out;
+}
+
+@keyframes breathe {
+    0%, 100% { letter-spacing: normal; }
+    50% { letter-spacing: 0.03em; }
+}
+
+/* Staggered entrance for list items - add via JS */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* Dancing stars for your title sparkles ✨ */
+.dancing-star {
+    display: inline-block;
+    animation: dance 3s infinite ease-in-out;
+}
+
+.dancing-star:nth-of-type(2) {
+    animation-delay: 0.5s;
+}
+
+@keyframes dance {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-5px) rotate(5deg); }
+    75% { transform: translateY(3px) rotate(-5deg); }
+}
+
+/* Slow color cycle for special elements */
+.color-cycle {
+    animation: colorCycle 10s infinite linear;
+}
+
+@keyframes colorCycle {
+    0% { color: #D84727; }
+    33% { color: #F75946; }
+    66% { color: #A0361D; }
+    100% { color: #D84727; }
+}

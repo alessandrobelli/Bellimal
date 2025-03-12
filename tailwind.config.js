@@ -1,9 +1,19 @@
 module.exports = {
+    darkMode: 'class',
     content: [
-        './src/**/*.{html,js,hbs}',
+        './**/*.hbs',
+        './assets/js/**/*.js',
     ],
     theme: {
         extend: {
+            backgroundColor: {
+                dark: '#121212',
+                darkSecondary: '#1e1e1e'
+            },
+            textColor: {
+                darkText: '#e2e2e2',
+                darkMuted: '#a0a0a0'
+            },
             colors: {
                 anthracite: '#292C2F',
                 orangeValencia: {

@@ -22,6 +22,19 @@ To customize the theme:
 3. **Build css**: Run `npm run build:css` to compile the CSS.
 4. **Templates**: Customize template files in the theme directory for layout changes.
 
+### Dark Mode
+The theme includes dark mode support:
+- Toggle between light and dark mode using the icon in the navigation sidebar
+- User preference is stored in localStorage
+- If no preference is set, the theme will follow the system preference
+
+**Important**: After making changes to the CSS or Tailwind configuration, you must recompile the CSS for changes to take effect:
+```bash
+npm run build:css
+# or
+npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css
+```
+
 ## Tailwind CSS
 Bellimal uses Tailwind CSS for styling. The Tailwind configuration is found in `tailwind.config.js`, where you can extend the theme's colors, fonts, and more.
 

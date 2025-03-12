@@ -59,11 +59,11 @@ a:hover {
 
 /* Bookmark Card Styles */
 .kg-card.kg-bookmark-card {
-    @apply flex bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden transition-transform transform hover:scale-101;
+    @apply flex bg-white dark:bg-darkSecondary border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden transition-transform transform hover:scale-101;
 }
 
 .kg-bookmark-container {
-    @apply flex w-full text-left no-underline text-anthracite;
+    @apply flex w-full text-left no-underline text-anthracite dark:text-darkText;
 }
 
 .kg-bookmark-content {
@@ -109,12 +109,20 @@ header h1 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-orangeValencia !important;
+    @apply font-heading text-orangeValencia dark:text-orangeValencia-400 !important;
+}
+
+/* Prevent transitions on page load */
+.no-transition-on-load,
+.no-transition-on-load *,
+.no-transition-on-load *:before,
+.no-transition-on-load *:after {
+    transition: none !important;
 }
 
 /* Body */
 body {
-    @apply bg-white text-anthracite font-body;
+    @apply bg-white dark:bg-dark text-anthracite dark:text-darkText font-body transition-colors duration-300;
 }
 
 /* Post Meta */
@@ -220,6 +228,25 @@ header .meta {
 
 .prose {
     color: #292C2F; /* anthracite color */
+}
+
+.dark .prose strong,
+.dark .prose b,
+.dark .prose em,
+.dark .prose blockquote,
+.dark .prose code,
+.dark .prose figcaption,
+.dark .prose p {
+    color: #e2e2e2 !important;
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+    color: #e2e2e2 !important;
 }
 
 .prose a {

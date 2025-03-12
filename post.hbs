@@ -36,7 +36,7 @@
                 </div>
             </header>
         {{else}}
-            <h1 class="text-4xl font-heading leading-5 mb-4 tracking-tight text-center sm:text-5xl lg:text-6xl text-anthracite">{{title}}</h1>
+            <h1 class="text-4xl font-heading leading-5 mb-4 tracking-tight text-center sm:text-5xl lg:text-6xl text-anthracite dark:text-darkText">{{title}}</h1>
             <div class="py-2 my-4 text-sm text-center">
                 <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
                 <span class="bull">•</span> {{reading_time}}
@@ -61,7 +61,7 @@
                 </span>
             </div>
         {{/if}}
-        <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-code:text-orangeValencia prose-p:text-anthracite prose-ul:text-anthracite prose-strong:text-anthracite prose-th:text-anthracite prose-h1:text-anthracite prose-h2:text-anthracite prose-h3:text-anthracite prose-strong:font-bold gh-content max-w-none">
+        <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-code:text-orangeValencia prose-p:text-anthracite dark:prose-p:text-darkText prose-ul:text-anthracite dark:prose-ul:text-darkText prose-strong:text-anthracite dark:prose-strong:text-darkText prose-th:text-anthracite dark:prose-th:text-darkText prose-h1:text-anthracite dark:prose-h1:text-darkText prose-h2:text-anthracite dark:prose-h2:text-darkText prose-h3:text-anthracite dark:prose-h3:text-darkText prose-strong:font-bold gh-content max-w-none">
             {{content}}
         </div>
         <footer class="pt-4">
