@@ -5,109 +5,109 @@
 .dark .twitter-timeline,
 .dark iframe[src*="twitter.com"],
 .dark iframe[src*="x.com"] {
-    background-color: #1a1a1a !important;
-    border-radius: 12px !important;
-    border: 1px solid #333 !important;
-    color: #e2e2e2 !important;
+  background-color: #1a1a1a !important;
+  border-radius: 12px !important;
+  border: 1px solid #333 !important;
+  color: #e2e2e2 !important;
 }
 
 /* Twitter widget in dark mode */
 .dark [data-tweet],
 .dark [data-twitter-tweet],
 .dark .twitter-tweet {
-    background-color: #1a1a1a !important;
-    border-color: #333 !important;
-    border-radius: 12px !important;
-    color: #e2e2e2 !important;
-    margin: 1.5em auto !important;
-    overflow: hidden !important;
+  background-color: #1a1a1a !important;
+  border-color: #333 !important;
+  border-radius: 12px !important;
+  color: #e2e2e2 !important;
+  margin: 1.5em auto !important;
+  overflow: hidden !important;
 }
 
 /* Tweet text */
 .dark .twitter-tweet p,
 .dark [data-tweet] p,
 .dark [data-twitter-tweet] p {
-    color: #e2e2e2 !important;
+  color: #e2e2e2 !important;
 }
 
 /* Username, handle, dates */
 .dark .twitter-tweet a,
 .dark [data-tweet] a,
 .dark [data-twitter-tweet] a {
-    color: #1d9bf0 !important;
+  color: #1d9bf0 !important;
 }
 
 /* Twitter widget background card */
 .dark .twitter-tweet,
 .dark .twitter-tweet-rendered,
 .dark .twitter-timeline-rendered {
-    background-color: #1a1a1a !important;
+  background-color: #1a1a1a !important;
 }
 
 /* Force image scaling */
 .dark .twitter-tweet img,
 .dark [data-tweet] img,
 .dark [data-twitter-tweet] img {
-    max-width: 100% !important;
+  max-width: 100% !important;
 }
 
 /* Use Shadow DOM technique to penetrate into Twitter iframe */
 @supports (selector(:host)) {
-    html[class*="dark"] {
-        --twitter-bg-color: #1a1a1a;
-        --twitter-text-color: #e2e2e2;
-        --twitter-link-color: #1d9bf0;
-        --twitter-border-color: #333;
-    }
+  html[class*="dark"] {
+    --twitter-bg-color: #1a1a1a;
+    --twitter-text-color: #e2e2e2;
+    --twitter-link-color: #1d9bf0;
+    --twitter-border-color: #333;
+  }
 }
 
 /* NO FILTER APPROACH - Removed to prevent image inversion */
 
 /* Blockquote format for Twitter embeds in case the embed doesn't load */
 .dark blockquote.twitter-tweet {
-    background-color: #1a1a1a !important;
-    border-color: #333 !important;
-    border-radius: 12px;
-    color: #e2e2e2 !important;
-    padding: 1rem !important;
+  background-color: #1a1a1a !important;
+  border-color: #333 !important;
+  border-radius: 12px;
+  color: #e2e2e2 !important;
+  padding: 1rem !important;
 }
 
 /* Direct approach for Tweet iframe body - this is more experimental but can work */
 html.dark ~ iframe[src*="twitter"],
 html.dark ~ iframe[src*="x.com"] {
-    color-scheme: dark !important;
+  color-scheme: dark !important;
 }
 
 /* Apply a special class to Twitter embed cards */
 .kg-embed-card {
-    position: relative;
-    margin: 1.5em 0;
-    max-width: 100%;
+  position: relative;
+  margin: 1.5em 0;
+  max-width: 100%;
 }
 
 /* For embedded Tweets we inject our own dark mode overlay */
 .dark .kg-embed-card[data-card-type="embed"] {
-    position: relative;
+  position: relative;
 }
 
 .dark .kg-embed-card[data-card-type="embed"]::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(26, 26, 26, 0.1);
-    pointer-events: none;
-    z-index: 10;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 26, 26, 0.1);
+  pointer-events: none;
+  z-index: 10;
 }
 
 /* Ensure Twitter widget scripts know we're in dark mode */
 html.dark body twitter-widget {
-    color-scheme: dark !important;
+  color-scheme: dark !important;
 }
 
 /* Force any iframes within the content to respect dark mode */
 .dark iframe {
-    color-scheme: dark;
+  color-scheme: dark;
 }

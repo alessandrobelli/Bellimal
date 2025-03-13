@@ -1,9 +1,0 @@
-To compile your CSS and make the dark mode changes take effect, run this command in your theme directory:
-
-npm run build:css
-
-Or if that doesn't work:
-
-npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css
-
-This will incorporate all the new dark mode styles into your CSS file.
