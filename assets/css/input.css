@@ -1,136 +1,146 @@
+@import "prism.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --gh-font-heading: "Atkinson Hyperlegible", sans-serif;
-    --gh-font-body: "Fira Mono", monospace;
+  --gh-font-heading: "Atkinson Hyperlegible", sans-serif;
+  --gh-font-body: "Fira Mono", monospace;
 }
 
 /* Prose List Styling */
 .prose ol li::marker,
 .prose ul li::marker {
-    @apply text-orangeValencia font-bold;
+  @apply text-orangeValencia font-bold;
 }
 
 .prose ol li,
 .prose ul li {
-    @apply mb-3;
+  @apply mb-3;
 }
 
 .prose ol,
 .prose ul {
-    @apply mb-6;
+  @apply mb-6;
 }
 
 /* Custom Styles */
 @layer utilities {
-    .hover\:scale-101:hover {
-        transform: scale(1.01);
-    }
+  .hover\:scale-101:hover {
+    transform: scale(1.01);
+  }
 
-    .hover\:bg-orangeValencia-700:hover {
-        background-color: theme('colors.orangeValencia.700');
-    }
+  .hover\:bg-orangeValencia-700:hover {
+    background-color: theme("colors.orangeValencia.700");
+  }
 
-    .hover\:text-orangeValencia-700:hover {
-        color: theme('colors.orangeValencia.700');
-    }
+  .hover\:text-orangeValencia-700:hover {
+    color: theme("colors.orangeValencia.700");
+  }
 
-    .bg-orangeValencia {
-        background-color: theme('colors.orangeValencia.600');
-    }
+  .bg-orangeValencia {
+    background-color: theme("colors.orangeValencia.600");
+  }
 
-    .text-orangeValencia {
-        color: theme('colors.orangeValencia.600');
-    }
+  .text-orangeValencia {
+    color: theme("colors.orangeValencia.600");
+  }
 
-    .hover\:text-orangeValencia:hover {
-        color: theme('colors.orangeValencia.600');
-    }
+  .hover\:text-orangeValencia:hover {
+    color: theme("colors.orangeValencia.600");
+  }
 
-    .bg-anthracite {
-        background-color: theme('colors.anthracite');
-    }
+  .bg-anthracite {
+    background-color: theme("colors.anthracite");
+  }
 
-    .text-anthracite {
-        color: theme('colors.anthracite');
-    }
+  .text-anthracite {
+    color: theme("colors.anthracite");
+  }
 
-    .font-heading {
-        font-family: theme('fontFamily.heading'), monospace;
-    }
+  .font-heading {
+    font-family: theme("fontFamily.heading"), monospace;
+  }
 
-    .font-body {
-        font-family: theme('fontFamily.body'), sans-serif;
-    }
+  .font-body {
+    font-family: theme("fontFamily.body"), sans-serif;
+  }
 
-    .bg-gradient-to-r-from-orangeValencia-to-anthracite {
-        background-image: linear-gradient(to right, theme('colors.orangeValencia.600'), theme('colors.anthracite'));
-    }
+  .bg-gradient-to-r-from-orangeValencia-to-anthracite {
+    background-image: linear-gradient(
+      to right,
+      theme("colors.orangeValencia.600"),
+      theme("colors.anthracite")
+    );
+  }
 }
 
 a:focus {
-    @apply outline-none;
+  @apply outline-none;
 }
 
 a:hover {
-    @apply hover:text-orangeValencia;
+  @apply hover:text-orangeValencia;
 }
 
 /* Bookmark Card Styles */
 .kg-card.kg-bookmark-card {
-    @apply flex bg-white dark:bg-darkSecondary border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md;
+  @apply flex bg-white dark:bg-darkSecondary border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md;
 }
 
 .kg-bookmark-container {
-    @apply flex w-full text-left no-underline text-anthracite dark:text-darkText;
+  @apply flex w-full text-left no-underline text-anthracite dark:text-darkText;
 }
 
 .kg-bookmark-content {
-    @apply p-4 flex-grow;
+  @apply p-4 flex-grow;
 }
 
 .kg-bookmark-title {
-    @apply text-lg font-heading text-orangeValencia dark:text-orangeValencia-400 mb-2;
+  @apply text-lg font-heading text-orangeValencia dark:text-orangeValencia-400 mb-2;
 }
 
 .kg-bookmark-description {
-    @apply text-sm mb-4 text-anthracite dark:text-gray-300;
+  @apply text-sm mb-4 text-anthracite dark:text-gray-300;
 }
 
 .kg-bookmark-metadata {
-    @apply flex items-center text-xs text-gray-500 dark:text-gray-400 space-x-2;
+  @apply flex items-center text-xs text-gray-500 dark:text-gray-400 space-x-2;
 }
 
 .kg-bookmark-icon {
-    @apply w-6 h-6 rounded-full mr-2;
+  @apply w-6 h-6 rounded-full mr-2;
 }
 
 .kg-bookmark-author,
 .kg-bookmark-publisher {
-    @apply mr-2;
+  @apply mr-2;
 }
 
 .kg-bookmark-thumbnail {
-    @apply w-32 h-32 flex-shrink-0 border-l border-gray-200 dark:border-gray-700;
+  @apply w-32 h-32 flex-shrink-0 border-l border-gray-200 dark:border-gray-700;
 }
 
 .kg-bookmark-thumbnail img {
-    @apply w-full h-full object-cover;
+  @apply w-full h-full object-cover;
 }
 
 /* Header */
 header {
-    @apply text-center;
+  @apply text-center;
 }
 
 header h1 {
-    @apply text-4xl font-heading text-orangeValencia;
+  @apply text-4xl font-heading text-orangeValencia;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-orangeValencia dark:text-orangeValencia-400 !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading text-orangeValencia dark:text-orangeValencia-400 !important;
 }
 
 /* Prevent transitions on page load */
@@ -138,81 +148,86 @@ h1, h2, h3, h4, h5, h6 {
 .no-transition-on-load *,
 .no-transition-on-load *:before,
 .no-transition-on-load *:after {
-    transition: none !important;
+  transition: none !important;
 }
 
 /* Body */
 body {
-    @apply bg-white dark:bg-dark text-anthracite dark:text-darkText font-body transition-colors duration-300;
+  @apply bg-white dark:bg-dark text-anthracite dark:text-darkText font-body transition-colors duration-300;
 }
 
 /* Tag styling */
 .post-card-tags {
-    @apply flex flex-wrap items-center mb-2;
+  @apply flex flex-wrap items-center mb-2;
 }
 
 .post-card-primary-tag {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-orangeValencia-100 dark:hover:bg-orangeValencia-800 hover:text-orangeValencia-600 dark:hover:text-orangeValencia-400;
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-orangeValencia-100 dark:hover:bg-orangeValencia-800 hover:text-orangeValencia-600 dark:hover:text-orangeValencia-400;
 }
 
 .hashtag {
-    @apply inline-flex text-orangeValencia dark:text-orangeValencia-400 transition-colors duration-200;
+  @apply inline-flex text-orangeValencia dark:text-orangeValencia-400 transition-colors duration-200;
 }
 
 /* Multiple tags display */
 .tag-list {
-    @apply flex flex-wrap gap-2;
+  @apply flex flex-wrap gap-2;
 }
 
 .tag-item {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-orangeValencia-100 dark:hover:bg-orangeValencia-800 hover:text-orangeValencia-600 dark:hover:text-orangeValencia-400;
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-orangeValencia-100 dark:hover:bg-orangeValencia-800 hover:text-orangeValencia-600 dark:hover:text-orangeValencia-400;
 }
 
 /* Primary tag with special styling */
 .primary-tag {
-    @apply bg-gray-100 text-orangeValencia-600 dark:bg-gray-800 dark:text-orangeValencia-400 hover:bg-orangeValencia-100 dark:hover:bg-gray-700;
+  @apply bg-gray-100 text-orangeValencia-600 dark:bg-gray-800 dark:text-orangeValencia-400 hover:bg-orangeValencia-100 dark:hover:bg-gray-700;
 }
 
 /* Featured content styling */
-.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    @apply text-anthracite dark:text-darkText font-heading mt-8 mb-4;
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply text-anthracite dark:text-darkText font-heading mt-8 mb-4;
 }
 
 .prose h1 {
-    @apply text-3xl;
+  @apply text-3xl;
 }
 
 .prose h2 {
-    @apply text-2xl text-orangeValencia dark:text-orangeValencia-400;
+  @apply text-2xl text-orangeValencia dark:text-orangeValencia-400;
 }
 
 .prose h3 {
-    @apply text-xl text-orangeValencia dark:text-orangeValencia-400;
+  @apply text-xl text-orangeValencia dark:text-orangeValencia-400;
 }
 
 .prose p {
-    @apply mb-4 leading-relaxed;
+  @apply mb-4 leading-relaxed;
 }
 
 .prose a {
-    @apply text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300 transition-colors duration-200;
+  @apply text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300 transition-colors duration-200;
 }
 
 .prose ul {
-    @apply list-disc pl-5 my-4;
+  @apply list-disc pl-5 my-4;
 }
 
 .prose ol {
-    @apply list-decimal pl-5 my-4;
+  @apply list-decimal pl-5 my-4;
 }
 
 /* Dark mode prose styles */
 .dark .prose {
-    @apply text-darkText;
+  @apply text-darkText;
 }
 
 .dark .prose-dark a {
-    @apply text-orangeValencia-400 hover:text-orangeValencia-300;
+  @apply text-orangeValencia-400 hover:text-orangeValencia-300;
 }
 
 .dark .prose-dark h1,
@@ -221,247 +236,221 @@ body {
 .dark .prose-dark h4,
 .dark .prose-dark h5,
 .dark .prose-dark h6 {
-    @apply text-darkText;
-}
-
-.dark .prose-dark code {
-    @apply bg-gray-800 text-darkText;
+  @apply text-darkText;
 }
 
 .dark .prose-dark pre {
-    @apply bg-gray-900 text-darkText;
+  @apply bg-gray-900 text-darkText;
 }
 
 .dark .prose-dark hr {
-    @apply border-gray-700;
+  @apply border-gray-700;
 }
 
 /* Table Styling */
 table {
-    @apply w-full border-collapse my-4;
+  @apply w-full border-collapse my-4;
 }
 
 thead {
-    @apply bg-gray-100 dark:bg-gray-800;
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
 th {
-    @apply border p-2 text-left font-bold text-anthracite dark:text-white border-gray-300 dark:border-gray-700;
+  @apply border p-2 text-left font-bold text-anthracite dark:text-white border-gray-300 dark:border-gray-700;
 }
 
 td {
-    @apply border p-2 text-anthracite dark:text-gray-300 border-gray-300 dark:border-gray-700;
+  @apply border p-2 text-anthracite dark:text-gray-300 border-gray-300 dark:border-gray-700;
 }
 
 tr:nth-child(even) {
-    @apply bg-gray-50 dark:bg-gray-900;
+  @apply bg-gray-50 dark:bg-gray-900;
 }
 
 tr:hover {
-    @apply bg-gray-100 dark:bg-gray-800 transition-colors duration-200;
+  @apply bg-gray-100 dark:bg-gray-800 transition-colors duration-200;
 }
 
 /* Prose tables */
 .prose table {
-    @apply w-full border-collapse my-4;
+  @apply w-full border-collapse my-4;
 }
 
 .prose thead {
-    @apply bg-gray-100 dark:bg-gray-800;
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
 .prose th {
-    @apply border p-2 text-left font-bold text-anthracite dark:text-white border-gray-300 dark:border-gray-700;
+  @apply border p-2 text-left font-bold text-anthracite dark:text-white border-gray-300 dark:border-gray-700;
 }
 
 .prose td {
-    @apply border p-2 text-anthracite dark:text-gray-300 border-gray-300 dark:border-gray-700;
+  @apply border p-2 text-anthracite dark:text-gray-300 border-gray-300 dark:border-gray-700;
 }
 
 .dark .prose th,
 .dark .prose td {
-    @apply border-gray-700;
+  @apply border-gray-700;
 }
 
 /* Blockquote/Callout Styling */
 blockquote {
-    @apply pl-4 border-l-4 border-orangeValencia dark:border-orangeValencia-400 py-2 my-4;
+  @apply pl-4 border-l-4 border-orangeValencia dark:border-orangeValencia-400 py-2 my-4;
 }
 
 blockquote p {
-    @apply text-gray-500 dark:text-gray-400 font-normal;
+  @apply text-gray-500 dark:text-gray-400 font-normal;
 }
 
 blockquote strong,
 blockquote b {
-    @apply text-anthracite dark:text-white font-bold;
+  @apply text-anthracite dark:text-white font-bold;
 }
 
 /* Prose specific blockquote */
 .prose blockquote {
-    @apply pl-4 border-l-4 border-orangeValencia dark:border-orangeValencia-400 py-2 my-4;
+  @apply pl-4 border-l-4 border-orangeValencia dark:border-orangeValencia-400 py-2 my-4;
 }
 
 .prose blockquote p {
-    @apply text-gray-500 dark:text-gray-400 font-normal !important;
+  @apply text-gray-500 dark:text-gray-400 font-normal !important;
 }
 
 .prose blockquote strong,
 .prose blockquote b {
-    @apply text-anthracite dark:text-white font-bold !important;
+  @apply text-anthracite dark:text-white font-bold !important;
 }
 
 /* List styling */
-ol, ul {
-    @apply pl-6 mb-4;
+ol,
+ul {
+  @apply pl-6 mb-4;
 }
 
-ol li, ul li {
-    @apply mb-2;
+ol li,
+ul li {
+  @apply mb-2;
 }
 
 ol li::marker {
-    @apply text-orangeValencia font-bold;
+  @apply text-orangeValencia font-bold;
 }
 
 ul li::marker {
-    @apply text-orangeValencia;
+  @apply text-orangeValencia;
 }
 
 /* List styling for dark mode */
 .dark ol,
 .dark ul {
-    @apply text-darkText;
+  @apply text-darkText;
 }
 
 .dark ol li::marker,
 .dark ul li::marker {
-    @apply text-orangeValencia-400;
+  @apply text-orangeValencia-400;
 }
 
 .dark .prose ol li::marker,
 .dark .prose ul li::marker {
-    @apply text-orangeValencia-400;
+  @apply text-orangeValencia-400;
 }
 
 .dark .prose ol,
 .dark .prose ul {
-    @apply text-darkText;
+  @apply text-darkText;
 }
 
 /* Post Meta */
 header .meta {
-    @apply py-2 my-4 text-xs text-gray-500;
+  @apply py-2 my-4 text-xs text-gray-500;
 }
 
 /* Read More Section */
 .gh-readmore {
-    @apply w-full pb-4;
+  @apply w-full pb-4;
 }
 
 .gh-readmore-inner {
-    @apply flex justify-between text-base font-heading;
+  @apply flex justify-between text-base font-heading;
 }
 
-.gh-readmore-next, .gh-readmore-prev {
-    @apply hover:text-orangeValencia transition duration-300 ease-in-out;
-}
-
-/* Comments Section */
-.comments {
-    @apply pt-8;
-}
-
-.comment {
-    @apply mb-4 p-4 border border-gray-200 rounded-lg;
-}
-
-.comment .meta {
-    @apply text-sm text-gray-500;
-}
-
-.comment p {
-    @apply mt-2;
-}
-
-.comment-form textarea {
-    @apply w-full p-4 border border-gray-200 rounded-lg;
-}
-
-.comment-form button {
-    @apply mt-4 px-4 py-2 bg-orangeValencia text-white rounded-lg hover:bg-orangeValencia-700 transition duration-300;
+.gh-readmore-next,
+.gh-readmore-prev {
+  @apply hover:text-orangeValencia transition duration-300 ease-in-out;
 }
 
 @keyframes flicker {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-        stroke: #D84727; /* Main color */
-    }
-    50% {
-        opacity: 0.5;
-        transform: scale(1.10);
-        stroke: #F75946; /* Lighter shade */
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-        stroke: #A0361D; /* Darker shade */
-    }
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    stroke: #d84727; /* Main color */
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+    stroke: #f75946; /* Lighter shade */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    stroke: #a0361d; /* Darker shade */
+  }
 }
 
 .flame-icon svg path {
-    animation: flicker 1s infinite alternate;
+  animation: flicker 1s infinite alternate;
 }
 
 @keyframes rotate-hashtag {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(20deg);
-    }
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
 }
 
 .hashtag {
-    display: inline-block;
-    animation: rotate-hashtag 1s infinite ease-in-out;
+  display: inline-block;
+  animation: rotate-hashtag 1s infinite ease-in-out;
 }
 
 .post-card .flex-shrink-0 img {
-    height: 8rem; /* Fixed height */
-    object-fit: cover; /* Cover effect */
-    width: 8rem; /* Fixed width */
+  height: 8rem; /* Fixed height */
+  object-fit: cover; /* Cover effect */
+  width: 8rem; /* Fixed width */
 }
 
 .post-card-primary-tag {
-    transition: color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .post-card-primary-tag:hover {
-    color: #D84727; /* Orange Valencia */
+  color: #d84727; /* Orange Valencia */
 }
 
 .hover-orangeValencia {
-    transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 
 .hover-orangeValencia:hover {
-    color: #D84727; /* Orange Valencia */
+  color: #d84727; /* Orange Valencia */
 }
 
 .prose {
-    color: #292C2F; /* anthracite color */
+  color: #292c2f; /* anthracite color */
 }
 
 .dark .prose strong,
 .dark .prose b,
 .dark .prose em,
 .dark .prose blockquote,
-.dark .prose code,
 .dark .prose figcaption,
 .dark .prose p {
-    color: #e2e2e2 !important;
+  color: #e2e2e2 !important;
 }
 
 .dark .prose h1,
@@ -470,40 +459,60 @@ header .meta {
 .dark .prose h4,
 .dark .prose h5,
 .dark .prose h6 {
-    color: #e2e2e2 !important;
+  color: #e2e2e2 !important;
 }
 
 .prose a {
-    color: #D84727; /* orangeValencia color */
-    text-decoration: none;
+  color: #d84727; /* orangeValencia color */
+  text-decoration: none;
 }
 
 .prose a:hover {
-    transition: color 0.3s ease-in-out;
-    color: #F75946; /* orangeValencia color */
+  transition: color 0.3s ease-in-out;
+  color: #f75946; /* orangeValencia color */
 }
 
 /* Subscriber-Only Section */
 .gh-post-upgrade-cta {
-    @apply bg-white text-anthracite p-6 rounded-lg;
+  @apply bg-white text-anthracite p-6 rounded-lg;
 }
 
 .gh-post-upgrade-cta-content {
-    @apply text-center bg-white text-anthracite p-8 rounded-lg !important;
+  @apply text-center bg-white text-anthracite p-8 rounded-lg !important;
 }
 
 .gh-post-upgrade-cta h2 {
-    @apply text-2xl font-heading text-orangeValencia mb-4;
+  @apply text-2xl font-heading text-orangeValencia mb-4;
 }
 
 .gh-btn.gh-portal-close {
-    @apply bg-orangeValencia text-white px-4 py-2 rounded-full hover:bg-orangeValencia-700 transition duration-300;
+  @apply bg-orangeValencia text-white px-4 py-2 rounded-full hover:bg-orangeValencia-700 transition duration-300;
 }
 
 .gh-post-upgrade-cta-content p {
-    @apply mt-4;
+  @apply mt-4;
 }
 
 .gh-post-upgrade-cta-content p a {
-    @apply text-orangeValencia underline hover:text-orangeValencia-700 transition duration-300;
+  @apply text-orangeValencia underline hover:text-orangeValencia-700 transition duration-300;
+}
+
+/* Center image captions and adjust spacing */
+figure {
+  margin: 1.5em auto; /* Auto left/right margins for horizontal centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.kg-card-hascaption figcaption {
+  text-align: center;
+  margin-top: 0.5em;
+  font-size: 0.75em;
+  color: #666;
+}
+
+.dark figcaption {
+  color: #a0a0a0;
 }

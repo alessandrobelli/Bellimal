@@ -6,9 +6,7 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Atkinson+Hyperlegible&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"
-    ></script>
+
     <link rel="stylesheet" href="{{asset 'css/main.css'}}" />
     <link rel="stylesheet" href="{{asset 'css/animations.css'}}" />
     <link rel="stylesheet" href="{{asset 'css/mobile.css'}}" />
@@ -16,6 +14,7 @@
     <link rel="stylesheet" href="{{asset 'css/related-posts.css'}}" />
     <link rel="stylesheet" href="{{asset 'css/bookmarks.css'}}" />
     <link rel="stylesheet" href="{{asset 'css/social-embeds.css'}}" />
+    <link rel="stylesheet" href="{{asset 'css/prism.css'}}" />
     <script>
       // Immediately apply dark mode if stored in localStorage (prevents flash)
       if (localStorage.getItem('darkMode') === 'true') {
@@ -166,6 +165,7 @@
       <script src="{{asset 'js/mobile-menu.js'}}"></script>
       <script src="{{asset 'js/carousel-mobile.js'}}"></script>
       <script src="{{asset 'js/social-embeds.js'}}"></script>
+      <script src="{{asset 'js/lib/prism.js'}}"></script>
       {{ghost_foot}}
     </div>
   </body>

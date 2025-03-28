@@ -1,1 +1,1 @@
-{"version":3,"sources":["screen.css"],"names":[],"mappings":"AAAA,KACE,+BACF,CAEA,MACE,kCACF","file":"screen.css","sourcesContent":["body {\r\n  font-family: 'Fira Mono', monospace;\r\n}\r\n\r\nh1, h2 {\r\n  font-family: 'Lexend Deca', sans-serif;\r\n}\r\n"]}
+{"version":3,"sources":["screen.css"],"names":[],"mappings":"AAAA,KACE,+BACF,CAEA,MAEE,kCACF","file":"screen.css","sourcesContent":["body {\r\n  font-family: \"Fira Mono\", monospace;\r\n}\r\n\r\nh1,\r\nh2 {\r\n  font-family: \"Lexend Deca\", sans-serif;\r\n}\r\n"]}

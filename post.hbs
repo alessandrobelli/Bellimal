@@ -3,12 +3,12 @@
 {{#post}}
     <article class="gh-article p-0 {{post_class}} font-body post-full-content">
         {{#if feature_image}}
-            <header class="relative w-full mb-4 h-48 md:h-64 bg-cover bg-center"
+            <header class="relative w-full h-48 mb-4 bg-center bg-cover md:h-64"
                     style="background-image: url('{{img_url feature_image size="xl"}}');">
                 <div class="absolute inset-0 bg-black opacity-50"></div>
                 <div class="relative z-10 flex items-center justify-center h-full">
-                    <div class="text-center text-white px-4 overflow-ellipsis sm:text-wrap">
-                        <h1 class="text-2xl sm:text-4xl lg:text-5xl tracking-tight font-heading leading-6 sm:leading-4 max-w-full">{{title}}</h1>
+                    <div class="px-4 text-center text-white overflow-ellipsis sm:text-wrap">
+                        <h1 class="max-w-full text-2xl leading-6 tracking-tight sm:text-4xl lg:text-5xl font-heading sm:leading-4">{{title}}</h1>
                         <div class="py-2 my-4 text-sm">
                             <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
                             <span class="bull">•</span> {{reading_time}}
@@ -24,7 +24,7 @@
                                 {{#foreach authors}}
                                     <a href="{{url}}" class="font-bold">
                                         {{#if profile_image}}
-                                            <img class="inline-block w-4 h-4 rounded-full mr-1" src="{{profile_image}}"
+                                            <img class="inline-block w-4 h-4 mr-1 rounded-full" src="{{profile_image}}"
                                                  alt="{{name}} Profile Picture"/>
                                         {{/if}}
                                         {{name}}
@@ -36,7 +36,7 @@
                 </div>
             </header>
         {{else}}
-            <h1 class="text-4xl font-heading leading-5 mb-4 tracking-tight text-center sm:text-5xl lg:text-6xl text-anthracite dark:text-darkText">{{title}}</h1>
+            <h1 class="mb-4 text-4xl leading-5 tracking-tight text-center font-heading sm:text-5xl lg:text-6xl text-anthracite dark:text-darkText">{{title}}</h1>
             <div class="py-2 my-4 text-sm text-center">
                 <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
                 <span class="bull">•</span> {{reading_time}}
@@ -52,7 +52,7 @@
                     {{#foreach authors}}
                         <a href="{{url}}" class="font-bold">
                             {{#if profile_image}}
-                                <img class="inline-block w-4 h-4 rounded-full mr-1" src="{{profile_image}}"
+                                <img class="inline-block w-4 h-4 mr-1 rounded-full" src="{{profile_image}}"
                                      alt="{{name}} Profile Picture"/>
                             {{/if}}
                             {{name}}
@@ -61,7 +61,7 @@
                 </span>
             </div>
         {{/if}}
-        <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-code:text-orangeValencia prose-p:text-anthracite dark:prose-p:text-darkText prose-ul:text-anthracite dark:prose-ul:text-darkText prose-strong:text-anthracite dark:prose-strong:text-darkText prose-th:text-anthracite dark:prose-th:text-darkText prose-h1:text-anthracite dark:prose-h1:text-darkText prose-h2:text-anthracite dark:prose-h2:text-darkText prose-h3:text-anthracite dark:prose-h3:text-darkText prose-strong:font-bold gh-content max-w-none">
+        <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-p:text-anthracite dark:prose-p:text-darkText prose-ul:text-anthracite dark:prose-ul:text-darkText prose-strong:text-anthracite dark:prose-strong:text-darkText prose-th:text-anthracite dark:prose-th:text-darkText prose-h1:text-anthracite dark:prose-h1:text-darkText prose-h2:text-anthracite dark:prose-h2:text-darkText prose-h3:text-anthracite dark:prose-h3:text-darkText prose-strong:font-bold dark:prose-invert gh-content max-w-none">
             {{content}}
         </div>
         <footer class="pt-4">
@@ -69,16 +69,16 @@
             {{comments}}
         </footer>
     </article>
-    <aside class="w-full pb-8 pt-8 mt-12 border-t dark:border-gray-800">
-        <h3 class="text-xl font-heading mb-6 text-anthracite dark:text-darkText">Continue Reading</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <aside class="w-full pt-8 pb-8 mt-12 border-t dark:border-gray-800">
+        <h3 class="mb-6 text-xl font-heading text-anthracite dark:text-darkText">Continue Reading</h3>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
             {{#next_post in="primary_tag"}}
-                <div class="post-navigation-card bg-white dark:bg-darkSecondary p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                <div class="p-4 transition-all duration-300 bg-white rounded-lg shadow-sm post-navigation-card dark:bg-darkSecondary hover:shadow-md">
                     <div class="flex items-center mb-2">
-                        <span class="text-orangeValencia dark:text-orangeValencia-400 text-sm font-semibold">Next Post</span>
+                        <span class="text-sm font-semibold text-orangeValencia dark:text-orangeValencia-400">Next Post</span>
                     </div>
                     <a href="{{url}}" class="group">
-                        <h4 class="text-lg font-bold font-heading mb-2 text-anthracite dark:text-darkText group-hover:text-orangeValencia dark:group-hover:text-orangeValencia-400 transition-colors duration-200">{{title}}</h4>
+                        <h4 class="mb-2 text-lg font-bold transition-colors duration-200 font-heading text-anthracite dark:text-darkText group-hover:text-orangeValencia dark:group-hover:text-orangeValencia-400">{{title}}</h4>
                         <p class="text-sm text-anthracite dark:text-darkMuted line-clamp-2">{{excerpt words="15"}}...</p>
                         <div class="flex items-center mt-3 text-orangeValencia dark:text-orangeValencia-400">
                             <span class="text-sm">Read more</span>
@@ -91,12 +91,12 @@
                 </div>
             {{/next_post}}
             {{#prev_post in="primary_tag"}}
-                <div class="post-navigation-card bg-white dark:bg-darkSecondary p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                <div class="p-4 transition-all duration-300 bg-white rounded-lg shadow-sm post-navigation-card dark:bg-darkSecondary hover:shadow-md">
                     <div class="flex items-center mb-2">
-                        <span class="text-orangeValencia dark:text-orangeValencia-400 text-sm font-semibold">Previous Post</span>
+                        <span class="text-sm font-semibold text-orangeValencia dark:text-orangeValencia-400">Previous Post</span>
                     </div>
                     <a href="{{url}}" class="group">
-                        <h4 class="text-lg font-bold font-heading mb-2 text-anthracite dark:text-darkText group-hover:text-orangeValencia dark:group-hover:text-orangeValencia-400 transition-colors duration-200">{{title}}</h4>
+                        <h4 class="mb-2 text-lg font-bold transition-colors duration-200 font-heading text-anthracite dark:text-darkText group-hover:text-orangeValencia dark:group-hover:text-orangeValencia-400">{{title}}</h4>
                         <p class="text-sm text-anthracite dark:text-darkMuted line-clamp-2">{{excerpt words="15"}}...</p>
                         <div class="flex items-center mt-3 text-orangeValencia dark:text-orangeValencia-400">
                             <span class="text-sm">Read more</span>
