@@ -8,12 +8,12 @@
         
         <!-- Featured Content Section -->
         {{#if @custom.featured_page_slug}}
-        <section class="py-8">
+        <section>
             <div class="transition-colors duration-300 bg-transparent">
                 {{#get "pages" filter="slug:{{@custom.featured_page_slug}}" include="authors" limit="1" as |featured_page|}}
                     {{#foreach featured_page}}
                         
-                            <div class="py-2 my-4 text-lg prose dark:prose-dark max-w-none">
+                            <div class="py-2 text-lg prose dark:prose-dark max-w-none">
                                 {{{content}}}
                             
                         </div>
@@ -23,7 +23,7 @@
                     {{#get "posts" limit="1" include="authors" as |featured_post|}}
                         {{#foreach featured_post}}
                             
-                                <div class="py-2 my-4 text-lg prose dark:prose-dark max-w-none">
+                                <div class="py-2 text-lg prose dark:prose-dark max-w-none">
                                     {{{content}}}
                                 </div>
                             
