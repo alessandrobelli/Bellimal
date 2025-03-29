@@ -12,21 +12,21 @@
             <div class="transition-colors duration-300 bg-transparent">
                 {{#get "pages" filter="slug:{{@custom.featured_page_slug}}" include="authors" limit="1" as |featured_page|}}
                     {{#foreach featured_page}}
-                        <div class="max-w-4xl mx-auto">
-                            <div class="prose dark:prose-dark max-w-none">
+                        
+                            <div class="py-2 my-4 text-lg prose dark:prose-dark max-w-none">
                                 {{{content}}}
-                            </div>
+                            
                         </div>
                     {{/foreach}}
                 {{else}}
                     <!-- Fallback to a specific post if no about-me page exists -->
                     {{#get "posts" limit="1" include="authors" as |featured_post|}}
                         {{#foreach featured_post}}
-                            <div class="max-w-4xl mx-auto">
-                                <div class="prose dark:prose-dark max-w-none">
+                            
+                                <div class="py-2 my-4 text-lg prose dark:prose-dark max-w-none">
                                     {{{content}}}
                                 </div>
-                            </div>
+                            
                         {{/foreach}}
                     {{/get}}
                 {{/get}}
