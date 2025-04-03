@@ -1,0 +1,27 @@
+# Default rules for all crawlers
+User-agent: *
+# Disallow specific archive/section paths as requested
+Disallow: /resources/
+Disallow: /c/
+Disallow: /fortnite/
+# Disallow the specific page used for the homepage embed
+Disallow: /homepage/
+
+# Specific rules for common bots (can inherit from * or have specific rules)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# You could add rules for other specific bots here if needed, e.g.:
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+
+# Sitemap location (Ghost default)
+Sitemap: https://alessandrobelli.it/sitemap.xml
