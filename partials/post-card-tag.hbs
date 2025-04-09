@@ -1,0 +1,35 @@
+<div class="flex-shrink-0 p-4 transition-colors duration-300 bg-white border-r-2 border-gray-100 dark:bg-darkSecondary dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600 rounded-lg">
+    <a href="{{url}}" class="block">
+        <div class="flex items-center mb-2 post-card-tags">
+            {{#primary_tag}}
+                <div class="post-card-primary-tag">
+                    <span class="mr-1 hashtag">#</span>
+                    <span>{{name}}</span>
+                </div>
+            {{/primary_tag}}
+        </div>
+        {{#if feature_image}}
+            <div class="mb-4 post-card-image">
+                <img src="{{img_url feature_image size="small"}}" alt="{{title}}"
+                     class="object-cover w-full h-40 rounded-lg">
+            </div>
+        {{else}}
+            <div class="mb-4 post-card-image bg-gray-200 dark:bg-gray-700 rounded-lg h-40 flex items-center justify-center">
+                <span class="text-gray-500 dark:text-gray-400">No image</span>
+            </div>
+        {{/if}}
+        <div class="flex items-center justify-center">
+            {{#if featured}}
+                <span class="mr-2 text-xs post-card-featured text-orangeValencia flame-icon">{{> "icons/fire"}}</span>
+            {{/if}}
+            <h3 class="text-xl font-bold text-anthracite dark:text-darkText">{{title}}</h3>
+        </div>
+        <p class="font-mono text-sm post-card-excerpt text-anthracite dark:text-darkMuted mt-2">{{excerpt words="20"}}</p>
+        <div class="mt-4 text-xs text-gray-500 dark:text-gray-400">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
+            {{#if reading_time}}
+                <span class="ml-4">{{reading_time}}</span>
+            {{/if}}
+        </div>
+    </a>
+</div>

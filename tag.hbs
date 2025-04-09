@@ -9,10 +9,10 @@
     </div>
 </header>
 
-<main class="container mx-auto py-8">
-    <div class="post-cards grid grid-cols-1 gap-8">
+<main class="container mx-auto py-8 px-4">
+    <div class="post-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {{#foreach posts}}
-            {{> "post-card"}}
+            {{> "post-card-tag"}}
         {{/foreach}}
     </div>
 
