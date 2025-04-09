@@ -1,0 +1,15 @@
+<div class="categories-toggle w-full">
+    <details>
+        <summary class="text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia transition-colors duration-200">Categories</summary>
+        <div class="tags">
+            {{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+                {{#foreach tags}}
+                    <a href="{{url}}" class="tag text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia transition-colors duration-200">
+                        {{name}}
+                        <span class="tag-count">{{count.posts}}</span>
+                    </a>
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </details>
+</div>

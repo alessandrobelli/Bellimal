@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset 'css/related-posts.css'}}" />
     <link rel="stylesheet" href="{{asset 'css/bookmarks.css'}}" />
     <link rel="stylesheet" href="{{asset 'css/social-embeds.css'}}" />
+    <link rel="stylesheet" href="{{asset 'css/categories-toggle.css'}}" />
     <link rel="stylesheet" href="{{asset 'css/prism.css'}}" />
     <script>
       // Immediately apply dark mode if stored in localStorage (prevents flash)
@@ -117,8 +118,17 @@
             />
           </svg>
         </button>
-        <nav class="flex flex-col items-center justify-center w-full">
-          {{navigation}}
+        <nav class="flex flex-col items-center justify-between w-full h-full">
+          <div class="flex-grow"></div>
+          
+          <div class="my-auto">
+            {{navigation}}
+          </div>
+          
+          <div class="flex-grow"></div>
+          
+          {{> "categories-toggle"}}
+          
           <div class="mt-8">
             <button
               id="darkModeToggle"
