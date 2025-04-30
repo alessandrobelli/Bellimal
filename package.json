@@ -101,6 +101,42 @@
         "group": "homepage",
         "description": "Slug of the page to feature on homepage",
         "default": "about"
+      },
+      "sidebar_link1_text": {
+        "type": "text",
+        "group": "sidebar",
+        "description": "Text for the first sidebar link",
+        "default": "Home"
+      },
+      "sidebar_link1_url": {
+        "type": "text",
+        "group": "sidebar",
+        "description": "URL for the first sidebar link",
+        "default": "/"
+      },
+      "sidebar_link2_text": {
+        "type": "text",
+        "group": "sidebar",
+        "description": "Text for the second sidebar link",
+        "default": "About"
+      },
+      "sidebar_link2_url": {
+        "type": "text",
+        "group": "sidebar",
+        "description": "URL for the second sidebar link",
+        "default": "/about/"
+      },
+      "sidebar_link3_text": {
+        "type": "text",
+        "group": "sidebar",
+        "description": "Text for the third sidebar link",
+        "default": "Contact"
+      },
+      "sidebar_link3_url": {
+        "type": "text",
+        "group": "sidebar",
+        "description": "URL for the third sidebar link",
+        "default": "/contact/"
       }
     }
   }

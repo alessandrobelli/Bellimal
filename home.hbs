@@ -34,11 +34,70 @@
         </section>
         {{/if}}
 
-        <!-- Carousel Section -->
+        <section class="relative pt-2 pb-12 carousel">
+    <h2 class="mb-6 text-2xl font-heading text-anthracite dark:text-darkText">Latest Projects</h2>
+    
+    <div class="flex gap-4 overflow-x-auto carousel-wrapper"
+         style="scroll-snap-type: x mandatory;" 
+    >
+        {{#get "posts" filter="tag:project" limit="10" as |projects|}} 
+        {{#foreach projects}}
+            <div class="flex-shrink-0 max-w-md basis-full md:basis-1/3"
+                 style="scroll-snap-align: start;">
+                <div class="flex flex-col h-full p-4 transition-colors duration-300 bg-white border-r-2 border-gray-100 min-h-[500px] dark:bg-darkSecondary dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600">
+                    <a href="{{url}}" class="flex flex-col h-full">
+        
+                        <div class="flex items-center mb-2 post-card-tags">
+                            {{#primary_tag}}
+                                <div class="post-card-primary-tag">
+                                    <span class="mr-1 hashtag">#</span>
+                                    <span>{{name}}</span>
+                                </div>
+                            {{/primary_tag}}
+                        </div>
+                        {{#if feature_image}}
+                            <div class="mb-4 post-card-image">
+                                <img src="{{img_url feature_image size="small"}}" alt="{{title}}"
+                                     class="object-cover w-full h-40 rounded-lg">
+                            </div>
+                        {{else}}
+                            <div class="mb-4 post-card-image">
+                                <img src="https://placeimg.com/640/480/any" alt="Placeholder Image"
+                                     class="object-cover w-full h-40 rounded-lg">
+                            </div>
+                        {{/if}}
+                        <div class="flex items-center justify-center">
+                            {{#if featured}}
+                                <span class="mr-2 text-xs post-card-featured text-orangeValencia flame-icon">{{> "icons/fire"}}</span>
+                            {{/if}}
+                            <h3 class="text-2xl font-bold">{{title}}</h3>
+                        </div>
+                       
+                        <p class="flex-grow font-mono text-base post-card-excerpt text-anthracite dark:text-darkMuted">{{excerpt words="20"}}</p> 
+                    </a>
+                </div>
+            </div>
+        {{/foreach}}
+        {{/get}}
+  
+    </div>
+    <div class="carousel-nav-hint md:hidden">
+        <span>Swipe</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+    </div>
+        </section>
+
+        {{!-- Carousel for latest posts --}}
+
+      <!-- Carousel Section -->
         <section class="relative pt-2 pb-12 carousel">
             <h2 class="mb-6 text-2xl font-heading text-anthracite dark:text-darkText">Latest Posts</h2>
             <div class="flex space-x-4 overflow-x-auto carousel-wrapper">
-                {{#foreach posts}}
+                {{!-- Fetch posts excluding the 'project' tag --}}
+                {{#get "posts" filter="tag:-project" limit="10" as |latest_posts|}}
+                {{#foreach latest_posts}}
                     <div class="flex-shrink-0 p-4 transition-colors duration-300 bg-white border-r-2 border-gray-100 dark:bg-darkSecondary dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600 w-80">
                         <a href="{{url}}" class="block">
                             <div class="flex items-center mb-2 post-card-tags">
@@ -70,13 +129,8 @@
                         </a>
                     </div>
                 {{/foreach}}
+                {{/get}}
             </div>
-            <div class="carousel-nav-hint md:hidden">
-                <span>Swipe</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-            </div>
-        </section>
+</section>
     </div>
 </main>

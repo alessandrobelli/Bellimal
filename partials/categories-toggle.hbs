@@ -1,7 +1,6 @@
 <div class="categories-toggle w-full">
-    <details>
-        <summary class="text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia transition-colors duration-200">Categories</summary>
-        <div class="tags">
+    <h3 class="mb-2 text-lg font-semibold text-anthracite dark:text-darkText">Categories</h3>
+    <div class="tags">
             {{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
                 {{#foreach tags}}
                     <a href="{{url}}" class="tag text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia transition-colors duration-200">
@@ -11,5 +10,4 @@
                 {{/foreach}}
             {{/get}}
         </div>
-    </details>
 </div>

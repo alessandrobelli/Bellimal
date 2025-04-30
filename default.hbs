@@ -95,77 +95,76 @@
     </header>
     <div class="flex flex-col min-h-screen lg:flex-row">
       <!-- Navigation Section -->
-      <div
-        id="sideNav"
-        class="fixed inset-0 z-40 flex items-center justify-center w-full p-6 transition-transform duration-300 -translate-x-full bg-white border-r shadow-xl lg:inset-auto lg:w-64 dark:bg-darkSecondary dark:border-gray-800 lg:fixed lg:h-screen lg:flex-col lg:translate-x-0 lg:shadow-none"
+<div
+  id="sideNav"
+  class="fixed inset-0 z-40 flex items-center justify-center w-full p-6 transition-transform duration-300 -translate-x-full bg-white border-r shadow-xl lg:inset-auto lg:w-64 dark:bg-darkSecondary dark:border-gray-800 lg:fixed lg:h-screen lg:flex-col lg:translate-x-0 lg:shadow-none"
+>
+  <button
+    id="closeNavBtn"
+    class="absolute top-4 right-4 text-anthracite dark:text-darkText lg:hidden"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  </button>
+  <nav class="flex flex-col items-center w-full h-full pt-4 pb-8">
+    <div class="justify-center w-full px-4">
+      {{> "sidebar-links"}}
+    </div>
+    <div class="flex flex-col items-center justify-center flex-grow w-full">
+      {{navigation}}
+    </div>
+    <div class="justify-center w-full px-4 mb-4">
+      {{> "categories-toggle"}}
+    </div>
+    <div class="mt-auto">
+      <button
+        id="darkModeToggle"
+        class="p-2 transition-colors duration-300 rounded-full focus:outline-none"
       >
-        <button
-          id="closeNavBtn"
-          class="absolute top-4 right-4 text-anthracite dark:text-darkText lg:hidden"
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="hidden w-5 h-5 dark-icon dark:block"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-        <nav class="flex flex-col items-center justify-between w-full h-full">
-          <div class="flex-grow"></div>
-          
-          <div class="my-auto">
-            {{navigation}}
-          </div>
-          
-          <div class="flex-grow"></div>
-          
-          {{> "categories-toggle"}}
-          
-          <div class="mt-8">
-            <button
-              id="darkModeToggle"
-              class="p-2 transition-colors duration-300 rounded-full focus:outline-none"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="hidden w-5 h-5 dark-icon dark:block"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="block w-5 h-5 light-icon dark:hidden"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
-            </button>
-          </div>
-        </nav>
-      </div>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="block w-5 h-5 light-icon dark:hidden"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          />
+        </svg>
+      </button>
+    </div>
+  </nav>
+</div>
 
       <main class="flex-grow w-full p-8 pt-16 overflow-auto lg:ml-64 lg:pt-8">
         {{{body}}}
