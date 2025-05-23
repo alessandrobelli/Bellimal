@@ -1601,11 +1601,6 @@ video {
   margin-bottom:1rem
 }
 
-.my-auto{
-  margin-top:auto;
-  margin-bottom:auto
-}
-
 .mb-1{
   margin-bottom:0.25rem
 }
@@ -1668,6 +1663,10 @@ video {
 
 .mt-8{
   margin-top:2rem
+}
+
+.mt-auto{
+  margin-top:auto
 }
 
 .line-clamp-2{
@@ -1933,6 +1932,10 @@ video {
   text-overflow:ellipsis
 }
 
+.rounded{
+  border-radius:0.25rem
+}
+
 .rounded-full{
   border-radius:9999px
 }
@@ -2044,6 +2047,11 @@ video {
 
 .p-8{
   padding:2rem
+}
+
+.px-2{
+  padding-left:0.5rem;
+  padding-right:0.5rem
 }
 
 .px-4{
@@ -3396,6 +3404,11 @@ figure {
   border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))
 }
 
+.hover\:bg-gray-100:hover{
+  --tw-bg-opacity:1;
+  background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))
+}
+
 .hover\:bg-orangeValencia-600:hover{
   --tw-bg-opacity:1;
   background-color:rgb(216 71 39 / var(--tw-bg-opacity, 1))
@@ -3539,6 +3552,11 @@ figure {
 .dark\:hover\:border-gray-600:hover:is(.dark *){
   --tw-border-opacity:1;
   border-color:rgb(75 85 99 / var(--tw-border-opacity, 1))
+}
+
+.dark\:hover\:bg-gray-700:hover:is(.dark *){
+  --tw-bg-opacity:1;
+  background-color:rgb(55 65 81 / var(--tw-bg-opacity, 1))
 }
 
 .dark\:hover\:text-orangeValencia:hover:is(.dark *){
