@@ -3,6 +3,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+/* Carousel drag cursor */
+.carousel-wrapper {
+  cursor: grab;
+  user-select: none;
+}
+.carousel-wrapper.cursor-grabbing {
+  cursor: grabbing;
+}
+.carousel-wrapper a {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 :root {
   --gh-font-heading: "Atkinson Hyperlegible", sans-serif;
   --gh-font-body: "Fira Mono", monospace;

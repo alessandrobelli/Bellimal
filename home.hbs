@@ -37,8 +37,8 @@
         <section class="relative pt-2 pb-12 carousel">
     <h2 class="mb-6 text-2xl font-heading text-anthracite dark:text-darkText">Latest Projects</h2>
     
-    <div class="flex gap-4 overflow-x-auto carousel-wrapper"
-         style="scroll-snap-type: x mandatory;" 
+    <div class="flex gap-4 overflow-x-auto scrollbar-hide carousel-wrapper"
+         style="scroll-snap-type: x mandatory;"
     >
         {{#get "posts" filter="tag:project" limit="10" as |projects|}} 
         {{#foreach projects}}
@@ -94,7 +94,7 @@
       <!-- Carousel Section -->
         <section class="relative pt-2 pb-12 carousel">
             <h2 class="mb-6 text-2xl font-heading text-anthracite dark:text-darkText">Latest Posts</h2>
-            <div class="flex space-x-4 overflow-x-auto carousel-wrapper">
+            <div class="flex space-x-4 overflow-x-auto scrollbar-hide carousel-wrapper">
                 {{!-- Fetch posts excluding the 'project' tag --}}
                 {{#get "posts" filter="tag:-project" limit="10" as |latest_posts|}}
                 {{#foreach latest_posts}}

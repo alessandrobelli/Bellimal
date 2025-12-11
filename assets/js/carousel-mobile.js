@@ -1,47 +1,64 @@
-// Enhanced mobile carousel experience
+// Enhanced carousel experience with drag-to-scroll for desktop
 document.addEventListener('DOMContentLoaded', function() {
-    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    const carouselWrappers = document.querySelectorAll('.carousel-wrapper');
     const carouselHint = document.querySelector('.carousel-nav-hint');
-    
-    if (!carouselWrapper || !carouselHint) return;
-    
-    // Only show the hint on mobile if they haven't seen it before
-    if (window.innerWidth <= 768 && !localStorage.getItem('carouselHintSeen')) {
+
+    // Mobile hint functionality
+    if (carouselHint && window.innerWidth <= 768 && !localStorage.getItem('carouselHintSeen')) {
         carouselHint.classList.remove('hidden');
         carouselHint.classList.add('flex');
-        
-        // Mark as seen after the animation plays once
+
         setTimeout(() => {
             localStorage.setItem('carouselHintSeen', 'true');
-            
-            // Fade out hint
             carouselHint.style.transition = 'opacity 0.5s ease-out';
             carouselHint.style.opacity = '0';
-            
+
             setTimeout(() => {
                 carouselHint.classList.add('hidden');
             }, 500);
         }, 5000);
     }
-    
-    // Make sure scroll is smooth on touch devices
-    if ('ontouchstart' in window) {
-        carouselWrapper.style.webkitOverflowScrolling = 'touch';
-        
-        // Add indicators when scrolling approaches the end
-        carouselWrapper.addEventListener('scroll', function() {
-            const maxScroll = carouselWrapper.scrollWidth - carouselWrapper.clientWidth;
-            const currentScroll = carouselWrapper.scrollLeft;
-            
-            // Update the gradient opacity based on scroll position
-            const scrollPercentage = currentScroll / maxScroll;
-            
-            if (scrollPercentage > 0.9) {
-                // Near the end, fade out right indicator
-                document.querySelector('.carousel::after')?.style.opacity = '0';
-            } else {
-                document.querySelector('.carousel::after')?.style.opacity = '1';
-            }
+
+    // Drag-to-scroll for all carousels
+    carouselWrappers.forEach(carousel => {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        carousel.addEventListener('mousedown', (e) => {
+            // Ignore if clicking on a link
+            if (e.target.closest('a')) return;
+
+            isDown = true;
+            carousel.classList.add('cursor-grabbing');
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
         });
-    }
+
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+            carousel.classList.remove('cursor-grabbing');
+        });
+
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.classList.remove('cursor-grabbing');
+        });
+
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Add grab cursor style
+        carousel.style.cursor = 'grab';
+
+        // Make sure scroll is smooth on touch devices
+        if ('ontouchstart' in window) {
+            carousel.style.webkitOverflowScrolling = 'touch';
+        }
+    });
 });

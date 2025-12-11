@@ -1667,10 +1667,6 @@ video {
   margin-top:1rem
 }
 
-.mt-6{
-  margin-top:1.5rem
-}
-
 .mt-8{
   margin-top:2rem
 }
@@ -1848,6 +1844,10 @@ video {
 
 .transform{
   transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.cursor-grabbing{
+  cursor:grabbing
 }
 
 .cursor-pointer{
@@ -2070,11 +2070,6 @@ video {
 
 .p-8{
   padding:2rem
-}
-
-.px-3{
-  padding-left:0.75rem;
-  padding-right:0.75rem
 }
 
 .px-4{
@@ -2350,6 +2345,40 @@ video {
 
 .font-body {
   font-family: "Fira Mono", monospace, sans-serif;
+}
+
+/* Hide scrollbar but keep functionality */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+/* Carousel drag cursor */
+
+.carousel-wrapper {
+  cursor: grab;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.carousel-wrapper.cursor-grabbing {
+  cursor: grabbing;
+}
+
+.carousel-wrapper a {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  -webkit-user-drag: none;
 }
 
 :root {
