@@ -16,22 +16,34 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(mobileMenuOverlay);
     
     // Functions
+    function isMenuOpen() {
+        return !sideNav.classList.contains('-translate-x-full');
+    }
+
     function openMenu() {
         sideNav.classList.remove('-translate-x-full');
         mobileMenuOverlay.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden'); 
+        document.body.classList.add('overflow-hidden');
         htmlElement.classList.add('mobile-menu-open');
     }
-    
+
     function closeMenu() {
         sideNav.classList.add('-translate-x-full');
         mobileMenuOverlay.classList.add('hidden');
         document.body.classList.remove('overflow-hidden');
         htmlElement.classList.remove('mobile-menu-open');
     }
-    
+
+    function toggleMenu() {
+        if (isMenuOpen()) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
+
     // Event listeners
-    if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMenu);
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMenu);
     if (closeNavBtn) closeNavBtn.addEventListener('click', closeMenu);
     if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMenu);
     
