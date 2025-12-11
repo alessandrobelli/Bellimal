@@ -1,6 +1,5 @@
 <div class="w-auto mx-auto mt-4 mb-8 text-center">
-  <h3 class="text-sm cursor-pointer select-none text-graySecondary
-   http://www.linkedin.com/shareArticle?mini=true&url=https://stackoverflow.com/questions/10713542/how-to-make-custom-linkedin-share-button/10737122&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com">
+  <h3 class="text-sm cursor-pointer select-none text-graySecondary">
     Share
   </h3>
   <ul class="flex items-center justify-center mt-4 space-x-6">
@@ -28,12 +27,14 @@
     </li>
     <li class="list-none">
       <a
-        href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{url absolute='true'}}&amp;title={{encode title}}"
+        href="https://www.linkedin.com/shareArticle?mini=true&url={{url absolute="true"}}&title={{encode title}}&summary={{encode excerpt}}"
         target="_blank"
         rel="noopener"
-        data-pin-do="none"
         class="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
       >
+        <span class="sr-only">
+          Share on LinkedIn
+        </span>
         <svg
           class="w-5 h-5"
           fill="currentColor"
@@ -49,16 +50,15 @@
     </li>
     <li class="list-none">
       <a
-       href="https://x.com/intent/tweet?url={{url absolute="true"}}&text={{encode title}}%0A{{encode excerpt}}" target="_blank" rel="noopener"
+       href="https://x.com/intent/tweet?url={{url absolute="true"}}&text={{encode title}}" target="_blank" rel="noopener"
         class="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
       >
         <span class="sr-only">
-          Share on Twitter
+          Share on X
         </span>
         <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
- <path d="m 17.7 0 h 4.05 l -7.575 8.625 l 8.85 11.7 h -6.945 l -5.4375 -7.11 l -6.225 7.11 h -3.45 l 8.025 -9.225 l -8.475 -11.1 h 7.1175 l 4.9125 6.495 z m -1.2075 18.3 h 1.9125 l -12.375 -16.35 h -2.055 z"/>
-</svg>
-
+          <path d="m 17.7 0 h 4.05 l -7.575 8.625 l 8.85 11.7 h -6.945 l -5.4375 -7.11 l -6.225 7.11 h -3.45 l 8.025 -9.225 l -8.475 -11.1 h 7.1175 l 4.9125 6.495 z m -1.2075 18.3 h 1.9125 l -12.375 -16.35 h -2.055 z"/>
+        </svg>
       </a>
     </li>
   </ul>
