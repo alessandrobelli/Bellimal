@@ -1,13 +1,15 @@
 <div class="categories-toggle w-full">
-    <h3 class="mb-2 text-lg font-semibold text-anthracite dark:text-darkText">Categories</h3>
-    <div class="tags">
-            {{#get "tags" limit="100" include="count.posts" order="count.posts desc"}}
-                {{#foreach tags}}
-                    <a href="{{url}}" class="tag text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia transition-colors duration-200">
-                        {{name}}
-                        <span class="tag-count">{{count.posts}}</span>
-                    </a>
-                {{/foreach}}
-            {{/get}}
-        </div>
+  <h3 class="mb-3 text-xs font-semibold tracking-wider uppercase text-orangeValencia dark:text-orangeValencia-400">Categories</h3>
+  <ul class="space-y-1">
+    {{#get "tags" limit="100" include="count.posts" order="count.posts desc"}}
+      {{#foreach tags}}
+        <li>
+          <a href="{{url}}" class="flex items-center justify-between py-1.5 text-base transition-colors duration-200 text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia">
+            <span>{{name}}</span>
+            <span class="text-xs min-w-6 h-6 flex items-center justify-center rounded-full bg-white dark:bg-gray-600 text-gray-600 dark:text-gray-200">{{count.posts}}</span>
+          </a>
+        </li>
+      {{/foreach}}
+    {{/get}}
+  </ul>
 </div>

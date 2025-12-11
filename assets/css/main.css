@@ -15,7 +15,6 @@ code[class*=language-],pre[class*=language-]{
   -moz-tab-size:4;
   -o-tab-size:4;
   tab-size:4;
-  -webkit-hyphens:none;
   hyphens:none
 }
 
@@ -290,7 +289,7 @@ div.code-toolbar>.toolbar>.toolbar-item>a:focus,div.code-toolbar>.toolbar>.toolb
   --tw-contain-style: 
 }
 
-/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */
+/* ! tailwindcss v3.4.18 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -978,7 +977,7 @@ video {
   font-weight:500;
   font-family:inherit;
   color:var(--tw-prose-kbd);
-  box-shadow:0 0 0 1px rgb(var(--tw-prose-kbd-shadows) / 10%), 0 3px 0 rgb(var(--tw-prose-kbd-shadows) / 10%);
+  box-shadow:0 0 0 1px var(--tw-prose-kbd-shadows), 0 3px 0 var(--tw-prose-kbd-shadows);
   font-size:0.875em;
   border-radius:0.3125rem;
   padding-top:0.1875em;
@@ -1070,7 +1069,6 @@ video {
 .prose :where(table):not(:where([class~="not-prose"],[class~="not-prose"] *)){
   width:100%;
   table-layout:auto;
-  text-align:start;
   margin-top:2em;
   margin-bottom:2em;
   font-size:0.875em;
@@ -1113,6 +1111,10 @@ video {
   vertical-align:top
 }
 
+.prose :where(th, td):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  text-align:start
+}
+
 .prose :where(figure > *):not(:where([class~="not-prose"],[class~="not-prose"] *)){
   margin-top:0;
   margin-bottom:0
@@ -1138,7 +1140,7 @@ video {
   --tw-prose-quote-borders:#e5e7eb;
   --tw-prose-captions:#6b7280;
   --tw-prose-kbd:#111827;
-  --tw-prose-kbd-shadows:17 24 39;
+  --tw-prose-kbd-shadows:rgb(17 24 39 / 10%);
   --tw-prose-code:#111827;
   --tw-prose-pre-code:#e5e7eb;
   --tw-prose-pre-bg:#1f2937;
@@ -1156,7 +1158,7 @@ video {
   --tw-prose-invert-quote-borders:#374151;
   --tw-prose-invert-captions:#9ca3af;
   --tw-prose-invert-kbd:#fff;
-  --tw-prose-invert-kbd-shadows:255 255 255;
+  --tw-prose-invert-kbd-shadows:rgb(255 255 255 / 10%);
   --tw-prose-invert-code:#fff;
   --tw-prose-invert-pre-code:#d1d5db;
   --tw-prose-invert-pre-bg:rgb(0 0 0 / 50%);
@@ -1601,17 +1603,16 @@ video {
   margin-bottom:1rem
 }
 
-.my-auto{
-  margin-top:auto;
-  margin-bottom:auto
-}
-
 .mb-1{
   margin-bottom:0.25rem
 }
 
 .mb-2{
   margin-bottom:0.5rem
+}
+
+.mb-3{
+  margin-bottom:0.75rem
 }
 
 .mb-4{
@@ -1666,8 +1667,16 @@ video {
   margin-top:1rem
 }
 
+.mt-6{
+  margin-top:1.5rem
+}
+
 .mt-8{
   margin-top:2rem
+}
+
+.mt-auto{
+  margin-top:auto
 }
 
 .line-clamp-2{
@@ -1785,6 +1794,10 @@ video {
   width:100%
 }
 
+.min-w-6{
+  min-width:1.5rem
+}
+
 .max-w-full{
   max-width:100%
 }
@@ -1875,6 +1888,10 @@ video {
   justify-content:space-between
 }
 
+.gap-3{
+  gap:0.75rem
+}
+
 .gap-4{
   gap:1rem
 }
@@ -1905,16 +1922,16 @@ video {
   margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))
 }
 
+.space-y-1 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse:0;
+  margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))
+}
+
 .space-y-2 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse:0;
   margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))
-}
-
-.space-y-4 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse:0;
-  margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom:calc(1rem * var(--tw-space-y-reverse))
 }
 
 .overflow-auto{
@@ -1927,6 +1944,10 @@ video {
 
 .overflow-x-auto{
   overflow-x:auto
+}
+
+.overflow-y-auto{
+  overflow-y:auto
 }
 
 .overflow-ellipsis{
@@ -1968,6 +1989,11 @@ video {
 .border-gray-100{
   --tw-border-opacity:1;
   border-color:rgb(243 244 246 / var(--tw-border-opacity, 1))
+}
+
+.border-gray-200{
+  --tw-border-opacity:1;
+  border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))
 }
 
 .border-gray-300{
@@ -2051,6 +2077,11 @@ video {
   padding-right:1rem
 }
 
+.py-1\.5{
+  padding-top:0.375rem;
+  padding-bottom:0.375rem
+}
+
 .py-12{
   padding-top:3rem;
   padding-bottom:3rem
@@ -2089,6 +2120,10 @@ video {
 
 .pt-4{
   padding-top:1rem
+}
+
+.pt-6{
+  padding-top:1.5rem
 }
 
 .pt-8{
@@ -2163,6 +2198,10 @@ video {
   font-weight:600
 }
 
+.uppercase{
+  text-transform:uppercase
+}
+
 .leading-5{
   line-height:1.25rem
 }
@@ -2177,6 +2216,10 @@ video {
 
 .tracking-tight{
   letter-spacing:-0.025em
+}
+
+.tracking-wider{
+  letter-spacing:0.05em
 }
 
 .text-anthracite{
@@ -2245,9 +2288,7 @@ video {
 }
 
 .transition{
-  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration:150ms
 }
@@ -3075,6 +3116,23 @@ ul{
   padding-left:1.5rem
 }
 
+/* Sidebar list reset */
+
+#sideNav ul,
+#sideNav ol,
+.sidebar-links ul,
+.categories-toggle ul{
+  margin-bottom:0px;
+  list-style-type:none;
+  padding-left:0px
+}
+
+#sideNav li,
+.sidebar-links li,
+.categories-toggle li{
+  margin-bottom:0px
+}
+
 ol li,
 ul li{
   margin-bottom:0.5rem
@@ -3150,9 +3208,7 @@ header .meta{
 
 .gh-readmore-next,
 .gh-readmore-prev{
-  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-duration:300ms;
   transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)
 }
@@ -3314,9 +3370,7 @@ header .meta{
   padding-bottom:0.5rem;
   --tw-text-opacity:1;
   color:rgb(255 255 255 / var(--tw-text-opacity, 1));
-  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration:300ms;
   background-color: #D84727
@@ -3335,9 +3389,7 @@ header .meta{
   --tw-text-opacity:1;
   color:rgb(216 71 39 / var(--tw-text-opacity, 1));
   text-decoration-line:underline;
-  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration:300ms;
   color: #D84727
@@ -3394,6 +3446,11 @@ figure {
 .hover\:border-gray-300:hover{
   --tw-border-opacity:1;
   border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))
+}
+
+.hover\:bg-gray-100:hover{
+  --tw-bg-opacity:1;
+  background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:bg-orangeValencia-600:hover{
@@ -3511,6 +3568,11 @@ figure {
   background-color:rgb(30 30 30 / var(--tw-bg-opacity, 1))
 }
 
+.dark\:bg-gray-600:is(.dark *){
+  --tw-bg-opacity:1;
+  background-color:rgb(75 85 99 / var(--tw-bg-opacity, 1))
+}
+
 .dark\:bg-gray-700:is(.dark *){
   --tw-bg-opacity:1;
   background-color:rgb(55 65 81 / var(--tw-bg-opacity, 1))
@@ -3526,6 +3588,11 @@ figure {
   color:rgb(226 226 226 / var(--tw-text-opacity, 1))
 }
 
+.dark\:text-gray-200:is(.dark *){
+  --tw-text-opacity:1;
+  color:rgb(229 231 235 / var(--tw-text-opacity, 1))
+}
+
 .dark\:text-gray-400:is(.dark *){
   --tw-text-opacity:1;
   color:rgb(156 163 175 / var(--tw-text-opacity, 1))
@@ -3539,6 +3606,11 @@ figure {
 .dark\:hover\:border-gray-600:hover:is(.dark *){
   --tw-border-opacity:1;
   border-color:rgb(75 85 99 / var(--tw-border-opacity, 1))
+}
+
+.dark\:hover\:bg-gray-700:hover:is(.dark *){
+  --tw-bg-opacity:1;
+  background-color:rgb(55 65 81 / var(--tw-bg-opacity, 1))
 }
 
 .dark\:hover\:text-orangeValencia:hover:is(.dark *){

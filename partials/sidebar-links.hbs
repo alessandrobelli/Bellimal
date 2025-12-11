@@ -1,14 +1,14 @@
-<div class="w-full mb-6 text-center sidebar-links">
-
-  <ul class="inline-block space-y-2">
-
+<div class="w-full sidebar-links">
+  {{!-- Social Links Section --}}
+  <ul class="space-y-1 mb-4">
     {{#if @custom.sidebar_link1_text}}
       <li>
         <a
           href="{{@custom.sidebar_link1_url}}"
-          class="block px-2 py-2 text-lg font-semibold transition-colors duration-200 rounded text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="flex items-center gap-3 py-1.5 text-base transition-colors duration-200 text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia"
         >
-          {{@custom.sidebar_link1_text}}
+          {{> "icons/github" class="w-5 h-5 flex-shrink-0"}}
+          <span>{{@custom.sidebar_link1_text}}</span>
         </a>
       </li>
     {{/if}}
@@ -16,9 +16,10 @@
       <li>
         <a
           href="{{@custom.sidebar_link2_url}}"
-          class="block px-2 py-2 text-lg font-semibold transition-colors duration-200 rounded text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="flex items-center gap-3 py-1.5 text-base transition-colors duration-200 text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia"
         >
-          {{@custom.sidebar_link2_text}}
+          {{> "icons/linkedin" class="w-5 h-5 flex-shrink-0"}}
+          <span>{{@custom.sidebar_link2_text}}</span>
         </a>
       </li>
     {{/if}}
@@ -26,11 +27,18 @@
       <li>
         <a
           href="{{@custom.sidebar_link3_url}}"
-          class="block px-2 py-2 text-lg font-semibold transition-colors duration-200 rounded text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="flex items-center gap-3 py-1.5 text-base transition-colors duration-200 text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia"
         >
-          {{@custom.sidebar_link3_text}}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 flex-shrink-0">
+            <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625zM7.5 15a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 017.5 15zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H8.25z" clip-rule="evenodd" />
+            <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
+          </svg>
+          <span>{{@custom.sidebar_link3_text}}</span>
         </a>
       </li>
     {{/if}}
   </ul>
+
+  {{!-- Divider --}}
+  <div class="border-t border-gray-200 dark:border-gray-700 my-4"></div>
 </div>

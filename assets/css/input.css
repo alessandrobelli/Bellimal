@@ -328,6 +328,20 @@ ul {
   @apply pl-6 mb-4;
 }
 
+/* Sidebar list reset */
+#sideNav ul,
+#sideNav ol,
+.sidebar-links ul,
+.categories-toggle ul {
+  @apply pl-0 mb-0 list-none;
+}
+
+#sideNav li,
+.sidebar-links li,
+.categories-toggle li {
+  @apply mb-0;
+}
+
 ol li,
 ul li {
   @apply mb-2;
