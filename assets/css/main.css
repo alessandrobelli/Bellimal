@@ -2072,6 +2072,11 @@ video {
   padding:2rem
 }
 
+.px-3{
+  padding-left:0.75rem;
+  padding-right:0.75rem
+}
+
 .px-4{
   padding-left:1rem;
   padding-right:1rem
@@ -3738,8 +3743,8 @@ figure {
     inset:auto
   }
 
-  .lg\:ml-64{
-    margin-left:16rem
+  .lg\:ml-72{
+    margin-left:18rem
   }
 
   .lg\:hidden{
@@ -3750,8 +3755,8 @@ figure {
     height:100vh
   }
 
-  .lg\:w-64{
-    width:16rem
+  .lg\:w-72{
+    width:18rem
   }
 
   .lg\:translate-x-0{

@@ -4,7 +4,7 @@
     {{#get "tags" limit="100" include="count.posts" order="count.posts desc"}}
       {{#foreach tags}}
         <li>
-          <a href="{{url}}" class="flex items-center justify-between py-1.5 text-base transition-colors duration-200 text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia">
+          <a href="{{url}}" class="flex items-center justify-between py-1.5 text-lg transition-colors duration-200 text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia">
             <span>{{name}}</span>
             <span class="text-xs min-w-6 h-6 flex items-center justify-center rounded-full bg-white dark:bg-gray-600 text-gray-600 dark:text-gray-200">{{count.posts}}</span>
           </a>

@@ -97,7 +97,7 @@
       <!-- Navigation Section -->
 <div
   id="sideNav"
-  class="fixed inset-0 z-40 flex items-center justify-center w-full p-6 transition-transform duration-300 -translate-x-full bg-white border-r shadow-xl lg:inset-auto lg:w-64 dark:bg-darkSecondary dark:border-gray-800 lg:fixed lg:h-screen lg:flex-col lg:translate-x-0 lg:shadow-none"
+  class="fixed inset-0 z-40 flex items-center justify-center w-full p-6 transition-transform duration-300 -translate-x-full bg-white border-r shadow-xl lg:inset-auto lg:w-72 dark:bg-darkSecondary dark:border-gray-800 lg:fixed lg:h-screen lg:flex-col lg:translate-x-0 lg:shadow-none"
 >
   <button
     id="closeNavBtn"
@@ -118,14 +118,15 @@
       />
     </svg>
   </button>
-  <nav class="flex flex-col w-full h-full pt-6 pb-8 px-4 overflow-y-auto">
+  <nav class="flex flex-col w-full h-full pt-6 pb-8 overflow-y-auto">
     <div class="w-full">
       {{> "sidebar-links"}}
     </div>
-    <div class="w-full mt-4">
+    <div class="w-full my-4">
       {{navigation}}
     </div>
-    <div class="w-full mt-6">
+    <div class="border-t border-gray-200 dark:border-gray-700 my-4"></div>
+    <div class="w-full">
       {{> "categories-toggle"}}
     </div>
     <div class="flex items-center justify-center w-full mt-auto pt-4">
@@ -166,7 +167,7 @@
   </nav>
 </div>
 
-      <main class="flex-grow w-full p-8 pt-16 overflow-auto lg:ml-64 lg:pt-8">
+      <main class="flex-grow w-full p-8 pt-16 overflow-auto lg:ml-72 lg:pt-8">
         {{{body}}}
       </main>
       <script src="{{asset 'js/darkmode.js'}}"></script>
