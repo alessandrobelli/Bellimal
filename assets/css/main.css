@@ -22,6 +22,12 @@ pre[class*="language-"] {
 :root {
     --gh-font-heading: var(--gh-font-heading), sans-serif;
     --gh-font-body: "Atkinson Hyperlegible Mono", monospace;
+
+
+    /* Text Colors */
+    --color-text-body: #292c2f; /* Anthracite */
+    --color-text-heading: #111827;
+
 }
 
 pre[class*="language-"] {
@@ -2414,10 +2420,6 @@ video {
     text-align: center;
 }
 
-.font-heading {
-    font-family: var(--gh-font-heading), sans-serif;
-}
-
 .font-mono {
     font-family:
         ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -2619,15 +2621,15 @@ video {
 }
 
 .bg-orangeValencia {
-    background-color: #d84727;
+    background-color: --orange-valencia;
 }
 
 .text-orangeValencia {
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .text-anthracite {
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .font-heading {
@@ -2679,7 +2681,7 @@ video {
     font-weight: 700;
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .prose ol li,
@@ -2702,7 +2704,7 @@ a:focus {
 a:hover:hover {
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 /* Bookmark Card Styles */
@@ -2751,7 +2753,7 @@ a:hover:hover {
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
     text-decoration-line: none;
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .kg-bookmark-container:is(.dark *) {
@@ -2771,7 +2773,7 @@ a:hover:hover {
     line-height: 1.75rem;
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
     font-family: var(--gh-font-heading), sans-serif, monospace;
 }
 
@@ -2786,7 +2788,7 @@ a:hover:hover {
     line-height: 1.25rem;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .kg-bookmark-description:is(.dark *) {
@@ -2872,7 +2874,7 @@ header h1 {
     line-height: 2.5rem;
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
     font-family: var(--gh-font-heading), sans-serif, monospace;
 }
 
@@ -2885,7 +2887,7 @@ h6 {
     font-family: var(--gh-font-heading), sans-serif !important;
     --tw-text-opacity: 1 !important;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1)) !important;
-    color: #d84727 !important;
+    color: --orange-valencia !important;
     font-family: var(--gh-font-heading), sans-serif, monospace !important;
 }
 
@@ -2913,7 +2915,6 @@ h6:is(.dark *) {
 body {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-    font-family: "Fira Mono", monospace;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
     transition-property:
@@ -2921,8 +2922,8 @@ body {
         stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-    color: #292c2f;
-    font-family: "Fira Mono", monospace, sans-serif;
+    color: var(--color-text-body);
+    font-family: var(--gh-font-body), monospace, sans-serif;
 }
 
 body:is(.dark *) {
@@ -2993,7 +2994,7 @@ body:is(.dark *) {
         stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 200ms;
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .hashtag:is(.dark *) {
@@ -3091,7 +3092,7 @@ body:is(.dark *) {
     font-family: var(--gh-font-heading), sans-serif;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
     font-family: var(--gh-font-heading), sans-serif, monospace;
 }
 
@@ -3115,7 +3116,7 @@ body:is(.dark *) {
     line-height: 2rem;
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .prose h2:is(.dark *) {
@@ -3128,7 +3129,7 @@ body:is(.dark *) {
     line-height: 1.75rem;
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .prose h3:is(.dark *) {
@@ -3149,7 +3150,7 @@ body:is(.dark *) {
         stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 200ms;
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .prose a:hover {
@@ -3248,7 +3249,7 @@ th {
     font-weight: 700;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 th:is(.dark *) {
@@ -3265,7 +3266,7 @@ td {
     padding: 0.5rem;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 td:is(.dark *) {
@@ -3328,7 +3329,7 @@ tr:hover:is(.dark *) {
     font-weight: 700;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .prose th:is(.dark *) {
@@ -3345,7 +3346,7 @@ tr:hover:is(.dark *) {
     padding: 0.5rem;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .prose td:is(.dark *) {
@@ -3395,7 +3396,7 @@ blockquote b {
     font-weight: 700;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 blockquote strong:is(.dark *),
@@ -3438,7 +3439,7 @@ blockquote b:is(.dark *) {
     font-weight: 700 !important;
     --tw-text-opacity: 1 !important;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1)) !important;
-    color: #292c2f !important;
+    color: var(--color-text-body) !important;
 }
 
 .prose blockquote strong:is(.dark *),
@@ -3481,13 +3482,13 @@ ol li::marker {
     font-weight: 700;
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 ul li::marker {
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 /* List styling for dark mode */
@@ -3558,14 +3559,14 @@ header .meta {
 .gh-readmore-prev:hover {
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 @keyframes flicker {
     0% {
         opacity: 1;
         transform: scale(1);
-        stroke: #d84727;
+        stroke: --orange-valencia;
         /* Main color */
     }
 
@@ -3619,7 +3620,7 @@ header .meta {
 }
 
 .post-card-primary-tag:hover {
-    color: #d84727;
+    color: --orange-valencia;
     /* Orange Valencia */
 }
 
@@ -3628,12 +3629,12 @@ header .meta {
 }
 
 .hover-orangeValencia:hover {
-    color: #d84727;
+    color: --orange-valencia;
     /* Orange Valencia */
 }
 
 .prose {
-    color: #292c2f;
+    color: var(--color-text-body);
     /* anthracite color */
 }
 
@@ -3656,7 +3657,7 @@ header .meta {
 }
 
 .prose a {
-    color: #d84727;
+    color: --orange-valencia;
     /* orangeValencia color */
     text-decoration: none;
 }
@@ -3676,7 +3677,6 @@ header .meta {
     padding: 1.5rem;
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
 }
 
 .gh-post-upgrade-cta-content {
@@ -3687,7 +3687,6 @@ header .meta {
     text-align: center !important;
     --tw-text-opacity: 1 !important;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1)) !important;
-    color: #292c2f !important;
 }
 
 .gh-post-upgrade-cta h2 {
@@ -3697,7 +3696,7 @@ header .meta {
     line-height: 2rem;
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
     font-family: var(--gh-font-heading), sans-serif, monospace;
 }
 
@@ -3716,7 +3715,7 @@ header .meta {
         stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-    background-color: #d84727;
+    background-color: --orange-valencia;
 }
 
 .gh-btn.gh-portal-close:hover {
@@ -3737,7 +3736,7 @@ header .meta {
         stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .gh-post-upgrade-cta-content p a:hover {
@@ -3830,7 +3829,7 @@ figure {
 }
 
 .hover\:text-orangeValencia:hover {
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .focus\:outline-none:focus {
@@ -3841,35 +3840,35 @@ figure {
 .group:hover .group-hover\:text-orangeValencia {
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .prose-h1\:text-anthracite
     :is(:where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .prose-h2\:text-anthracite
     :is(:where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .prose-h3\:text-anthracite
     :is(:where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .prose-p\:text-anthracite
     :is(:where(p):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .prose-strong\:font-bold
@@ -3885,21 +3884,21 @@ figure {
     ) {
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .prose-ul\:text-anthracite
     :is(:where(ul):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .prose-th\:text-anthracite
     :is(:where(th):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
     --tw-text-opacity: 1;
     color: rgb(41 44 47 / var(--tw-text-opacity, 1));
-    color: #292c2f;
+    color: var(--color-text-body);
 }
 
 .dark\:block:is(.dark *) {
@@ -3978,7 +3977,7 @@ figure {
 .dark\:hover\:text-orangeValencia:hover:is(.dark *) {
     --tw-text-opacity: 1;
     color: rgb(216 71 39 / var(--tw-text-opacity, 1));
-    color: #d84727;
+    color: --orange-valencia;
 }
 
 .group:hover .dark\:group-hover\:text-orangeValencia-400:is(.dark *) {
