@@ -23,11 +23,9 @@ pre[class*="language-"] {
     --gh-font-heading: var(--gh-font-heading), sans-serif;
     --gh-font-body: "Atkinson Hyperlegible Mono", monospace;
 
-
     /* Text Colors */
     --color-text-body: #292c2f; /* Anthracite */
     --color-text-heading: #111827;
-
 }
 
 pre[class*="language-"] {
@@ -197,6 +195,7 @@ div.code-toolbar > .toolbar > .toolbar-item > button {
     line-height: normal;
     overflow: visible;
     padding: 0;
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -579,6 +578,7 @@ button,
 input:where([type="button"]),
 input:where([type="reset"]),
 input:where([type="submit"]) {
+    appearance: button;
     -webkit-appearance: button;
     /* 1 */
     background-color: transparent;
@@ -626,6 +626,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 */
 
 [type="search"] {
+    appearance: textfield;
     -webkit-appearance: textfield;
     /* 1 */
     outline-offset: -2px;
@@ -1957,6 +1958,7 @@ video {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
 }
 
