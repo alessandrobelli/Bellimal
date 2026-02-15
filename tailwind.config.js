@@ -28,7 +28,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        body: ['"Fira Mono"', "monospace"],
+        body: ['"Cascadia Code"', "monospace"],
         heading: ['"Atkinson Hyperlegible"', "sans-serif"],
       },
       scale: {
