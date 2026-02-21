@@ -1,13 +1,30 @@
 {{!< default}}
 
-<header class="site-header p-8 bg-gray-100 dark:bg-darkSecondary text-center transition-colors duration-300">
-    <div class="container mx-auto">
-        <h1 class="site-title text-4xl font-heading text-anthracite dark:text-darkText">{{tag.name}}</h1>
-        {{#if tag.description}}
-            <p class="site-description text-base text-gray-600 dark:text-gray-400">{{tag.description}}</p>
-        {{/if}}
-    </div>
-</header>
+{{#tag}}
+    {{#if feature_image}}
+        <header class="relative w-full h-48 mb-4 bg-center bg-cover md:h-64"
+                style="background-image: url('{{img_url feature_image size="xl"}}');">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="px-4 text-center text-white overflow-ellipsis sm:text-wrap">
+                    <h1 class="max-w-full text-2xl leading-6 tracking-tight sm:text-4xl lg:text-5xl font-heading sm:leading-4">{{name}}</h1>
+                    {{#if description}}
+                        <p class="mt-4 text-base text-gray-200">{{description}}</p>
+                    {{/if}}
+                </div>
+            </div>
+        </header>
+    {{else}}
+    <header class="site-header p-8 bg-gray-100 dark:bg-darkSecondary text-center transition-colors duration-300">
+        <div class="container mx-auto">
+            <h1 class="site-title text-4xl font-heading text-anthracite dark:text-darkText">{{tag.name}}</h1>
+            {{#if tag.description}}
+                <p class="site-description text-base text-gray-600 dark:text-gray-400">{{tag.description}}</p>
+            {{/if}}
+        </div>
+    </header>
+    {{/if}}
+{{/tag}}
 
 <main class="container mx-auto py-8 px-4">
     <div class="post-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
