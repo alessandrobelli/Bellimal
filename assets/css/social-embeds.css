@@ -119,3 +119,9 @@ html.dark body twitter-widget {
     height: auto;
     aspect-ratio: 16 / 9;
 }
+@media (min-width: 768px) {
+    .kg-embed-card iframe[src*="youtube.com"],
+    .kg-embed-card iframe[src*="youtu.be"] {
+        width: 33%;
+    }
+}
