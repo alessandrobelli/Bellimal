@@ -29,3 +29,4 @@ changelog.md.bk
 
 CLAUDE.md
 .claude/settings.local.json
+/.claude/worktrees
