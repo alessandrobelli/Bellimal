@@ -21,42 +21,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Drag-to-scroll for all carousels
     carouselWrappers.forEach(carousel => {
-        let isDown = false;
+        let isDragging = false;
+        let hasDragged = false;
         let startX;
         let scrollLeft;
+        const DRAG_THRESHOLD = 5;
 
-        carousel.addEventListener('mousedown', (e) => {
-            // Ignore if clicking on a link
-            if (e.target.closest('a')) return;
-
-            isDown = true;
-            carousel.classList.add('cursor-grabbing');
-            startX = e.pageX - carousel.offsetLeft;
+        function startDrag(e) {
+            isDragging = true;
+            hasDragged = false;
+            carousel.classList.add('dragging');
+            startX = e.clientX;
             scrollLeft = carousel.scrollLeft;
-        });
+        }
 
-        carousel.addEventListener('mouseleave', () => {
-            isDown = false;
-            carousel.classList.remove('cursor-grabbing');
-        });
-
-        carousel.addEventListener('mouseup', () => {
-            isDown = false;
-            carousel.classList.remove('cursor-grabbing');
-        });
-
-        carousel.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
+        function onDrag(e) {
+            if (!isDragging) return;
             e.preventDefault();
-            const x = e.pageX - carousel.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll speed multiplier
-            carousel.scrollLeft = scrollLeft - walk;
+            const x = e.clientX;
+            const walk = (x - startX) * 1.5;
+
+            if (Math.abs(x - startX) > DRAG_THRESHOLD) {
+                hasDragged = true;
+            }
+
+            requestAnimationFrame(() => {
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        function endDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            carousel.classList.remove('dragging');
+        }
+
+        // Mouse events
+        carousel.addEventListener('mousedown', startDrag);
+        carousel.addEventListener('mousemove', onDrag);
+        carousel.addEventListener('mouseup', endDrag);
+        carousel.addEventListener('mouseleave', endDrag);
+
+        // Prevent link navigation when dragging
+        carousel.addEventListener('click', (e) => {
+            if (hasDragged) {
+                e.preventDefault();
+                e.stopPropagation();
+                hasDragged = false;
+            }
+        }, true);
+
+        // Prevent native image/link dragging inside carousel
+        carousel.querySelectorAll('a, img').forEach(el => {
+            el.addEventListener('dragstart', (e) => e.preventDefault());
         });
 
-        // Add grab cursor style
-        carousel.style.cursor = 'grab';
-
-        // Make sure scroll is smooth on touch devices
+        // Touch: let native scroll-snap handle it
         if ('ontouchstart' in window) {
             carousel.style.webkitOverflowScrolling = 'touch';
         }

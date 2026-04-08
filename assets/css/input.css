@@ -12,17 +12,25 @@
   display: none;  /* Chrome, Safari, Opera */
 }
 
-/* Carousel drag cursor */
+/* Carousel drag and scroll-snap */
 .carousel-wrapper {
   cursor: grab;
   user-select: none;
+  scroll-snap-type: x mandatory;
 }
-.carousel-wrapper.cursor-grabbing {
+.carousel-wrapper .post-card {
+  scroll-snap-align: start;
+}
+.carousel-wrapper.dragging {
   cursor: grabbing;
+  scroll-snap-type: none !important;
 }
 .carousel-wrapper a {
   user-select: none;
   -webkit-user-drag: none;
+}
+.carousel-wrapper.dragging a {
+  pointer-events: none;
 }
 
 :root {
