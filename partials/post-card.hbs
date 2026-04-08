@@ -1,7 +1,7 @@
 <article class="flex flex-col items-center p-4 bg-white border-b-2 border-gray-100 rounded-md sm:flex-row hover:border-gray-300">
     {{#if feature_image}}
         <div class="flex-shrink-0 w-full h-24 mb-4 overflow-hidden rounded-lg sm:w-24 sm:mb-0 sm:mr-4">
-            <img class="object-cover w-full h-full" src="{{img_url feature_image size="small"}}" alt="">
+            <img class="object-cover w-full h-full" src="{{img_url feature_image size="small"}}" alt="{{title}}" loading="lazy">
         </div>
     {{/if}}
     <div class="flex-1">

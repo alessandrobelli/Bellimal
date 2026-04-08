@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } catch (e) {
                     // Cross-origin restrictions may prevent this from working
                     // We have CSS fallbacks in place
-                    console.log('Unable to modify iframe content due to cross-origin policy');
+                    // Cross-origin policy prevents iframe modification — CSS fallbacks handle this
                 }
             });
         });
