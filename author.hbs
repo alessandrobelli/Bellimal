@@ -1,16 +1,18 @@
 {{!< default}}
 
+{{#author}}
 <div class="flex flex-col items-center py-12">
     {{#if profile_image}}
-        <img class="w-28 h-28 rounded-full object-cover border-4 border-gray-200 dark:border-gray-700" src="{{profile_image}}" alt="{{name}}">
+        <img class="w-24 h-24 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700" src="{{profile_image}}" alt="{{name}}">
     {{/if}}
     <h1 class="mt-4 text-2xl font-heading text-anthracite dark:text-darkText">{{name}}</h1>
 </div>
+{{/author}}
 
-<main class="container mx-auto px-4 pb-8">
-    <div class="post-cards grid grid-cols-1 gap-8 max-w-3xl mx-auto">
+<main class="container mx-auto py-8 px-4">
+    <div class="post-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {{#foreach posts}}
-            {{> "post-card"}}
+            {{> "post-card-tag"}}
         {{/foreach}}
     </div>
 
