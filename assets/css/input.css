@@ -2149,6 +2149,10 @@ figure {
     border-radius: 0;
     margin-left: -20px;
     margin-right: -20px;
+    /* width: auto lets the negative margins actually extend the element
+       full-bleed. With width: 100% (the base rule), negative margins only
+       shift position — the right edge falls 40px short of the viewport. */
+    width: auto;
   }
   .bml-post-hero__title,
   .bml-page-hero__title {
