@@ -1,4 +1,6 @@
 @import "prism.css";
+@import "bookmarks.css";
+@import "social-embeds.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,9 +35,46 @@
   pointer-events: none;
 }
 
+/* ── Design tokens (redesign brief) ──
+   Light = default :root, dark = .dark on <html>. CSS custom properties so
+   templates can use them in inline gradients/overlays without a build step. */
 :root {
-  --gh-font-heading: "Atkinson Hyperlegible", sans-serif;
-  --gh-font-body: "Fira Mono", monospace;
+  --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, Menlo, Consolas, monospace;
+  --gh-font-heading: var(--font-mono);
+  --gh-font-body: var(--font-mono);
+
+  /* Surfaces (light mode — kept as a sensible inverse of the dark spec) */
+  --bg: #ffffff;
+  --panel: #f5f6f8;
+  --card: #ffffff;
+  --terminal: #0f1218;
+  --line: #e5e7eb;
+  --divider: #e5e7eb;
+
+  /* Text */
+  --text: #1d232f;
+  --text-dim: #4b5563;
+  --text-mute: #6e7480;
+
+  /* Accent + status (same in both modes) */
+  --accent: #e9805d;
+  --accent-soft: rgba(233, 128, 93, 0.12);
+  --accent-line: rgba(233, 128, 93, 0.3);
+  --prompt: #6dd09a;
+  --traffic-red: #ff5f56;
+  --traffic-yellow: #ffbd2e;
+  --traffic-green: #27c93f;
+}
+
+.dark {
+  --bg: #1d232f;
+  --panel: #181d28;
+  --card: #232936;
+  --line: #2d3340;
+  --divider: #232936;
+  --text: #e6e7ea;
+  --text-dim: #a7adb8;
+  --text-mute: #6e7480;
 }
 
 /* Prose List Styling */
@@ -88,14 +127,6 @@
     color: theme("colors.anthracite");
   }
 
-  .font-heading {
-    font-family: theme("fontFamily.heading"), monospace;
-  }
-
-  .font-body {
-    font-family: theme("fontFamily.body"), sans-serif;
-  }
-
   .bg-gradient-to-r-from-orangeValencia-to-anthracite {
     background-image: linear-gradient(
       to right,
@@ -113,47 +144,7 @@ a:hover {
   @apply hover:text-orangeValencia;
 }
 
-/* Bookmark Card Styles */
-.kg-card.kg-bookmark-card {
-  @apply flex bg-white dark:bg-darkSecondary border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md;
-}
-
-.kg-bookmark-container {
-  @apply flex w-full text-left no-underline text-anthracite dark:text-darkText;
-}
-
-.kg-bookmark-content {
-  @apply p-4 flex-grow;
-}
-
-.kg-bookmark-title {
-  @apply text-lg font-heading text-orangeValencia dark:text-orangeValencia-400 mb-2;
-}
-
-.kg-bookmark-description {
-  @apply text-sm mb-4 text-anthracite dark:text-gray-300;
-}
-
-.kg-bookmark-metadata {
-  @apply flex items-center text-xs text-gray-500 dark:text-gray-400 space-x-2;
-}
-
-.kg-bookmark-icon {
-  @apply w-6 h-6 rounded-full mr-2;
-}
-
-.kg-bookmark-author,
-.kg-bookmark-publisher {
-  @apply mr-2;
-}
-
-.kg-bookmark-thumbnail {
-  @apply w-32 h-32 flex-shrink-0 border-l border-gray-200 dark:border-gray-700;
-}
-
-.kg-bookmark-thumbnail img {
-  @apply w-full h-full object-cover;
-}
+/* Bookmark card styles moved to assets/css/bookmarks.css (Stage 5b) */
 
 /* Header */
 header {
@@ -184,33 +175,6 @@ h6 {
 /* Body */
 body {
   @apply bg-white dark:bg-dark text-anthracite dark:text-darkText font-body transition-colors duration-300;
-}
-
-/* Tag styling */
-.post-card-tags {
-  @apply flex flex-wrap items-center mb-2;
-}
-
-.post-card-primary-tag {
-  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-orangeValencia-100 dark:hover:bg-orangeValencia-800 hover:text-orangeValencia-600 dark:hover:text-orangeValencia-400;
-}
-
-.hashtag {
-  @apply inline-flex text-orangeValencia dark:text-orangeValencia-400 transition-colors duration-200;
-}
-
-/* Multiple tags display */
-.tag-list {
-  @apply flex flex-wrap gap-2;
-}
-
-.tag-item {
-  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-orangeValencia-100 dark:hover:bg-orangeValencia-800 hover:text-orangeValencia-600 dark:hover:text-orangeValencia-400;
-}
-
-/* Primary tag with special styling */
-.primary-tag {
-  @apply bg-gray-100 text-orangeValencia-600 dark:bg-gray-800 dark:text-orangeValencia-400 hover:bg-orangeValencia-100 dark:hover:bg-gray-700;
 }
 
 /* Featured content styling */
@@ -411,79 +375,6 @@ header .meta {
   @apply py-2 my-4 text-xs text-gray-500;
 }
 
-/* Read More Section */
-.gh-readmore {
-  @apply w-full pb-4;
-}
-
-.gh-readmore-inner {
-  @apply flex justify-between text-base font-heading;
-}
-
-.gh-readmore-next,
-.gh-readmore-prev {
-  @apply hover:text-orangeValencia transition duration-300 ease-in-out;
-}
-
-@keyframes flicker {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-    stroke: #d84727; /* Main color */
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.1);
-    stroke: #f75946; /* Lighter shade */
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    stroke: #a0361d; /* Darker shade */
-  }
-}
-
-.flame-icon svg path {
-  animation: flicker 1s infinite alternate;
-}
-
-@keyframes rotate-hashtag {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(20deg);
-  }
-}
-
-.hashtag {
-  display: inline-block;
-  animation: rotate-hashtag 1s infinite ease-in-out;
-}
-
-.post-card .flex-shrink-0 img {
-  height: 8rem; /* Fixed height */
-  object-fit: cover; /* Cover effect */
-  width: 8rem; /* Fixed width */
-}
-
-.post-card-primary-tag {
-  transition: color 0.3s ease;
-}
-
-.post-card-primary-tag:hover {
-  color: #d84727; /* Orange Valencia */
-}
-
-.hover-orangeValencia {
-  transition: color 0.3s ease-in-out;
-}
-
-.hover-orangeValencia:hover {
-  color: #d84727; /* Orange Valencia */
-}
-
 .prose {
   color: #292c2f; /* anthracite color */
 }
@@ -494,7 +385,7 @@ header .meta {
 .dark .prose blockquote,
 .dark .prose figcaption,
 .dark .prose p {
-  color: #e2e2e2 !important;
+  color: #e6e7ea !important;
 }
 
 .dark .prose h1,
@@ -503,17 +394,17 @@ header .meta {
 .dark .prose h4,
 .dark .prose h5,
 .dark .prose h6 {
-  color: #e2e2e2 !important;
+  color: #e6e7ea !important;
 }
 
 .prose a {
-  color: #d84727; /* orangeValencia color */
+  color: #e9805d; /* coral accent */
   text-decoration: none;
 }
 
 .prose a:hover {
   transition: color 0.3s ease-in-out;
-  color: #f75946; /* orangeValencia color */
+  color: #ec8a6a; /* coral 500 — lighter on hover */
 }
 
 /* Subscriber-Only Section */
@@ -559,4 +450,1997 @@ figure {
 
 .dark figcaption {
   color: #a0a0a0;
+}
+
+/* ── Bellimal redesign: shell, sidebar, mobile topbar ─────────────────────
+   Tokenized via :root custom props (set in Stage 1) so light/dark inherit
+   automatically. Tab breakpoint = 900px. Sidebar drawer behaviour relies on
+   Tailwind's `-translate-x-full` / `tab:translate-x-0` toggling from JS. */
+
+/* Main content column.
+   Mobile: brief calls for 20px side padding (clean reading on 390px). */
+.bml-main {
+  flex-grow: 1;
+  width: 100%;
+  padding: 1.25rem 20px 3rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .bml-main {
+    margin-left: 260px;
+    padding: 2.5rem 2.5rem 4rem;
+  }
+}
+
+/* Sidebar shell (fixed, becomes a slide-over on mobile) */
+.bml-sidebar-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 40;
+  width: min(320px, 100%);
+  overflow-y: auto;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .bml-sidebar-shell {
+    width: 260px;
+    height: 100vh;
+  }
+}
+
+.bml-sidebar-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text-dim);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.bml-sidebar-close:hover {
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.bml-sidebar-close svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Sidebar contents */
+.bml-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem 1rem 1.5rem;
+  width: 100%;
+  min-height: 100%;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.bml-sidebar__identity {
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid var(--divider);
+}
+
+.bml-sidebar__avatar-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.bml-sidebar__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bml-sidebar__avatar--fallback {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+}
+
+.bml-sidebar__avatar--fallback svg {
+  width: 16px;
+  height: 16px;
+}
+
+.bml-sidebar__identity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.bml-sidebar__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bml-sidebar__name:hover {
+  color: var(--accent);
+}
+
+.bml-sidebar__status {
+  font-size: 11px;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bml-sidebar__status::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--prompt);
+  box-shadow: 0 0 6px var(--prompt);
+  flex-shrink: 0;
+}
+
+/* Sections */
+.bml-sidebar__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bml-sidebar__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* Hide SITE section entirely when the nav has no items (modern :has) */
+.bml-sidebar__section--site:has(> .bml-sidebar__nav:empty) {
+  display: none;
+}
+
+/* Nav list */
+.bml-sidebar__nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.bml-sidebar__nav-item {
+  margin: 0;
+  padding: 0;
+}
+
+.bml-sidebar__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.625rem;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.bml-sidebar__nav-marker {
+  display: inline-block;
+  width: 0.5rem;
+  text-align: center;
+  color: var(--text-mute);
+  font-weight: 700;
+}
+
+.bml-sidebar__nav-marker::before {
+  content: "·";
+}
+
+.bml-sidebar__nav-link:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.bml-sidebar__nav-item.is-current .bml-sidebar__nav-link {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent-line);
+  font-weight: 700;
+}
+
+.bml-sidebar__nav-item.is-current .bml-sidebar__nav-marker {
+  color: var(--accent);
+}
+
+.bml-sidebar__nav-item.is-current .bml-sidebar__nav-marker::before {
+  content: "›";
+}
+
+/* Topics — collapsible chips */
+.bml-sidebar__topics-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--text-mute);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.bml-sidebar__topics-toggle:hover .bml-sidebar__label {
+  color: var(--text);
+}
+
+.bml-sidebar__chevron {
+  width: 12px;
+  height: 12px;
+  color: var(--text-mute);
+  transition: transform 200ms ease;
+}
+
+.bml-sidebar__topics-toggle[aria-expanded="true"] .bml-sidebar__chevron {
+  transform: rotate(90deg);
+}
+
+.bml-sidebar__topics-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bml-sidebar__topics-body[hidden] {
+  display: none;
+}
+
+.bml-sidebar__chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.bml-sidebar__chips:not(.is-expanded) > li:nth-child(n + 9) {
+  display: none;
+}
+
+.bml-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-size: 11px;
+  text-decoration: none;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+
+.bml-chip:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.bml-chip__count {
+  color: var(--text-mute);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bml-chip:hover .bml-chip__count {
+  color: var(--accent);
+}
+
+.bml-sidebar__show-more {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  padding: 0.25rem 0;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  cursor: pointer;
+}
+
+.bml-sidebar__show-more:hover {
+  color: var(--accent);
+}
+
+/* Elsewhere — external link rows */
+.bml-sidebar__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.bml-sidebar__ext-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.625rem;
+  border-radius: 4px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 13px;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.bml-sidebar__ext-link:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.bml-sidebar__ext-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.bml-sidebar__ext-text {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bml-sidebar__ext-arrow {
+  color: var(--text-mute);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.bml-sidebar__ext-link:hover .bml-sidebar__ext-arrow {
+  color: var(--accent);
+}
+
+/* Spacer that pushes ELSEWHERE + footer to the bottom of the column */
+.bml-sidebar__spacer {
+  flex-grow: 1;
+  min-height: 0.5rem;
+}
+
+/* Footer (search + theme toggle) — pinned by the spacer above */
+.bml-sidebar__footer {
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--divider);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bml-sidebar__theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.625rem;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.bml-sidebar__theme-toggle:hover {
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.bml-sidebar__theme-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* ── Mobile topbar ──────────────────────────────────────────────────────── */
+.bml-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+}
+
+.bml-topbar__lights {
+  display: inline-flex;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.bml-topbar__dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.bml-topbar__dot--red { background: var(--traffic-red); }
+.bml-topbar__dot--yellow { background: var(--traffic-yellow); }
+.bml-topbar__dot--green { background: var(--traffic-green); }
+
+.bml-topbar__title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bml-topbar__title:hover {
+  color: var(--accent);
+}
+
+.bml-topbar__actions {
+  display: inline-flex;
+  gap: 0.125rem;
+  flex-shrink: 0;
+}
+
+.bml-topbar__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.bml-topbar__icon-btn:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.bml-topbar__icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* ── Bellimal redesign: home page (Stage 3) ────────────────────────────── */
+
+/* Inner column — keeps content readable inside main */
+.bml-home {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+/* Mono uppercase section labels (// featured, // latest posts, etc.) */
+.bml-label-mono {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+/* ── Terminal hero ─────────────────────────────────────────────────────── */
+/* Terminal stays on the dark slate palette in both light & dark page themes
+   — re-declares the relevant tokens so descendants inherit dark values. */
+.bml-terminal {
+  --panel: #181d28;
+  --card: #232936;
+  --line: #2d3340;
+  --divider: #232936;
+  --text: #e6e7ea;
+  --text-dim: #a7adb8;
+  --text-mute: #6e7480;
+
+  background: var(--terminal);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.bml-terminal__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.875rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.bml-terminal__lights {
+  display: inline-flex;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.bml-terminal__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.bml-terminal__dot--red { background: var(--traffic-red); }
+.bml-terminal__dot--yellow { background: var(--traffic-yellow); }
+.bml-terminal__dot--green { background: var(--traffic-green); }
+
+.bml-terminal__filename {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-mute);
+}
+
+/* Help button in the chrome (also acts as the right-side spacer that
+   visually balances the traffic-light triple). */
+.bml-terminal__hint {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.bml-terminal__hint:hover {
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.bml-terminal__body {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  min-height: 220px;
+  max-height: 60vh;
+}
+
+/* Scrollable output region — content scrolls inside the terminal, not page */
+.bml-terminal__scroll {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1.5rem 1.75rem 0.5rem;
+}
+
+.bml-terminal__prompt {
+  margin: 0 0 0.5rem;
+  color: var(--prompt);
+  font-size: 13px;
+}
+
+.bml-terminal__prompt::before {
+  content: "$ ";
+  color: var(--prompt);
+}
+
+.bml-terminal__output {
+  margin: 0 0 1.5rem;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.bml-terminal__output--title {
+  font-size: clamp(20px, 3.4vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+.bml-terminal__output a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.bml-terminal__output a:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Lines printed at runtime by terminal.js */
+.bml-terminal__line {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0;
+  text-decoration: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.bml-terminal__line--error {
+  color: var(--traffic-red);
+}
+
+.bml-terminal__line--link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.bml-terminal__line--link:hover {
+  background: var(--accent-soft);
+}
+
+/* Input line — pinned at the bottom of the terminal body */
+.bml-terminal__input-line {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.75rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--prompt);
+  margin: 0;
+}
+
+.bml-terminal__prompt-marker {
+  color: var(--prompt);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.bml-terminal__cursor-content {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
+}
+
+.bml-terminal__cursor-text {
+  color: var(--text);
+}
+
+.bml-terminal__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+  caret-color: var(--accent);
+}
+
+/* Faux blinking cursor — only used in the no-JS state. JS upgrade removes
+   this element entirely; the native browser caret takes over on focus. */
+.bml-terminal__cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--accent);
+  vertical-align: -2px;
+  margin-left: 2px;
+  animation: bml-blink 1s step-end infinite;
+  flex-shrink: 0;
+}
+
+@keyframes bml-blink {
+  50% { background: transparent; }
+}
+
+/* ── CTA staple ────────────────────────────────────────────────────────── */
+.bml-cta-staple {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  align-items: center;
+  margin: 0 0 2.25rem;
+}
+
+.bml-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+
+.bml-btn--primary {
+  background: var(--accent);
+  color: #1d232f;
+}
+
+.bml-btn--primary:hover {
+  background: #c46743;
+  color: #1d232f;
+}
+
+.bml-btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.bml-btn--ghost:hover {
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+@media (max-width: 480px) {
+  .bml-cta-staple { flex-direction: column; align-items: stretch; }
+  .bml-btn { justify-content: center; }
+}
+
+/* ── Featured page embed ───────────────────────────────────────────────── */
+.bml-featured {
+  margin: 0 0 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--divider);
+}
+
+.bml-featured__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.bml-featured__title {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.bml-featured__title a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.bml-featured__title a:hover {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.bml-featured__body {
+  max-width: 760px;
+}
+
+.bml-featured__all {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.bml-featured__all:hover { color: var(--accent); }
+
+/* Info variant — shown when there are multiple featured posts but no
+   featured_tag is set, so we can show count without a destination link. */
+.bml-featured__all--info {
+  color: var(--text-mute);
+  cursor: default;
+}
+
+/* ── Shared "surface" shell — bg / border / hover used by every card-like
+      element. Keeps all the cards visually coherent and easy to retune in
+      one place. Individual card classes only declare their layout. ────── */
+.bml-card,
+.bml-featured-card,
+.bml-continue__card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  transition: border-color 150ms ease;
+}
+
+.bml-card:hover,
+.bml-featured-card:hover,
+.bml-continue__card:hover {
+  border-color: var(--accent-line);
+}
+
+/* Featured post card (image left, body right) */
+.bml-featured-card {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.875rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.bml-featured-card__media {
+  flex-shrink: 0;
+  width: 38%;
+  max-width: 320px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--panel);
+}
+
+.bml-featured-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bml-featured-card__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent) 0%, #8e4a30 65%, var(--terminal) 100%);
+}
+
+.bml-featured-card__body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.bml-featured-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 11px;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.bml-featured-card__tag {
+  color: var(--accent);
+}
+
+.bml-featured-card__title {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.bml-featured-card:hover .bml-featured-card__title {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.bml-featured-card__excerpt {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bml-featured-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+}
+
+.bml-chip-tag {
+  display: inline-flex;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--text-dim);
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  .bml-featured-card {
+    flex-direction: column;
+  }
+  .bml-featured-card__media {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* ── Latest posts (editorial list) ─────────────────────────────────────── */
+.bml-posts {
+  margin: 0 0 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--divider);
+}
+
+.bml-posts__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.bml-posts__all {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.bml-posts__all:hover { color: var(--accent); }
+
+.bml-posts__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bml-post-row {
+  border-bottom: 1px solid var(--divider);
+}
+
+.bml-post-row:last-child {
+  border-bottom: 0;
+}
+
+.bml-post-row__link {
+  display: flex;
+  gap: 1.125rem;
+  padding: 1rem 0.25rem;
+  text-decoration: none;
+  color: var(--text);
+  border-radius: 4px;
+  transition: background 150ms ease;
+}
+
+.bml-post-row__link:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.bml-post-row__link:hover .bml-post-row__title {
+  color: var(--accent);
+}
+
+.bml-post-row__thumb {
+  flex-shrink: 0;
+  width: 120px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.bml-post-row__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bml-post-row__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent) 0%, #8e4a30 65%, var(--terminal) 100%);
+}
+
+.bml-post-row__body {
+  flex-grow: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.bml-post-row__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 11px;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.bml-post-row__tag {
+  color: var(--accent);
+}
+
+.bml-post-row__slug {
+  color: var(--text-mute);
+  text-transform: none;
+  letter-spacing: 0;
+  font-style: italic;
+}
+
+.bml-post-row__title {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.35;
+  transition: color 150ms ease;
+}
+
+.bml-post-row__fire {
+  font-size: 14px;
+  margin-right: 0.25rem;
+  display: inline-block;
+}
+
+.bml-post-row__excerpt {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .bml-post-row__thumb {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bml-post-row__link {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .bml-post-row__thumb {
+    width: 100%;
+    height: 160px;
+  }
+}
+
+/* ── Bellimal redesign: post page (Stage 4) ─────────────────────────────
+   Hero with feature_image (or coral fallback), title centered + byline.
+   Body uses .bml-prose. Footer has share row + Continue Reading card. */
+
+.bml-post {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+/* ── Heroes (post + page) ─────────────────────────────────────────────
+   Shared shell: feature_image overlay band with optional gradient fallback.
+   Variants:
+     .bml-post-hero — used by post.hbs and page.hbs (full-width, byline)
+     .bml-page-hero — used by tag/index (capped 920px, subtitle) */
+
+.bml-post-hero,
+.bml-page-hero {
+  position: relative;
+  width: 100%;
+  background-color: var(--card);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  display: flex; /* lets __inner flex to full height */
+}
+
+.bml-post-hero {
+  /* min-height lets long titles grow the hero instead of clipping */
+  min-height: clamp(220px, 30vh, 320px);
+}
+
+.bml-page-hero {
+  min-height: clamp(180px, 24vh, 240px);
+  max-width: 920px;
+  margin: 0 auto 2rem;
+}
+
+.bml-post-hero--no-image,
+.bml-page-hero--no-image {
+  background: linear-gradient(135deg, var(--accent) 0%, #8e4a30 60%, var(--terminal) 100%);
+}
+
+/* Real <img> behind the content — predictable cover sizing across browsers
+   and image aspects. Stays underneath the overlay + content. */
+.bml-post-hero__bg,
+.bml-page-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+}
+
+.bml-post-hero__overlay,
+.bml-page-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(29, 35, 47, 0.15) 0%, rgba(29, 35, 47, 0.45) 65%, var(--bg) 100%);
+  z-index: 1;
+}
+
+.bml-post-hero__inner,
+.bml-page-hero__inner {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.bml-page-hero__inner {
+  gap: 0.5rem;
+}
+
+.bml-post-hero__title,
+.bml-page-hero__title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  line-height: 1.25;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+}
+
+.bml-post-hero__title {
+  font-size: clamp(20px, 2.8vw, 32px);
+  margin: 0 0 0.85rem;
+  max-width: 800px;
+}
+
+.bml-page-hero__title {
+  font-size: clamp(22px, 3.4vw, 34px);
+  margin: 0;
+}
+
+/* Post-hero variant only — byline row + tag + author + avatar */
+.bml-post-hero__byline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  font-size: 11px;
+  color: #e6e7ea;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.bml-post-hero__tag {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.bml-post-hero__tag:hover { text-decoration: underline; }
+
+.bml-post-hero__author {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bml-post-hero__author-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.bml-post-hero__author-link:hover { color: var(--accent); }
+
+.bml-post-hero__avatar {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Page-hero variant only — subtitle */
+.bml-page-hero__subtitle {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #e6e7ea;
+  margin: 0;
+  max-width: 600px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Body / prose ───────────────────────────────────────────────────── */
+.bml-post-body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bml-prose {
+  width: 100%;
+  max-width: 760px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--text-dim);
+}
+
+.bml-prose > *:first-child { margin-top: 0; }
+.bml-prose > *:last-child { margin-bottom: 0; }
+
+.bml-prose p {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--text-dim);
+  margin: 0 0 16px;
+}
+
+.bml-prose strong, .bml-prose b {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.bml-prose em, .bml-prose i {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.bml-prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: background 150ms ease;
+}
+
+.bml-prose a:hover {
+  background: var(--accent-soft);
+}
+
+.bml-prose h1, .bml-prose h2, .bml-prose h3,
+.bml-prose h4, .bml-prose h5, .bml-prose h6 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 2.2rem 0 0.8rem;
+  line-height: 1.3;
+}
+
+.bml-prose h1 { font-size: 28px; color: var(--accent); }
+.bml-prose h2 { font-size: 22px; color: var(--accent); }
+.bml-prose h3 { font-size: 18px; color: var(--text); }
+.bml-prose h4 { font-size: 16px; color: var(--text); }
+.bml-prose h5, .bml-prose h6 { font-size: 14px; color: var(--text); text-transform: uppercase; letter-spacing: 0.1em; }
+
+.bml-prose ul, .bml-prose ol {
+  margin: 0 0 16px;
+  padding-left: 1.5rem;
+  color: var(--text-dim);
+}
+
+.bml-prose ul li, .bml-prose ol li {
+  margin-bottom: 0.4rem;
+  line-height: 1.7;
+}
+
+.bml-prose ul li::marker { color: var(--accent); }
+.bml-prose ol li::marker { color: var(--accent); font-weight: 700; }
+
+.bml-prose blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  border-left: 2px solid var(--accent);
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.bml-prose blockquote p { color: var(--text-dim); }
+.bml-prose blockquote strong { color: var(--text); }
+
+.bml-prose code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--text);
+}
+
+.bml-prose pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--terminal);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  color: #e6e7ea;
+}
+
+.bml-prose pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.bml-prose figure,
+.bml-prose .kg-image-card,
+.bml-prose .kg-card {
+  margin: 1.75rem 0;
+}
+
+.bml-prose figure img,
+.bml-prose .kg-image,
+.bml-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  margin: 0 auto;
+}
+
+.bml-prose figcaption,
+.bml-prose .kg-card-hascaption figcaption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-mute);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.bml-prose hr {
+  border: 0;
+  border-top: 1px solid var(--divider);
+  margin: 2rem 0;
+}
+
+/* Ghost editor "wide" + "full" image / gallery card widths. gscan requires
+   both classes to be styled. The prose column is 760px; wide breaks out to
+   ~85vw, full goes edge-to-edge. */
+.bml-prose .kg-width-wide {
+  position: relative;
+  width: 85vw;
+  max-width: 1100px;
+  min-width: 100%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.bml-prose .kg-width-full {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 900px) {
+  .bml-prose .kg-width-wide,
+  .bml-prose .kg-width-full {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+}
+
+.bml-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 13px;
+}
+
+.bml-prose th, .bml-prose td {
+  border: 1px solid var(--line);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.bml-prose th {
+  background: var(--panel);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.bml-prose td { color: var(--text-dim); }
+
+/* ── Post footer ────────────────────────────────────────────────────── */
+.bml-post-footer {
+  width: 100%;
+  max-width: 760px;
+  margin: 3rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Share row ──────────────────────────────────────────────────────── */
+.bml-share {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.bml-share__list {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bml-share__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease;
+  position: relative;
+}
+
+.bml-share__btn:hover {
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.bml-share__btn.is-copied {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.bml-share__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.bml-share__feedback {
+  position: absolute;
+  top: -1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--accent);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ── Continue reading card ─────────────────────────────────────────── */
+.bml-continue {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider);
+}
+
+/* If both prev_post AND next_post render, only show the first one */
+.bml-continue + .bml-continue {
+  display: none;
+}
+
+/* Shell rules (bg/border/transition/hover) come from the shared .bml-card,
+   .bml-featured-card, .bml-continue__card group above. */
+.bml-continue__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.bml-continue__pill {
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.bml-continue__title {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.bml-continue__excerpt {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.bml-continue__more {
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+}
+
+/* ── Mobile tweaks (heroes) ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .bml-post-hero,
+  .bml-page-hero {
+    min-height: 180px;
+    border-radius: 0;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .bml-post-hero__title,
+  .bml-page-hero__title {
+    font-size: clamp(22px, 6vw, 30px);
+  }
+  .bml-post-hero__byline { font-size: 10px; gap: 0.35rem; }
+}
+
+/* ── Bellimal redesign: listing pages (Stage 5) ─────────────────────────
+   Tag, index, author, error templates share a hero + card grid pattern. */
+
+/* Common listing wrapper */
+.bml-listing {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bml-listing--related {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider);
+}
+
+.bml-listing__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.bml-listing__empty {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-mute);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* Page-hero mobile (shared post+page rules live near end of post Stage 4) */
+@media (max-width: 640px) {
+  .bml-page-hero { max-width: none; }
+  .bml-page-hero__subtitle { font-size: 12px; }
+}
+
+/* ── Author hero card ───────────────────────────────────────────────── */
+.bml-author-hero {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto 2rem;
+}
+
+.bml-author-hero__avatar {
+  flex-shrink: 0;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--panel);
+}
+
+.bml-author-hero__avatar--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+}
+
+.bml-author-hero__avatar--fallback svg {
+  width: 32px;
+  height: 32px;
+}
+
+.bml-author-hero__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bml-author-hero__name {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  margin: 0;
+}
+
+.bml-author-hero__bio {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.bml-author-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.bml-author-hero__location {
+  color: var(--text-mute);
+}
+
+.bml-author-hero__link {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.bml-author-hero__link:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .bml-author-hero { flex-direction: column; align-items: center; text-align: center; }
+  .bml-author-hero__meta { justify-content: center; }
+}
+
+/* ── Card grid + cards (tag/index/author/related) ───────────────────── */
+.bml-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .bml-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .bml-card-grid { grid-template-columns: 1fr; }
+}
+
+.bml-card {
+  /* Critical: clip overflow at the rounded border. Brief flagged this
+     as the spec'd bug from the design canvas — preempt it. */
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  /* Shell (bg/border/hover) comes from the shared .bml-card group above. */
+}
+
+.bml-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.bml-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.bml-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+}
+
+.bml-card__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent) 0%, #8e4a30 65%, var(--terminal) 100%);
+}
+
+.bml-card__tag {
+  position: absolute;
+  top: 0.625rem;
+  left: 0.625rem;
+  display: inline-flex;
+  padding: 0.18rem 0.55rem;
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  background: rgba(29, 35, 47, 0.65);
+  backdrop-filter: blur(4px);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+.bml-card__body {
+  padding: 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.bml-card__title {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bml-card:hover .bml-card__title {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.bml-card__fire {
+  font-size: 14px;
+  margin-right: 0.25rem;
+}
+
+.bml-card__excerpt {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bml-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: auto;
+}
+
+/* ── Pagination ──────────────────────────────────────────────────────── */
+.bml-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 1.5rem 0;
+  margin-top: 1rem;
+}
+
+.bml-pagination__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.875rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.bml-pagination__chip:hover {
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.bml-pagination__chip--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.bml-pagination__indicator {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+}
+
+/* ── Error / 404 ────────────────────────────────────────────────────── */
+.bml-error {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bml-error__caption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-mute);
+  text-align: center;
+  margin: 0;
 }

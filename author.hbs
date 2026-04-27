@@ -1,20 +1,50 @@
 {{!< default}}
 
 {{#author}}
-<div class="flex flex-col items-center py-12">
-    {{#if profile_image}}
-        <img class="w-24 h-24 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700" src="{{profile_image}}" alt="{{name}}">
-    {{/if}}
-    <h1 class="mt-4 text-2xl font-heading text-anthracite dark:text-darkText">{{name}}</h1>
-</div>
+<header class="bml-author-hero">
+  {{#if profile_image}}
+    <img class="bml-author-hero__avatar" src="{{img_url profile_image size="m"}}" alt="" loading="lazy" decoding="async" />
+  {{else}}
+    <span class="bml-author-hero__avatar bml-author-hero__avatar--fallback" aria-hidden="true">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 4l4 4-4 4"/>
+        <path d="M9 12h4"/>
+      </svg>
+    </span>
+  {{/if}}
+  <div class="bml-author-hero__body">
+    <span class="bml-label-mono">// author</span>
+    <h1 class="bml-author-hero__name">{{name}}</h1>
+    {{#if bio}}<p class="bml-author-hero__bio">{{bio}}</p>{{/if}}
+    <div class="bml-author-hero__meta">
+      {{#if location}}<span class="bml-author-hero__location">{{location}}</span>{{/if}}
+      {{#if website}}
+        <a class="bml-author-hero__link" href="{{website}}" target="_blank" rel="noopener noreferrer">website ↗</a>
+      {{/if}}
+      {{!-- Manual URL construction — twitter_url/facebook_url helpers are
+            deprecated in Ghost 6. {{twitter}} / {{facebook}} return the
+            stored handle. --}}
+      {{#if twitter}}
+        <a class="bml-author-hero__link" href="https://x.com/{{twitter}}" target="_blank" rel="noopener noreferrer">{{twitter}} ↗</a>
+      {{/if}}
+      {{#if facebook}}
+        <a class="bml-author-hero__link" href="https://www.facebook.com/{{facebook}}" target="_blank" rel="noopener noreferrer">facebook ↗</a>
+      {{/if}}
+    </div>
+  </div>
+</header>
 {{/author}}
 
-<main class="container mx-auto py-8 px-4">
-    <div class="post-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {{#foreach posts}}
-            {{> "post-card-tag"}}
-        {{/foreach}}
+<section class="bml-listing">
+  {{#if posts}}
+    <div class="bml-card-grid">
+      {{#foreach posts}}
+        {{> "post-card"}}
+      {{/foreach}}
     </div>
-
     {{pagination}}
-</main>
+  {{else}}
+    <p class="bml-listing__empty">No posts by this author yet.</p>
+  {{/if}}
+</section>

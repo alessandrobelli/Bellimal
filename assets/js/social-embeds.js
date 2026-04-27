@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                             body {
                                 background-color: #1a1a1a !important;
-                                color: #e2e2e2 !important;
+                                color: #e6e7ea !important;
                             }
                             .r-16dba41 {
                                 background-color: #1a1a1a !important;
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 border-color: #333 !important;
                             }
                             p, span, div {
-                                color: #e2e2e2 !important;
+                                color: #e6e7ea !important;
                             }
                             a {
                                 color: #1d9bf0 !important;

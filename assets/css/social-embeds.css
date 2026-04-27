@@ -8,7 +8,7 @@
     background-color: #1a1a1a !important;
     border-radius: 12px !important;
     border: 1px solid #333 !important;
-    color: #e2e2e2 !important;
+    color: #e6e7ea !important;
 }
 
 /* Twitter widget in dark mode */
@@ -18,7 +18,7 @@
     background-color: #1a1a1a !important;
     border-color: #333 !important;
     border-radius: 12px !important;
-    color: #e2e2e2 !important;
+    color: #e6e7ea !important;
     margin: 1.5em auto !important;
     overflow: hidden !important;
 }
@@ -27,7 +27,7 @@
 .dark .twitter-tweet p,
 .dark [data-tweet] p,
 .dark [data-twitter-tweet] p {
-    color: #e2e2e2 !important;
+    color: #e6e7ea !important;
 }
 
 /* Username, handle, dates */
@@ -55,7 +55,7 @@
 @supports (selector(:host)) {
     html[class*="dark"] {
         --twitter-bg-color: #1a1a1a;
-        --twitter-text-color: #e2e2e2;
+        --twitter-text-color: #e6e7ea;
         --twitter-link-color: #1d9bf0;
         --twitter-border-color: #333;
     }
@@ -68,7 +68,7 @@
     background-color: #1a1a1a !important;
     border-color: #333 !important;
     border-radius: 12px;
-    color: #e2e2e2 !important;
+    color: #e6e7ea !important;
     padding: 1rem !important;
 }
 

@@ -16,7 +16,6 @@
     "pretest": "gulp build",
     "preship": "yarn test",
     "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; else echo \"Uncomitted changes found.\" && exit 1; fi",
-    "postship": "git fetch && gulp release",
     "build:css": "tailwindcss build assets/css/input.css -o assets/css/main.css",
     "dev:css": "tailwindcss build assets/css/input.css -o assets/css/main.css --watch"
   },
@@ -39,7 +38,6 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
-    "@tryghost/release-utils": "0.8.1",
     "autoprefixer": "^10.4.7",
     "beeper": "2.1.0",
     "cssnano": "5.1.12",
@@ -50,7 +48,6 @@
     "gulp-postcss": "9.0.1",
     "gulp-uglify": "3.0.2",
     "gulp-zip": "5.1.0",
-    "inquirer": "8.2.4",
     "postcss": "8.4.*",
     "postcss-color-mod-function": "3.0.3",
     "postcss-easy-import": "4.0.0",
@@ -94,13 +91,55 @@
         "type": "text",
         "group": "homepage",
         "description": "Homepage hero description text (HTML allowed)",
-        "default": "I'm Alessandro Belli, a <a href='#' class='transition-colors duration-200 text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300'>university software engineer</a> with a passion for writing, technology, and a dream to create my own game. 🎮 🚀 Join me on a journey through insightful articles, from tackling the challenges of productivity and organization to exploring new technologies. 📊 ✨"
+        "default": "Software engineer. Writing about tech, productivity, and side projects."
       },
-      "featured_page_slug": {
+      "featured_tag": {
         "type": "text",
         "group": "homepage",
-        "description": "Slug of the page to feature on homepage",
-        "default": "about"
+        "description": "Optional tag slug to constrain the featured section (e.g. 'projects'). Leave empty to show any post marked as featured.",
+        "default": ""
+      },
+      "projects_tag": {
+        "type": "text",
+        "group": "homepage",
+        "description": "Tag slug used to identify project posts on the homepage (Featured + More projects bands pull from this tag; Latest writing excludes it).",
+        "default": "projects"
+      },
+      "cta_primary_label": {
+        "type": "text",
+        "group": "homepage",
+        "description": "Label for the filled (primary) CTA button on the homepage",
+        "default": "./projects"
+      },
+      "cta_primary_url": {
+        "type": "text",
+        "group": "homepage",
+        "description": "URL the primary CTA button links to (e.g. /tag/projects/)",
+        "default": "/tag/projects/"
+      },
+      "cta_secondary_label": {
+        "type": "text",
+        "group": "homepage",
+        "description": "Label for the outlined (secondary) CTA button on the homepage",
+        "default": "./blog"
+      },
+      "cta_secondary_url": {
+        "type": "text",
+        "group": "homepage",
+        "description": "URL the secondary CTA button links to",
+        "default": "/"
+      },
+      "sidebar_status": {
+        "type": "text",
+        "group": "sidebar",
+        "description": "Short status line shown below your name in the sidebar (falls back to site description)",
+        "default": "available for work"
+      },
+      "contact_email": {
+        "type": "text",
+        "group": "site-wide",
+        "description": "Contact email used by the terminal `contact` command on the homepage. Leave empty to use a generic placeholder.",
+        "default": ""
       },
       "sidebar_link1_text": {
         "type": "text",

@@ -1,0 +1,38 @@
+{{!-- Responsive image with AVIF + WebP + JPEG fallback srcset (Ghost 6).
+     The format= parameter on {{img_url}} only transcodes locally-hosted
+     images; external URLs fall back to the original format silently.
+
+     Variable named `src` (not `image`) so gscan's "use feature_image /
+     profile_image" rule doesn't trigger on the partial's internal check.
+
+     Args:
+       src            (required) — feature_image or any Ghost image variable
+       alt            (required) — alt text (empty string for decorative)
+       sizes          — sizes attribute, defaults to 100vw
+       imgClass       — class for the inner <img>
+       loading        — "lazy" (default) or "eager"
+       fetchpriority  — "high" for the LCP image
+       hidden         — "true" if the image is decorative (sets aria-hidden)
+--}}
+{{#if src}}
+  <picture>
+    <source type="image/avif"
+            srcset="{{img_url src size='s' format='avif'}} 300w,
+                    {{img_url src size='m' format='avif'}} 600w,
+                    {{img_url src size='l' format='avif'}} 1000w,
+                    {{img_url src size='xl' format='avif'}} 2000w"
+            sizes="{{#if sizes}}{{sizes}}{{else}}100vw{{/if}}">
+    <source type="image/webp"
+            srcset="{{img_url src size='s' format='webp'}} 300w,
+                    {{img_url src size='m' format='webp'}} 600w,
+                    {{img_url src size='l' format='webp'}} 1000w,
+                    {{img_url src size='xl' format='webp'}} 2000w"
+            sizes="{{#if sizes}}{{sizes}}{{else}}100vw{{/if}}">
+    <img src="{{img_url src size='l'}}" alt="{{alt}}"
+         {{#if imgClass}}class="{{imgClass}}"{{/if}}
+         loading="{{#if loading}}{{loading}}{{else}}lazy{{/if}}"
+         decoding="async"
+         {{#if fetchpriority}}fetchpriority="{{fetchpriority}}"{{/if}}
+         {{#if hidden}}aria-hidden="true"{{/if}}>
+  </picture>
+{{/if}}

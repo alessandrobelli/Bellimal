@@ -1,133 +1,170 @@
 {{!< default}}
 
-<main class="site-main outer">
-    <div class="inner">
+<div class="bml-home">
 
-        <h1 class="mb-4 text-4xl leading-5 tracking-tight text-center font-heading sm:text-5xl lg:text-6xl text-anthracite dark:text-darkText hero-title"><span class="star-emoji">✨</span> {{@custom.hero_title}} <span class="star-emoji">✨</span></h1>
-        <div class="py-2 my-4 text-lg text-center">{{{@custom.hero_description}}}</div>
-        
-        <!-- Featured Content Section -->
-        {{#if @custom.featured_page_slug}}
-        <section>
-            <div class="transition-colors duration-300 bg-transparent">
-                {{#get "pages" filter="slug:{{@custom.featured_page_slug}}" include="authors" limit="1" as |featured_page|}}
-                    {{#foreach featured_page}}
-                        
-                            <div class="py-2 text-lg prose dark:prose-dark max-w-none">
-                                {{{content}}}
-                            
-                        </div>
-                    {{/foreach}}
-                {{else}}
-                    <!-- Fallback to a specific post if no about-me page exists -->
-                    {{#get "posts" limit="1" include="authors" as |featured_post|}}
-                        {{#foreach featured_post}}
-                            
-                                <div class="py-2 text-lg prose dark:prose-dark max-w-none">
-                                    {{{content}}}
-                                </div>
-                            
-                        {{/foreach}}
-                    {{/get}}
-                {{/get}}
-            </div>
-        </section>
-        {{/if}}
+  {{!-- Band 1 ── Terminal hero. The faux markup renders as-is without JS;
+        terminal.js progressively enhances it into an interactive prompt. --}}
+  <section class="bml-terminal" data-terminal-root aria-label="Terminal">
+    <div class="bml-terminal__chrome">
+      <span class="bml-terminal__lights" aria-hidden="true">
+        <span class="bml-terminal__dot bml-terminal__dot--red"></span>
+        <span class="bml-terminal__dot bml-terminal__dot--yellow"></span>
+        <span class="bml-terminal__dot bml-terminal__dot--green"></span>
+      </span>
+      <span class="bml-terminal__filename">~/{{@site.title}}</span>
+      <button class="bml-terminal__hint" data-terminal-hint type="button"
+              title="Show help (or type `help`)" aria-label="Show help">?</button>
+    </div>
+    <div class="bml-terminal__body">
+      <div class="bml-terminal__scroll" data-terminal-output aria-live="polite">
+        <p class="bml-terminal__prompt">whoami</p>
+        <p class="bml-terminal__output bml-terminal__output--title">{{{@custom.hero_title}}}</p>
+        <p class="bml-terminal__prompt">cat focus.txt</p>
+        <div class="bml-terminal__output">{{{@custom.hero_description}}}</div>
+      </div>
+      <div class="bml-terminal__input-line" data-terminal-input-line>
+        <span class="bml-terminal__prompt-marker" aria-hidden="true">$</span>
+        <span class="bml-terminal__cursor-content"
+          ><span class="bml-terminal__cursor-text">_</span><span class="bml-terminal__cursor" aria-hidden="true"></span></span>
+      </div>
+    </div>
+  </section>
 
-        <section class="relative pt-2 pb-12 carousel">
-    <h2 class="mb-6 text-2xl font-heading text-anthracite dark:text-darkText">Latest Projects</h2>
-    
-    <div class="flex gap-4 overflow-x-auto scrollbar-hide carousel-wrapper">
-        {{#get "posts" filter="tag:project" limit="10" as |projects|}}
-        {{#foreach projects}}
-            <div class="flex-shrink-0 max-w-md basis-full md:basis-1/3">
-                <div class="flex flex-col h-full p-4 transition-colors duration-300 bg-white border-r-2 border-gray-100 min-h-[500px] dark:bg-darkSecondary dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600">
-                    <a href="{{url}}" class="flex flex-col h-full">
-        
-                        <div class="flex items-center mb-2 post-card-tags">
-                            {{#primary_tag}}
-                                <div class="post-card-primary-tag">
-                                    <span class="mr-1 hashtag">#</span>
-                                    <span>{{name}}</span>
-                                </div>
-                            {{/primary_tag}}
-                        </div>
-                        {{#if feature_image}}
-                            <div class="mb-4 post-card-image">
-                                <img src="{{img_url feature_image size="small"}}" alt="{{title}}"
-                                     class="object-cover w-full h-40 rounded-lg" loading="lazy">
-                            </div>
-                        {{else}}
-                            <div class="mb-4 post-card-image">
-                                <img src="https://placeimg.com/640/480/any" alt="Placeholder Image"
-                                     class="object-cover w-full h-40 rounded-lg" loading="lazy">
-                            </div>
-                        {{/if}}
-                        <div class="flex items-center justify-center">
-                            {{#if featured}}
-                                <span class="mr-2 text-xs post-card-featured text-orangeValencia flame-icon">{{> "icons/fire"}}</span>
-                            {{/if}}
-                            <h3 class="text-2xl font-bold">{{title}}</h3>
-                        </div>
-                       
-                        <p class="flex-grow font-mono text-base post-card-excerpt text-anthracite dark:text-darkMuted">{{excerpt words="20"}}</p> 
-                    </a>
+  {{> "cta-staple"}}
+
+  {{!-- Band 2 ── // FEATURED: one project, hero treatment.
+        Prefer a project tagged @custom.projects_tag AND featured:true.
+        If none, fall back to the most recent project in the tag.
+        If no project exists at all, the section silently skips. --}}
+  {{#get "posts" filter="tag:{{@custom.projects_tag}}+featured:true"
+                 limit="1" include="tags,authors"}}
+    {{#if posts}}
+      {{#foreach posts}}{{> "featured-section"}}{{/foreach}}
+    {{else}}
+      {{#get "posts" filter="tag:{{@custom.projects_tag}}"
+                     limit="1" include="tags,authors"}}
+        {{#foreach posts}}{{> "featured-section"}}{{/foreach}}
+      {{/get}}
+    {{/if}}
+  {{/get}}
+
+  {{!-- Band 3 ── // MORE PROJECTS: 2-/3-column grid of mini cards.
+        Renders only when 2+ projects exist (otherwise the only project
+        is already in the Featured band above and we'd show it twice). --}}
+  {{#get "posts" filter="tag:{{@custom.projects_tag}}"
+                 limit="6" include="tags,authors"}}
+    {{#if posts.[1]}}
+      <section class="bml-listing">
+        <header class="bml-listing__head">
+          <span class="bml-label-mono">// more projects</span>
+          <a href="/tag/{{@custom.projects_tag}}/" class="bml-posts__all">
+            all projects ({{pagination.total}}) →
+          </a>
+        </header>
+        <div class="bml-card-grid">
+          {{#foreach posts}}{{> "post-card"}}{{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+
+  {{!-- Band 4 ── // LATEST WRITING: editorial list of non-project posts.
+        tag:-X is NQL's "not tagged X" filter — projects don't appear
+        twice on the page. --}}
+  {{#get "posts" filter="tag:-{{@custom.projects_tag}}"
+                 limit="5" include="tags,authors"}}
+    {{#if posts}}
+      <section class="bml-posts">
+        <header class="bml-posts__head">
+          <span class="bml-label-mono">// latest writing</span>
+          <a href="/" class="bml-posts__all">
+            all posts ({{pagination.total}}) →
+          </a>
+        </header>
+        <ul class="bml-posts__list">
+          {{#foreach posts}}
+            <li class="bml-post-row">
+              <a href="{{url}}" class="bml-post-row__link">
+                <div class="bml-post-row__thumb">
+                  {{#if feature_image}}
+                    {{> "responsive-img"
+                        src=feature_image
+                        alt=title
+                        sizes="120px"}}
+                  {{else}}
+                    <span class="bml-post-row__placeholder" aria-hidden="true"></span>
+                  {{/if}}
                 </div>
-            </div>
+                <div class="bml-post-row__body">
+                  <div class="bml-post-row__meta">
+                    <span>{{date format="MMM DD"}}</span>
+                    <span aria-hidden="true">·</span>
+                    <span>{{reading_time minute="1 MIN" minutes="% MIN"}}</span>
+                    {{#primary_tag}}
+                      <span aria-hidden="true">·</span>
+                      <span class="bml-post-row__tag">{{name}}</span>
+                    {{/primary_tag}}
+                    <span aria-hidden="true">·</span>
+                    <span class="bml-post-row__slug" title="cat {{slug}}">{{slug}}</span>
+                  </div>
+                  <h3 class="bml-post-row__title">
+                    {{#if featured}}<span class="bml-post-row__fire" aria-hidden="true">🔥</span>{{/if}}
+                    {{title}}
+                  </h3>
+                  <p class="bml-post-row__excerpt">{{excerpt words="22"}}</p>
+                </div>
+              </a>
+            </li>
+          {{/foreach}}
+        </ul>
+      </section>
+    {{/if}}
+  {{/get}}
+
+  {{!-- ─ Server-rendered data for terminal.js ────────────────────────────
+       Hidden DOM. JS reads via dataset / textContent — robust against any
+       quotes or specials in titles, no JSON-encoding gymnastics required. --}}
+  <div hidden data-terminal-data>
+    <span data-bml="hero-title">{{{@custom.hero_title}}}</span>
+    <span data-bml="hero-description">{{{@custom.hero_description}}}</span>
+    <span data-bml="contact">{{#if @custom.contact_email}}{{@custom.contact_email}}{{else}}hello@example.com{{/if}}</span>
+    <ul data-bml="nav">
+      {{#foreach @site.navigation}}
+        <li data-label="{{label}}" data-url="{{url}}"></li>
+      {{/foreach}}
+    </ul>
+    {{#get "tags" limit="10" order="count.posts desc" include="count.posts"}}
+      <ul data-bml="tags">
+        {{#foreach tags}}
+          <li data-name="{{name}}" data-slug="{{slug}}" data-url="{{url}}" data-count="{{count.posts}}"></li>
         {{/foreach}}
-        {{/get}}
-  
-    </div>
-    <div class="carousel-nav-hint md:hidden">
-        <span>Swipe</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-    </div>
-        </section>
+      </ul>
+    {{/get}}
+    {{#get "posts" limit="5"}}
+      <ul data-bml="posts">
+        {{#foreach posts}}
+          <li data-title="{{title}}" data-slug="{{slug}}" data-url="{{url}}" data-date="{{date format='YYYY-MM-DD'}}" data-reading-time="{{reading_time minute='1 min' minutes='% min'}}" data-excerpt="{{excerpt words='20'}}"></li>
+        {{/foreach}}
+      </ul>
+    {{/get}}
+    {{!-- All published, fully-public posts/pages (slug + title + url only) —
+         feeds tab completion and `cat`/`cd` lookups. {{#get}} from a theme
+         can never see drafts; `visibility:public` further excludes member-
+         only or paid content from leaking even just their slugs. --}}
+    {{#get "posts" limit="100" filter="visibility:public" fields="slug,title,url"}}
+      <ul data-bml="all-posts">
+        {{#foreach posts}}
+          <li data-slug="{{slug}}" data-title="{{title}}" data-url="{{url}}"></li>
+        {{/foreach}}
+      </ul>
+    {{/get}}
+    {{#get "pages" limit="50" filter="visibility:public" fields="slug,title,url"}}
+      <ul data-bml="all-pages">
+        {{#foreach pages}}
+          <li data-slug="{{slug}}" data-title="{{title}}" data-url="{{url}}"></li>
+        {{/foreach}}
+      </ul>
+    {{/get}}
+  </div>
 
-        {{!-- Carousel for latest posts --}}
-
-      <!-- Carousel Section -->
-        <section class="relative pt-2 pb-12 carousel">
-            <h2 class="mb-6 text-2xl font-heading text-anthracite dark:text-darkText">Latest Posts</h2>
-            <div class="flex space-x-4 overflow-x-auto scrollbar-hide carousel-wrapper">
-                {{!-- Fetch posts excluding the 'project' tag --}}
-                {{#get "posts" filter="tag:-project" limit="10" as |latest_posts|}}
-                {{#foreach latest_posts}}
-                    <div class="flex-shrink-0 p-4 transition-colors duration-300 bg-white border-r-2 border-gray-100 dark:bg-darkSecondary dark:border-gray-700 post-card hover:border-gray-300 dark:hover:border-gray-600 w-80">
-                        <a href="{{url}}" class="block">
-                            <div class="flex items-center mb-2 post-card-tags">
-                                {{#primary_tag}}
-                                    <div class="post-card-primary-tag">
-                                        <span class="mr-1 hashtag">#</span>
-                                        <span>{{name}}</span>
-                                    </div>
-                                {{/primary_tag}}
-                            </div>
-                            {{#if feature_image}}
-                                <div class="mb-4 post-card-image">
-                                    <img src="{{img_url feature_image size="small"}}" alt="{{title}}"
-                                         class="object-cover w-full h-40 rounded-lg" loading="lazy">
-                                </div>
-                            {{else}}
-                                <div class="mb-4 post-card-image">
-                                    <img src="https://placeimg.com/640/480/any" alt="Placeholder Image"
-                                         class="object-cover w-full h-40 rounded-lg" loading="lazy">
-                                </div>
-                            {{/if}}
-                            <div class="flex items-center justify-center">
-                                {{#if featured}}
-                                    <span class="mr-2 text-xs post-card-featured text-orangeValencia flame-icon">{{> "icons/fire"}}</span>
-                                {{/if}}
-                                <h3 class="text-xl font-bold">{{title}}</h3>
-                            </div>
-                            <p class="font-mono text-sm post-card-excerpt text-anthracite dark:text-darkMuted">{{excerpt words="20"}}</p>
-                        </a>
-                    </div>
-                {{/foreach}}
-                {{/get}}
-            </div>
-</section>
-    </div>
-</main>
+</div>

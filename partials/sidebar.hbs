@@ -1,0 +1,128 @@
+{{!-- Bellimal redesign sidebar ───────────────────────────────────────────────
+     Identity → SITE nav → TOPICS chips → ELSEWHERE links → theme toggle.
+     Each section is conditional — empty data = collapsed silently.
+     ──────────────────────────────────────────────────────────────────────── --}}
+
+<div class="bml-sidebar">
+
+  {{!-- 1. Identity row ─────────────────────────────────────────────────── --}}
+  <div class="bml-sidebar__identity">
+    <a href="{{@site.url}}" class="bml-sidebar__avatar-link" aria-label="{{@site.title}}">
+      {{#if @site.icon}}
+        <img src="{{img_url @site.icon size="xs"}}" alt="" class="bml-sidebar__avatar" />
+      {{else}}
+        <span class="bml-sidebar__avatar bml-sidebar__avatar--fallback" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4l4 4-4 4"/>
+            <path d="M9 12h4"/>
+          </svg>
+        </span>
+      {{/if}}
+    </a>
+    <div class="bml-sidebar__identity-text">
+      <a href="{{@site.url}}" class="bml-sidebar__name">{{@site.title}}</a>
+      {{#if @custom.sidebar_status}}
+        <span class="bml-sidebar__status">{{@custom.sidebar_status}}</span>
+      {{else}}
+        {{#if @site.description}}
+          <span class="bml-sidebar__status">{{@site.description}}</span>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+
+  {{!-- 2. SITE — primary nav. Renders via the {{navigation}} helper so each
+        item gets the `current` boolean that Ghost populates server-side.
+        Custom markup lives in `partials/navigation.hbs`. --}}
+  {{#if @site.navigation}}
+    <div class="bml-sidebar__section bml-sidebar__section--site">
+      <span class="bml-sidebar__label">site</span>
+      {{navigation}}
+    </div>
+  {{/if}}
+
+  {{!-- 3. TOPICS — categories as chips ──────────────────────────────────── --}}
+  {{#get "tags" limit="100" include="count.posts" order="count.posts desc"}}
+    {{#if tags}}
+      <div class="bml-sidebar__section bml-sidebar__topics">
+        <button type="button" class="bml-sidebar__topics-toggle"
+                aria-expanded="true" aria-controls="bml-topics-list">
+          <span class="bml-sidebar__label">topics</span>
+          <svg class="bml-sidebar__chevron" viewBox="0 0 16 16" fill="none"
+               stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 4l5 4-5 4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="bml-topics-list" class="bml-sidebar__topics-body">
+          <ul class="bml-sidebar__chips">
+            {{#foreach tags}}
+              <li>
+                <a href="{{url}}" class="bml-chip">
+                  <span class="bml-chip__name">{{name}}</span>
+                  <span class="bml-chip__count">{{count.posts}}</span>
+                </a>
+              </li>
+            {{/foreach}}
+          </ul>
+          <button type="button" class="bml-sidebar__show-more"
+                  data-show-more aria-expanded="false">
+            <span data-show-more-label>show more</span>
+          </button>
+        </div>
+      </div>
+    {{/if}}
+  {{/get}}
+
+  {{!-- Spacer — pushes ELSEWHERE + footer to the bottom of the sidebar --}}
+  <div class="bml-sidebar__spacer" aria-hidden="true"></div>
+
+  {{!-- 4. ELSEWHERE — external sidebar links ────────────────────────────── --}}
+  {{#if @custom.sidebar_link1_url}}
+    <div class="bml-sidebar__section">
+      <span class="bml-sidebar__label">elsewhere</span>
+      <ul class="bml-sidebar__links">
+        {{#if @custom.sidebar_link1_url}}
+          <li>
+            <a href="{{@custom.sidebar_link1_url}}" class="bml-sidebar__ext-link">
+              {{> "icons/github" class="bml-sidebar__ext-icon"}}
+              <span class="bml-sidebar__ext-text">{{@custom.sidebar_link1_text}}</span>
+              <span class="bml-sidebar__ext-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        {{/if}}
+        {{#if @custom.sidebar_link2_url}}
+          <li>
+            <a href="{{@custom.sidebar_link2_url}}" class="bml-sidebar__ext-link">
+              {{> "icons/linkedin" class="bml-sidebar__ext-icon"}}
+              <span class="bml-sidebar__ext-text">{{@custom.sidebar_link2_text}}</span>
+              <span class="bml-sidebar__ext-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        {{/if}}
+        {{#if @custom.sidebar_link3_url}}
+          <li>
+            <a href="{{@custom.sidebar_link3_url}}" class="bml-sidebar__ext-link">
+              <svg class="bml-sidebar__ext-icon" viewBox="0 0 24 24" fill="currentColor"
+                   aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625zM7.5 15a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 017.5 15zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H8.25z" clip-rule="evenodd" />
+                <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
+              </svg>
+              <span class="bml-sidebar__ext-text">{{@custom.sidebar_link3_text}}</span>
+              <span class="bml-sidebar__ext-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  {{/if}}
+
+  {{!-- Footer: theme toggle ─────────────────────────────────────────────── --}}
+  <div class="bml-sidebar__footer">
+    <button id="darkModeToggle" type="button" class="bml-sidebar__theme-toggle"
+            aria-label="Toggle dark mode">
+      {{> "icons/theme-toggle" class="bml-sidebar__theme-icon"}}
+      <span class="bml-sidebar__theme-text">theme</span>
+    </button>
+  </div>
+</div>

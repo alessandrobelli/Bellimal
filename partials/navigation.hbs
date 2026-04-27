@@ -1,9 +1,15 @@
-<ul class="space-y-2">
+{{!-- Custom markup for the {{navigation}} helper. Rendered for both primary
+     and secondary nav. `current` is populated by Ghost on the matching item.
+     Wrapped in <nav> for landmark accessibility. --}}
+<nav aria-label="Primary">
+  <ul class="bml-sidebar__nav">
     {{#foreach navigation}}
-        <li>
-            <a href="{{url}}" class="py-1.5 text-lg transition-colors duration-200 text-anthracite dark:text-darkText hover:text-orangeValencia dark:hover:text-orangeValencia">
-                {{{label}}}
-            </a>
-        </li>
+      <li class="bml-sidebar__nav-item{{#if current}} is-current{{/if}}">
+        <a href="{{url}}" class="bml-sidebar__nav-link">
+          <span class="bml-sidebar__nav-marker" aria-hidden="true"></span>
+          <span class="bml-sidebar__nav-label">{{{label}}}</span>
+        </a>
+      </li>
     {{/foreach}}
-</ul>
+  </ul>
+</nav>

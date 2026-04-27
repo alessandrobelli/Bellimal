@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
     
     // Add overlay
-    mobileMenuOverlay.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-50', 'z-30', 'hidden', 'lg:hidden');
+    mobileMenuOverlay.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-50', 'z-30', 'hidden', 'tab:hidden');
     mobileMenuOverlay.id = 'mobileMenuOverlay';
     document.body.appendChild(mobileMenuOverlay);
     
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = sideNav.querySelectorAll('nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (window.innerWidth < 1024) {
+            if (window.innerWidth < 900) {
                 closeMenu();
             }
         });
@@ -76,21 +76,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     sideNav.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
-        if (touchStartX - touchEndX > 50 && window.innerWidth < 1024) {
+        if (touchStartX - touchEndX > 50 && window.innerWidth < 900) {
             closeMenu();
         }
     });
     
     // Handle window resize
     window.addEventListener('resize', function() {
-        if (window.innerWidth >= 1024) {
+        if (window.innerWidth >= 900) {
             closeMenu();
         }
     });
     
     // Handle escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && window.innerWidth < 1024) {
+        if (e.key === 'Escape' && window.innerWidth < 900) {
             closeMenu();
         }
     });

@@ -1,0 +1,54 @@
+{{!-- Featured section markup. Expected to be invoked from inside a
+     {{#foreach}} loop over a single post. Caller passes:
+       total    — pagination.total of the matching get (count of all featured)
+       hasMore  — pagination.next from the get (truthy when total > 1)
+     If hasMore: show count and (when featured_tag is set) link to the tag
+     archive so visitors can see the rest. --}}
+<section class="bml-featured">
+  <header class="bml-featured__head">
+    <span class="bml-label-mono">// featured</span>
+    {{#if hasMore}}
+      {{#if @custom.featured_tag}}
+        <a href="/tag/{{@custom.featured_tag}}/" class="bml-featured__all">
+          all {{@custom.featured_tag}} ({{total}}) →
+        </a>
+      {{else}}
+        <span class="bml-featured__all bml-featured__all--info">
+          ({{total}} featured)
+        </span>
+      {{/if}}
+    {{/if}}
+  </header>
+  <a href="{{url}}" class="bml-featured-card">
+    <div class="bml-featured-card__media">
+      {{#if feature_image}}
+        {{> "responsive-img"
+            src=feature_image
+            alt=title
+            sizes="(min-width: 900px) 320px, 100vw"}}
+      {{else}}
+        <span class="bml-featured-card__placeholder" aria-hidden="true"></span>
+      {{/if}}
+    </div>
+    <div class="bml-featured-card__body">
+      <div class="bml-featured-card__meta">
+        <span>{{date format="MMM DD, YYYY"}}</span>
+        <span aria-hidden="true">·</span>
+        <span>{{reading_time minute="1 MIN READ" minutes="% MIN READ"}}</span>
+        {{#primary_tag}}
+          <span aria-hidden="true">·</span>
+          <span class="bml-featured-card__tag">{{name}}</span>
+        {{/primary_tag}}
+      </div>
+      <h2 class="bml-featured-card__title">{{title}}</h2>
+      <p class="bml-featured-card__excerpt">{{excerpt words="40"}}</p>
+      {{#if tags}}
+        <ul class="bml-featured-card__tags">
+          {{#foreach tags}}
+            <li><span class="bml-chip-tag">{{name}}</span></li>
+          {{/foreach}}
+        </ul>
+      {{/if}}
+    </div>
+  </a>
+</section>

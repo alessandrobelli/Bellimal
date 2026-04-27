@@ -1,113 +1,86 @@
 {{!< default}}
 
 {{#post}}
-    <article class="gh-article p-0 {{post_class}} font-body post-full-content">
-        {{#if feature_image}}
-            <header class="relative w-full h-48 mb-4 bg-center bg-cover md:h-64"
-                    style="background-image: url('{{img_url feature_image size="xl"}}');">
-                <div class="absolute inset-0 bg-black opacity-50"></div>
-                <div class="relative z-10 flex items-center justify-center h-full">
-                    <div class="px-4 text-center text-white overflow-ellipsis sm:text-wrap">
-                        <h1 class="max-w-full text-2xl leading-6 tracking-tight sm:text-4xl lg:text-5xl font-heading sm:leading-4">{{title}}</h1>
-                        <div class="py-2 my-4 text-sm">
-                            <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
-                            <span class="bull">•</span> {{reading_time}}
-                            {{#if tags}}
-                                <span class="bull">•</span>
-                                {{#foreach tags}}
-                                    <span class="inline-flex items-center">{{name}}</span>
-                                {{/foreach}}
-                            {{/if}}
-                            <span class="bull">•</span>
-                            <span class="text-sm gh-post-authors">
-                                Written by
-                                {{#foreach authors}}
-                                    <a href="{{url}}" class="font-bold">
-                                        {{#if profile_image}}
-                                            <img class="inline-block w-4 h-4 mr-1 rounded-full" src="{{profile_image}}"
-                                                 alt="{{name}} Profile Picture"/>
-                                        {{/if}}
-                                        {{name}}
-                                    </a>
-                                {{/foreach}}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        {{else}}
-            <h1 class="mb-4 text-4xl leading-5 tracking-tight text-center font-heading sm:text-5xl lg:text-6xl text-anthracite dark:text-darkText">{{title}}</h1>
-            <div class="py-2 my-4 text-sm text-center">
-                <time datetime="{{date format="DD-MM-YYYY"}}">{{date format="D MMM YYYY"}}</time>
-                <span class="bull">•</span> {{reading_time}}
-                {{#if tags}}
-                    <span class="bull">•</span>
-                    {{#foreach tags}}
-                        <span class="inline-flex items-center">{{name}}</span>
-                    {{/foreach}}
+<article class="bml-post {{post_class}}">
+
+  {{!-- Hero band ─ <img> with object-fit: cover (more predictable than
+        background-image), overlay fade, then centered title + byline. ─── --}}
+  <header class="bml-post-hero{{#unless feature_image}} bml-post-hero--no-image{{/unless}}">
+    {{#if feature_image}}
+      {{> "responsive-img"
+          src=feature_image
+          alt=""
+          imgClass="bml-post-hero__bg"
+          sizes="(min-width: 900px) 920px, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          hidden="true"}}
+    {{/if}}
+    <div class="bml-post-hero__overlay" aria-hidden="true"></div>
+    <div class="bml-post-hero__inner">
+      <h1 class="bml-post-hero__title">{{title}}</h1>
+      <div class="bml-post-hero__byline">
+        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+        <span aria-hidden="true">·</span>
+        <span>{{reading_time minute="1 MIN" minutes="% MIN"}}</span>
+        {{#primary_tag}}
+          <span aria-hidden="true">·</span>
+          <a href="{{url}}" class="bml-post-hero__tag">{{name}}</a>
+        {{/primary_tag}}
+        {{#if authors}}
+          <span aria-hidden="true">·</span>
+          <span class="bml-post-hero__author">Written by
+            {{#foreach authors}}
+              <a href="{{url}}" class="bml-post-hero__author-link">
+                {{#if profile_image}}
+                  <img src="{{img_url profile_image size="xs"}}" alt="" class="bml-post-hero__avatar" loading="lazy" decoding="async" />
                 {{/if}}
-                <span class="bull">•</span>
-                <span class="text-sm gh-post-authors">
-                    Written by
-                    {{#foreach authors}}
-                        <a href="{{url}}" class="font-bold">
-                            {{#if profile_image}}
-                                <img class="inline-block w-4 h-4 mr-1 rounded-full" src="{{profile_image}}"
-                                     alt="{{name}} Profile Picture"/>
-                            {{/if}}
-                            {{name}}
-                        </a>
-                    {{/foreach}}
-                </span>
-            </div>
+                <span>{{name}}</span>
+              </a>
+            {{/foreach}}
+          </span>
         {{/if}}
-        <div class="w-full text-base antialiased font-normal leading-normal prose prose-lg sm:leading-relaxed prose-p:text-anthracite dark:prose-p:text-darkText prose-ul:text-anthracite dark:prose-ul:text-darkText prose-strong:text-anthracite dark:prose-strong:text-darkText prose-th:text-anthracite dark:prose-th:text-darkText prose-h1:text-anthracite dark:prose-h1:text-darkText prose-h2:text-anthracite dark:prose-h2:text-darkText prose-h3:text-anthracite dark:prose-h3:text-darkText prose-strong:font-bold dark:prose-invert gh-content max-w-none">
-            {{content}}
-        </div>
-        <footer class="pt-4">
-            {{> "share-block"}}
-            {{comments}}
-        </footer>
-    </article>
-    <aside class="w-full pt-8 pb-8 mt-12 border-t dark:border-gray-800">
-        <h3 class="mb-6 text-xl font-heading text-anthracite dark:text-darkText">Continue Reading</h3>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {{#next_post in="primary_tag"}}
-                <div class="p-4 transition-all duration-300 bg-white rounded-lg shadow-sm post-navigation-card dark:bg-darkSecondary hover:shadow-md">
-                    <div class="flex items-center mb-2">
-                        <span class="text-sm font-semibold text-orangeValencia dark:text-orangeValencia-400">Next Post</span>
-                    </div>
-                    <a href="{{url}}" class="group">
-                        <h4 class="mb-2 text-lg font-bold transition-colors duration-200 font-heading text-anthracite dark:text-darkText group-hover:text-orangeValencia dark:group-hover:text-orangeValencia-400">{{title}}</h4>
-                        <p class="text-sm text-anthracite dark:text-darkMuted line-clamp-2">{{excerpt words="15"}}...</p>
-                        <div class="flex items-center mt-3 text-orangeValencia dark:text-orangeValencia-400">
-                            <span class="text-sm">Read more</span>
-                            <svg class="w-4 h-4 ml-1" viewBox="0 0 18 27" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.397 25.426l13.143-11.5-13.143-11.5" stroke-width="3" stroke="currentColor"
-                                      fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </a>
-                </div>
-            {{/next_post}}
-            {{#prev_post in="primary_tag"}}
-                <div class="p-4 transition-all duration-300 bg-white rounded-lg shadow-sm post-navigation-card dark:bg-darkSecondary hover:shadow-md">
-                    <div class="flex items-center mb-2">
-                        <span class="text-sm font-semibold text-orangeValencia dark:text-orangeValencia-400">Previous Post</span>
-                    </div>
-                    <a href="{{url}}" class="group">
-                        <h4 class="mb-2 text-lg font-bold transition-colors duration-200 font-heading text-anthracite dark:text-darkText group-hover:text-orangeValencia dark:group-hover:text-orangeValencia-400">{{title}}</h4>
-                        <p class="text-sm text-anthracite dark:text-darkMuted line-clamp-2">{{excerpt words="15"}}...</p>
-                        <div class="flex items-center mt-3 text-orangeValencia dark:text-orangeValencia-400">
-                            <span class="text-sm">Read more</span>
-                            <svg class="w-4 h-4 ml-1" viewBox="0 0 18 27" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.397 25.426l13.143-11.5-13.143-11.5" stroke-width="3" stroke="currentColor"
-                                      fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </a>
-                </div>
-            {{/prev_post}}
-        </div>
-    </aside>
+      </div>
+    </div>
+  </header>
+
+  {{!-- Body ─ prose-styled content (.bml-prose, redesigned per brief) ── --}}
+  <div class="bml-post-body">
+    <div class="bml-prose">
+      {{content}}
+    </div>
+  </div>
+
+  {{!-- Footer ─ share row + comments + continue-reading card ──────────── --}}
+  <footer class="bml-post-footer">
+    {{> "share-block"}}
+    {{comments color-scheme="auto"}}
+
+    {{!-- Continue reading: prefer prev_post, fall back to next_post.
+          Both render if both exist; CSS hides the second one. --}}
+    {{#prev_post}}
+      <section class="bml-continue">
+        <span class="bml-label-mono">// continue reading</span>
+        <a href="{{url}}" class="bml-continue__card">
+          <span class="bml-continue__pill">Previous Post</span>
+          <h3 class="bml-continue__title">{{title}}</h3>
+          {{#if excerpt}}<p class="bml-continue__excerpt">{{excerpt words="22"}}</p>{{/if}}
+          <span class="bml-continue__more">Read more →</span>
+        </a>
+      </section>
+    {{/prev_post}}
+    {{#next_post}}
+      <section class="bml-continue">
+        <span class="bml-label-mono">// continue reading</span>
+        <a href="{{url}}" class="bml-continue__card">
+          <span class="bml-continue__pill">Next Post</span>
+          <h3 class="bml-continue__title">{{title}}</h3>
+          {{#if excerpt}}<p class="bml-continue__excerpt">{{excerpt words="22"}}</p>{{/if}}
+          <span class="bml-continue__more">Read more →</span>
+        </a>
+      </section>
+    {{/next_post}}
+  </footer>
+
+</article>
 {{/post}}

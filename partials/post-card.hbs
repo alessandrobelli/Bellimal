@@ -1,45 +1,37 @@
-<article class="flex flex-col items-center p-4 bg-white border-b-2 border-gray-100 rounded-md sm:flex-row hover:border-gray-300">
-    {{#if feature_image}}
-        <div class="flex-shrink-0 w-full h-24 mb-4 overflow-hidden rounded-lg sm:w-24 sm:mb-0 sm:mr-4">
-            <img class="object-cover w-full h-full" src="{{img_url feature_image size="small"}}" alt="{{title}}" loading="lazy">
-        </div>
-    {{/if}}
-    <div class="flex-1">
-        <a class="block post-card-content-link" href="{{url}}">
-            <header class="mb-2 post-card-header">
-                <div class="flex items-center mb-2 post-card-tags">
-                    {{#primary_tag}}
-                        <div class="post-card-primary-tag">
-                            <span class="mr-1 hashtag">#</span>
-                            <span>{{name}}</span>
-                        </div>
-                    {{/primary_tag}}
-                </div>
-                <div class="flex items-center justify-center sm:justify-start">
-                    {{#if featured}}
-                        <span class="mr-2 text-xs post-card-featured text-orangeValencia flame-icon">{{> "icons/fire"}}</span>
-                    {{/if}}
-                    <h2 class="text-xl font-bold text-center font-heading sm:text-left">{{title}}</h2>
-                </div>
-            </header>
-            {{#if excerpt}}
-                <div class="text-sm text-anthracite">
-                    {{excerpt words="50"}}
-                </div>
-            {{/if}}
-        </a>
-        <footer class="mt-4 text-xs text-gray-500 post-card-meta">
-            <time class="post-card-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
-            {{#if reading_time}}
-                <span class="ml-4 post-card-meta-length">{{reading_time}}</span>
-            {{/if}}
-            {{#if @site.comments_enabled}}
-                {{#if comment_count}}
-                    {{#if (comment_count '>' 0)}}
-                        <span class="ml-4">{{comment_count}} comments</span>
-                    {{/if}}
-                {{/if}}
-            {{/if}}
-        </footer>
+{{!-- Card used by tag, index, author, error templates and the
+     "you might like" partial. Brief-critical CSS:
+       box-sizing: border-box; min-width: 0; overflow: hidden;
+       image: width 100%; aspect-ratio: 16/9; object-fit: cover;
+     so cards never blow out of their grid cell. --}}
+<article class="bml-card{{#if featured}} bml-card--featured{{/if}}">
+  <a href="{{url}}" class="bml-card__link">
+    <div class="bml-card__media">
+      {{#if feature_image}}
+        {{> "responsive-img"
+            src=feature_image
+            alt=title
+            imgClass="bml-card__img"
+            sizes="(min-width: 900px) 280px, 100vw"}}
+      {{else}}
+        <span class="bml-card__placeholder" aria-hidden="true"></span>
+      {{/if}}
+      {{#primary_tag}}
+        <span class="bml-card__tag">#{{name}}</span>
+      {{/primary_tag}}
     </div>
+    <div class="bml-card__body">
+      <h3 class="bml-card__title">
+        {{#if featured}}<span class="bml-card__fire" aria-hidden="true">🔥</span>{{/if}}
+        {{title}}
+      </h3>
+      {{#if excerpt}}
+        <p class="bml-card__excerpt">{{excerpt words="22"}}</p>
+      {{/if}}
+      <div class="bml-card__meta">
+        <span>{{date format="MMM DD, YYYY"}}</span>
+        <span aria-hidden="true">·</span>
+        <span>{{reading_time minute="1 MIN" minutes="% MIN"}}</span>
+      </div>
+    </div>
+  </a>
 </article>

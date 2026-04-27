@@ -1,57 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Lexend+Deca&display=swap" rel="stylesheet">
-    <title>Error - {{error.statusCode}}</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Lexend Deca', sans-serif;
-            background-color: #f7f7f7;
-            color: #292C2F;
-        }
-        .container {
-            text-align: center;
-            max-width: 600px;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .title {
-            font-family: 'Fira Mono', monospace;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #D84727;
-        }
-        .description {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #666666;
-        }
-        .link {
-            font-size: 1rem;
-            color: #D84727;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .link:hover {
-            color: #A0361D;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="title">{{error.statusCode}} Error</h1>
-        <p class="description">{{error.message}}</p>
-        <a class="link" href="{{@site.url}}">Go back to Home</a>
+{{!< default}}
+
+<section class="bml-error">
+  <div class="bml-terminal" aria-label="Error">
+    <div class="bml-terminal__chrome">
+      <span class="bml-terminal__lights" aria-hidden="true">
+        <span class="bml-terminal__dot bml-terminal__dot--red"></span>
+        <span class="bml-terminal__dot bml-terminal__dot--yellow"></span>
+        <span class="bml-terminal__dot bml-terminal__dot--green"></span>
+      </span>
+      <span class="bml-terminal__filename">~/{{statusCode}}</span>
     </div>
-</body>
-</html>
+    <div class="bml-terminal__body">
+      <div class="bml-terminal__scroll">
+        <p class="bml-terminal__prompt">cat status</p>
+        <p class="bml-terminal__line bml-terminal__line--error">{{statusCode}} {{message}}</p>
+        <p class="bml-terminal__prompt">help</p>
+        <p class="bml-terminal__line">something broke. try one of these:</p>
+        <p class="bml-terminal__line">
+          <a class="bml-terminal__line bml-terminal__line--link" href="{{@site.url}}">→ go home</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <p class="bml-error__caption">
+    <span class="bml-label-mono">// error</span> {{statusCode}} · {{message}}
+  </p>
+</section>

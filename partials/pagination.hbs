@@ -1,0 +1,24 @@
+{{!-- Pagination — renders whenever there's at least one page. On single-page
+     archives both buttons render disabled. Avoids sub-expressions like
+     equality and disjunction helpers that gscan rejects. --}}
+{{#if pagination.pages}}
+  <nav class="bml-pagination" aria-label="Pagination">
+    {{#if pagination.prev}}
+      <a href="{{page_url pagination.prev}}" class="bml-pagination__chip"
+         aria-label="Previous page">‹ prev</a>
+    {{else}}
+      <span class="bml-pagination__chip bml-pagination__chip--disabled"
+            aria-disabled="true">‹ prev</span>
+    {{/if}}
+    <span class="bml-pagination__indicator">
+      {{pagination.page}} / {{pagination.pages}}
+    </span>
+    {{#if pagination.next}}
+      <a href="{{page_url pagination.next}}" class="bml-pagination__chip"
+         aria-label="Next page">next ›</a>
+    {{else}}
+      <span class="bml-pagination__chip bml-pagination__chip--disabled"
+            aria-disabled="true">next ›</span>
+    {{/if}}
+  </nav>
+{{/if}}

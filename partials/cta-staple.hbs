@@ -1,0 +1,14 @@
+{{!-- CTA staple — two anchored actions reused on home + page templates.
+     Configurable via Ghost admin → Settings → Design → Bellimal → Homepage.
+     Defaults inline so empty/missing settings still render meaningfully. --}}
+<div class="bml-cta-staple">
+  <a href="{{#if @custom.cta_primary_url}}{{@custom.cta_primary_url}}{{else}}/tag/projects/{{/if}}"
+     class="bml-btn bml-btn--primary">
+    <span>{{#if @custom.cta_primary_label}}{{@custom.cta_primary_label}}{{else}}./projects{{/if}}</span>
+    <span aria-hidden="true">→</span>
+  </a>
+  <a href="{{#if @custom.cta_secondary_url}}{{@custom.cta_secondary_url}}{{else}}/{{/if}}"
+     class="bml-btn bml-btn--ghost">
+    {{#if @custom.cta_secondary_label}}{{@custom.cta_secondary_label}}{{else}}./blog{{/if}}
+  </a>
+</div>

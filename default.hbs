@@ -2,180 +2,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{meta_title}}</title>
+
+    {{!-- Ghost-injected meta + scripts + cards.min.css. Placing this early
+         so its preconnects to Ghost's CDN/comments/portal fire ASAP. As a
+         side effect, our main.css below loads after cards.min.css, so
+         same-specificity overrides in main.css win without specificity
+         hacks (the `.kg-card.kg-X` selectors in bookmarks.css are kept
+         defensive and harmless). --}}
+    {{ghost_head}}
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
+    {{!-- Favicons (theme-bundled, override Ghost's auto-injected one) --}}
+    <link rel="icon" type="image/svg+xml" href="{{asset 'favicon.svg'}}" />
+    <link rel="apple-touch-icon" href="{{asset 'apple-touch-icon.svg'}}" />
+
+    {{!-- Single compiled stylesheet — input.css @imports prism, bookmarks,
+         social-embeds, then Tailwind base/components/utilities. --}}
     <link rel="stylesheet" href="{{asset 'css/main.css'}}" />
-    <link rel="stylesheet" href="{{asset 'css/animations.css'}}" />
-    <link rel="stylesheet" href="{{asset 'css/mobile.css'}}" />
-    <link rel="stylesheet" href="{{asset 'css/carousel-mobile.css'}}" />
-    <link rel="stylesheet" href="{{asset 'css/related-posts.css'}}" />
-    <link rel="stylesheet" href="{{asset 'css/bookmarks.css'}}" />
-    <link rel="stylesheet" href="{{asset 'css/social-embeds.css'}}" />
-    <link rel="stylesheet" href="{{asset 'css/categories-toggle.css'}}" />
-    <link rel="stylesheet" href="{{asset 'css/prism.css'}}" />
+
     <script>
-      // Immediately apply dark mode if stored in localStorage (prevents flash)
       if (localStorage.getItem('darkMode') === 'true') {
-      document.documentElement.classList.add('dark'); } else if
-      (localStorage.getItem('darkMode') === null && window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark'); }
+        document.documentElement.classList.add('dark');
+      } else if (localStorage.getItem('darkMode') === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+      }
     </script>
-    <title>{{meta_title}}</title>
-    {{ghost_head}}
   </head>
-  <body
-    class="transition-colors duration-300 bg-white dark:bg-dark text-anthracite dark:text-darkText"
-  >
-    <!-- Mobile Header with Hamburger -->
-    <header
-      class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2 transition-colors duration-300 bg-white shadow-sm lg:hidden dark:bg-darkSecondary"
-    >
-      <a
-        href="{{@site.url}}"
-        class="text-xl font-heading text-anthracite dark:text-darkText"
-      >{{@site.title}}</a>
-      <div class="flex items-center space-x-3">
-        <button
-          id="darkModeToggleMobile"
-          class="p-2 transition-colors duration-300 rounded-full focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="hidden w-5 h-5 dark-icon dark:block"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="block w-5 h-5 light-icon dark:hidden"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-            />
-          </svg>
+  {{!-- Body styles (bg/text/font/transitions) come from `body { @apply ... }`
+       in input.css — no inline duplicate needed. --}}
+  <body>
+
+    {{!-- Mobile sticky topbar (browser-chrome aesthetic) ────────────────── --}}
+    <header class="bml-topbar tab:hidden">
+      <div class="bml-topbar__lights" aria-hidden="true">
+        <span class="bml-topbar__dot bml-topbar__dot--red"></span>
+        <span class="bml-topbar__dot bml-topbar__dot--yellow"></span>
+        <span class="bml-topbar__dot bml-topbar__dot--green"></span>
+      </div>
+      <a href="{{@site.url}}" class="bml-topbar__title">~/{{@site.title}}</a>
+      <div class="bml-topbar__actions">
+        <button id="darkModeToggleMobile" class="bml-topbar__icon-btn" type="button"
+                aria-label="Toggle dark mode">
+          {{> "icons/theme-toggle"}}
         </button>
-        <button
-          id="hamburgerBtn"
-          class="text-anthracite dark:text-darkText focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+        <button id="hamburgerBtn" class="bml-topbar__icon-btn" type="button"
+                aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
       </div>
     </header>
-    <div class="flex flex-col min-h-screen lg:flex-row">
-      <!-- Navigation Section -->
-<div
-  id="sideNav"
-  class="fixed inset-0 z-40 flex items-center justify-center w-full p-6 transition-transform duration-300 -translate-x-full bg-white border-r shadow-xl lg:inset-auto lg:w-72 dark:bg-darkSecondary dark:border-gray-800 lg:fixed lg:h-screen lg:flex-col lg:translate-x-0 lg:shadow-none"
->
-  <button
-    id="closeNavBtn"
-    class="absolute top-4 right-4 text-anthracite dark:text-darkText lg:hidden"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-6 h-6"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M6 18L18 6M6 6l12 12"
-      />
-    </svg>
-  </button>
-  <nav class="flex flex-col w-full h-full pt-6 pb-8 overflow-y-auto scrollbar-hide">
-    <div class="w-full">
-      {{> "sidebar-links"}}
-    </div>
-    <div class="w-full my-4">
-      {{navigation}}
-    </div>
-    <div class="border-t border-gray-200 dark:border-gray-700 my-4"></div>
-    <div class="w-full">
-      {{> "categories-toggle"}}
-    </div>
-    <div class="flex items-center justify-center w-full mt-auto pt-4">
-      <button
-        id="darkModeToggle"
-        class="p-2 transition-colors duration-300 rounded-full focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="hidden w-5 h-5 dark-icon dark:block"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-          />
-        </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="block w-5 h-5 light-icon dark:hidden"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-          />
-        </svg>
-      </button>
-    </div>
-  </nav>
-</div>
 
-      <main class="flex-grow w-full p-8 pt-16 overflow-auto lg:ml-72 lg:pt-8">
+    <div class="flex flex-col min-h-screen tab:flex-row">
+      {{!-- Sidebar (drawer on mobile, fixed on desktop) ─────────────────── --}}
+      <aside id="sideNav" aria-label="Site sidebar"
+             class="bml-sidebar-shell -translate-x-full tab:translate-x-0 transition-transform duration-300">
+        <button id="closeNavBtn" class="bml-sidebar-close tab:hidden" type="button"
+                aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        {{> "sidebar"}}
+      </aside>
+
+      <main class="bml-main">
         {{{body}}}
       </main>
-      <script src="{{asset 'js/darkmode.js'}}"></script>
-      <script src="{{asset 'js/animations.js'}}"></script>
-      <script src="{{asset 'js/mobile-menu.js'}}"></script>
-      <script src="{{asset 'js/carousel-mobile.js'}}"></script>
-      <script src="{{asset 'js/social-embeds.js'}}"></script>
-      <script src="{{asset 'js/lib/prism.js'}}"></script>
-      {{ghost_foot}}
     </div>
+
+    {{!-- defer is essentially a no-op when scripts are at end-of-body, but
+         declaring intent + harmless when the parser hasn't reached this
+         point yet (e.g. server push). --}}
+    <script src="{{asset 'js/darkmode.js'}}" defer></script>
+    <script src="{{asset 'js/mobile-menu.js'}}" defer></script>
+    <script src="{{asset 'js/sidebar.js'}}" defer></script>
+    <script src="{{asset 'js/social-embeds.js'}}" defer></script>
+    <script src="{{asset 'js/share.js'}}" defer></script>
+    {{!-- Prism is ~68KB and only post/page bodies use <pre><code> --}}
+    {{#is "post, page"}}
+      <script src="{{asset 'js/lib/prism.js'}}" defer></script>
+    {{/is}}
+    {{#is "home"}}
+      <script src="{{asset 'js/terminal.js'}}" defer></script>
+    {{/is}}
+    {{ghost_foot}}
   </body>
 </html>
