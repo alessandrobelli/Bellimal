@@ -1,8 +1,8 @@
 {
   "name": "bellimal",
-  "description": "ma theme",
+  "description": "Minimalist Ghost theme with an interactive terminal homepage. Coral on slate, Atkinson Hyperlegible Mono everywhere, projects-first content.",
   "demo": "https://alessandrobelli.it",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "engines": {
     "ghost": ">=6.0.0"
   },

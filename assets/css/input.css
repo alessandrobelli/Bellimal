@@ -1279,6 +1279,12 @@ figure {
   margin-bottom: 1rem;
 }
 
+/* Featured-section header label is coral (more prominent than other
+   `// section` markers, which stay text-mute by default). */
+.bml-featured__head .bml-label-mono {
+  color: var(--accent);
+}
+
 .bml-featured__title {
   font-family: var(--font-mono);
   font-size: 22px;
