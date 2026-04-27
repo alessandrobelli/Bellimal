@@ -203,6 +203,9 @@
         sudo: function () { printLine('permission denied: nice try', { cls: 'error' }); }
     };
 
+    // `?` as an alias for `help` — shell muscle memory.
+    commands['?'] = commands.help;
+
     function execute(line) {
         line = (line || '').trim();
         if (!line) return;
