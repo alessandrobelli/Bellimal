@@ -39,11 +39,11 @@
   {{#get "posts" filter="tag:{{@custom.projects_tag}}+featured:true"
                  limit="1" include="tags,authors"}}
     {{#if posts}}
-      {{#foreach posts}}{{> "featured-section"}}{{/foreach}}
+      {{#foreach posts}}{{> "featured-section" label="featured projects"}}{{/foreach}}
     {{else}}
       {{#get "posts" filter="tag:{{@custom.projects_tag}}"
                      limit="1" include="tags,authors"}}
-        {{#foreach posts}}{{> "featured-section"}}{{/foreach}}
+        {{#foreach posts}}{{> "featured-section" label="featured projects"}}{{/foreach}}
       {{/get}}
     {{/if}}
   {{/get}}

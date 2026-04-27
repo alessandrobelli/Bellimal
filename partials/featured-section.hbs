@@ -1,12 +1,13 @@
 {{!-- Featured section markup. Expected to be invoked from inside a
      {{#foreach}} loop over a single post. Caller passes:
+       label    — section header label, defaults to "featured"
        total    — pagination.total of the matching get (count of all featured)
        hasMore  — pagination.next from the get (truthy when total > 1)
      If hasMore: show count and (when featured_tag is set) link to the tag
      archive so visitors can see the rest. --}}
 <section class="bml-featured">
   <header class="bml-featured__head">
-    <span class="bml-label-mono">// featured</span>
+    <span class="bml-label-mono">// {{#if label}}{{label}}{{else}}featured{{/if}}</span>
     {{#if hasMore}}
       {{#if @custom.featured_tag}}
         <a href="/tag/{{@custom.featured_tag}}/" class="bml-featured__all">
