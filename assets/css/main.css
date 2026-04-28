@@ -3322,6 +3322,45 @@ figure {
      object-fit: cover;
 }
 
+/* Feature-image caption (Unsplash credit / photographer attribution).
+   Bottom-left corner of the hero, semi-transparent so it stays out of the
+   way of the title/byline. Renders only when feature_image_caption is set
+   in Ghost editor. Supports HTML (links resolve to coral on hover). */
+
+.bml-post-hero__caption {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.75rem;
+  z-index: 3;
+  max-width: calc(100% - 2rem);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(230, 231, 234, 0.75);
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.bml-post-hero__caption a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.bml-post-hero__caption a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .bml-post-hero__caption {
+    left: 20px;
+    bottom: 0.5rem;
+    font-size: 10px;
+  }
+}
+
 /* Page-hero variant only — subtitle */
 
 .bml-page-hero__subtitle {
