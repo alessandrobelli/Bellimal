@@ -130,7 +130,7 @@
     <span data-bml="contact">{{#if @custom.contact_email}}{{@custom.contact_email}}{{else}}hello@example.com{{/if}}</span>
     <ul data-bml="nav">
       {{#foreach @site.navigation}}
-        <li data-label="{{label}}" data-url="{{url}}"></li>
+        <li data-label="{{label}}" data-url="{{url}}" data-slug="{{slug}}"></li>
       {{/foreach}}
     </ul>
     {{#get "tags" limit="10" order="count.posts desc" include="count.posts"}}

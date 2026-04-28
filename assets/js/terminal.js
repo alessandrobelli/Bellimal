@@ -33,19 +33,24 @@
     var heroTitle = readText('hero-title');
     var heroDescription = readText('hero-description');
     var contactEmail = readText('contact');
-    var nav = readList('nav', ['label', 'url']);
+    var nav = readList('nav', ['label', 'url', 'slug']);
     var tags = readList('tags', ['name', 'slug', 'url', 'count']);
     var posts = readList('posts', ['title', 'slug', 'url', 'date', 'readingTime', 'excerpt']);
     var allPosts = readList('all-posts', ['slug', 'title', 'url']);
     var allPages = readList('all-pages', ['slug', 'title', 'url']);
 
-    // Compute slug for each nav entry (last path segment of url)
+    // Ghost @site.navigation usually provides a `slug` field directly. If
+    // it's missing for any entry (older Ghost / bare URLs), fall back to
+    // parsing the last path segment from the url.
     nav.forEach(function (n) {
+        if (n.slug) return;
         try {
             var path = new URL(n.url, window.location.origin).pathname.replace(/\/$/, '');
             var parts = path.split('/').filter(Boolean);
             n.slug = parts.length ? parts[parts.length - 1] : '';
-        } catch (e) { n.slug = ''; }
+        } catch (e) {
+            n.slug = (n.url || '').replace(/^\/+|\/+$/g, '').split('/').pop() || '';
+        }
     });
 
     // ── Upgrade: replace the faux content (underscore + cursor block) with
