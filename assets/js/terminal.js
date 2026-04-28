@@ -110,6 +110,24 @@
         output.scrollTop = output.scrollHeight;
     }
 
+    // Print an inline space-separated list where each item is a clickable
+    // anchor — used by `ls` and `tags`.
+    function printInlineLinks(items) {
+        if (!items.length) return;
+        var line = document.createElement('div');
+        line.className = 'bml-terminal__line';
+        items.forEach(function (item, i) {
+            if (i > 0) line.appendChild(document.createTextNode('  '));
+            var a = document.createElement('a');
+            a.href = item.href || '/';
+            a.className = 'bml-terminal__line--link';
+            a.textContent = item.text;
+            line.appendChild(a);
+        });
+        output.appendChild(line);
+        output.scrollTop = output.scrollHeight;
+    }
+
     function clean(s) { return (s || '').replace(/^\/+|\/+$/g, ''); }
 
     function navigate(slugOrCmd) {
@@ -144,7 +162,9 @@
         whoami: function () { printLine(heroTitle || 'unknown'); },
         ls: function () {
             if (!nav.length) { printLine('(no pages)'); return; }
-            printLine(nav.map(function (n) { return n.slug ? n.slug + '/' : '/'; }).join('  '));
+            printInlineLinks(nav.map(function (n) {
+                return { text: n.slug ? n.slug + '/' : '/', href: n.url || '/' };
+            }));
         },
         cd: function (args) { navigate(args[0] || ''); },
         cat: function (args) {
@@ -183,7 +203,9 @@
         },
         tags: function () {
             if (!tags.length) { printLine('(no tags)'); return; }
-            printLine(tags.map(function (t) { return '#' + t.slug + ' (' + t.count + ')'; }).join('  '));
+            printInlineLinks(tags.map(function (t) {
+                return { text: '#' + t.slug + ' (' + t.count + ')', href: t.url };
+            }));
         },
         topics: function () { commands.tags(); },
         contact: function () {
