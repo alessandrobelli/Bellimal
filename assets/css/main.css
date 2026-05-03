@@ -2361,6 +2361,19 @@ figure {
   color: var(--accent);
 }
 
+.bml-sidebar__privacy-link {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-mute);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.bml-sidebar__privacy-link:hover {
+  color: var(--accent);
+}
+
 .bml-sidebar__theme-icon {
   width: 12px;
   height: 12px;
