@@ -1946,7 +1946,7 @@ figure {
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 40;
+  z-index: 60;
   width: min(320px, 100%);
   overflow-y: auto;
   background: var(--panel);
@@ -2362,6 +2362,7 @@ figure {
 }
 
 .bml-sidebar__privacy-link {
+  margin-left: auto;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
