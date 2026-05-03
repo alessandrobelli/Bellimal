@@ -2045,21 +2045,26 @@ figure {
 }
 
 .bml-prose table {
-  display: block;
   width: 100%;
   max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 13px;
-  word-break: break-word;
+  table-layout: auto;
 }
 
 .bml-prose th, .bml-prose td {
   border: 1px solid var(--line);
   padding: 0.5rem 0.75rem;
   text-align: left;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  .bml-prose {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .bml-prose th {
