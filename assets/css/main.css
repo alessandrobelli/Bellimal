@@ -464,13 +464,6 @@ html.dark body twitter-widget {
   aspect-ratio: 16 / 9;
 }
 
-@media (min-width: 768px) {
-  .kg-embed-card iframe[src*="youtube.com"],
-    .kg-embed-card iframe[src*="youtu.be"] {
-    width: 33%;
-  }
-}
-
 *, ::before, ::after{
   --tw-border-spacing-x:0;
   --tw-border-spacing-y:0;
@@ -3382,7 +3375,7 @@ figure {
 
 .bml-prose {
   width: 100%;
-  max-width: 760px;
+  max-width: 920px;
   font-family: var(--font-mono);
   font-size: 14px;
   line-height: 1.85;
@@ -3590,7 +3583,7 @@ figure {
 }
 
 /* Ghost editor "wide" + "full" image / gallery card widths. gscan requires
-   both classes to be styled. The prose column is 760px; wide breaks out to
+   both classes to be styled. The prose column is 920px; wide breaks out to
    ~85vw, full goes edge-to-edge. */
 
 .bml-prose .kg-width-wide {
@@ -3646,7 +3639,7 @@ figure {
 
 .bml-post-footer {
   width: 100%;
-  max-width: 760px;
+  max-width: 920px;
   margin: 3rem auto 0;
   display: flex;
   flex-direction: column;
