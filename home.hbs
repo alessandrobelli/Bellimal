@@ -57,7 +57,7 @@
       <section class="bml-listing">
         <header class="bml-listing__head">
           <span class="bml-label-mono">// more projects</span>
-          <a href="/tag/{{@custom.projects_tag}}/" class="bml-posts__all">
+          <a href="{{#if @custom.cta_primary_url}}{{@custom.cta_primary_url}}{{else}}/tag/projects/{{/if}}" class="bml-posts__all">
             all projects ({{pagination.total}}) →
           </a>
         </header>
