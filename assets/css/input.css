@@ -2009,9 +2009,11 @@ figure {
   margin-top: 0.5rem;
 }
 
+/* --text-mute, not --divider: an in-article break must read as a break
+   (~3:1 on dark slate, ~4.7:1 on white). */
 .bml-prose hr {
   border: 0;
-  border-top: 1px solid var(--divider);
+  border-top: 1px solid var(--text-mute);
   margin: 2rem 0;
 }
 
