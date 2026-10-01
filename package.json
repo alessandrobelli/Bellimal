@@ -93,12 +93,6 @@
         "description": "Homepage hero description text (HTML allowed)",
         "default": "Software engineer. Writing about tech, productivity, and side projects."
       },
-      "featured_tag": {
-        "type": "text",
-        "group": "homepage",
-        "description": "Optional tag slug to constrain the featured section (e.g. 'projects'). Leave empty to show any post marked as featured.",
-        "default": ""
-      },
       "projects_tag": {
         "type": "text",
         "group": "homepage",

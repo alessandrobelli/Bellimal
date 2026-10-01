@@ -80,22 +80,6 @@
   --accent-text: #e9805d;
 }
 
-/* Prose List Styling */
-.prose ol li::marker,
-.prose ul li::marker {
-  @apply text-orangeValencia font-bold;
-}
-
-.prose ol li,
-.prose ul li {
-  @apply mb-3;
-}
-
-.prose ol,
-.prose ul {
-  @apply mb-6;
-}
-
 /* Custom Styles */
 @layer utilities {
   .hover\:scale-101:hover {
@@ -183,70 +167,6 @@ body {
   @apply bg-white dark:bg-dark text-anthracite dark:text-darkText font-body transition-colors duration-300;
 }
 
-/* Featured content styling */
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
-  @apply text-anthracite dark:text-darkText font-heading mt-8 mb-4;
-}
-
-.prose h1 {
-  @apply text-3xl;
-}
-
-.prose h2 {
-  @apply text-2xl text-orangeValencia dark:text-orangeValencia-400;
-}
-
-.prose h3 {
-  @apply text-xl text-orangeValencia dark:text-orangeValencia-400;
-}
-
-.prose p {
-  @apply mb-4 leading-relaxed;
-}
-
-.prose a {
-  @apply text-orangeValencia hover:text-orangeValencia-700 dark:text-orangeValencia-400 dark:hover:text-orangeValencia-300 transition-colors duration-200;
-}
-
-.prose ul {
-  @apply list-disc pl-5 my-4;
-}
-
-.prose ol {
-  @apply list-decimal pl-5 my-4;
-}
-
-/* Dark mode prose styles */
-.dark .prose {
-  @apply text-darkText;
-}
-
-.dark .prose-dark a {
-  @apply text-orangeValencia-400 hover:text-orangeValencia-300;
-}
-
-.dark .prose-dark h1,
-.dark .prose-dark h2,
-.dark .prose-dark h3,
-.dark .prose-dark h4,
-.dark .prose-dark h5,
-.dark .prose-dark h6 {
-  @apply text-darkText;
-}
-
-.dark .prose-dark pre {
-  @apply bg-gray-900 text-darkText;
-}
-
-.dark .prose-dark hr {
-  @apply border-gray-700;
-}
-
 /* Table Styling */
 table {
   @apply w-full border-collapse my-4;
@@ -272,28 +192,6 @@ tr:hover {
   @apply bg-gray-100 dark:bg-gray-800 transition-colors duration-200;
 }
 
-/* Prose tables */
-.prose table {
-  @apply w-full border-collapse my-4;
-}
-
-.prose thead {
-  @apply bg-gray-100 dark:bg-gray-800;
-}
-
-.prose th {
-  @apply border p-2 text-left font-bold text-anthracite dark:text-white border-gray-300 dark:border-gray-700;
-}
-
-.prose td {
-  @apply border p-2 text-anthracite dark:text-gray-300 border-gray-300 dark:border-gray-700;
-}
-
-.dark .prose th,
-.dark .prose td {
-  @apply border-gray-700;
-}
-
 /* Blockquote/Callout Styling */
 blockquote {
   @apply pl-4 border-l-4 border-orangeValencia dark:border-orangeValencia-400 py-2 my-4;
@@ -306,20 +204,6 @@ blockquote p {
 blockquote strong,
 blockquote b {
   @apply text-anthracite dark:text-white font-bold;
-}
-
-/* Prose specific blockquote */
-.prose blockquote {
-  @apply pl-4 border-l-4 border-orangeValencia dark:border-orangeValencia-400 py-2 my-4;
-}
-
-.prose blockquote p {
-  @apply text-gray-500 dark:text-gray-400 font-normal !important;
-}
-
-.prose blockquote strong,
-.prose blockquote b {
-  @apply text-anthracite dark:text-white font-bold !important;
 }
 
 /* List styling */
@@ -366,51 +250,9 @@ ul li::marker {
   @apply text-orangeValencia-400;
 }
 
-.dark .prose ol li::marker,
-.dark .prose ul li::marker {
-  @apply text-orangeValencia-400;
-}
-
-.dark .prose ol,
-.dark .prose ul {
-  @apply text-darkText;
-}
-
 /* Post Meta */
 header .meta {
   @apply py-2 my-4 text-xs text-gray-500;
-}
-
-.prose {
-  color: #292c2f; /* anthracite color */
-}
-
-.dark .prose strong,
-.dark .prose b,
-.dark .prose em,
-.dark .prose blockquote,
-.dark .prose figcaption,
-.dark .prose p {
-  color: #e6e7ea !important;
-}
-
-.dark .prose h1,
-.dark .prose h2,
-.dark .prose h3,
-.dark .prose h4,
-.dark .prose h5,
-.dark .prose h6 {
-  color: #e6e7ea !important;
-}
-
-.prose a {
-  color: #e9805d; /* coral accent */
-  text-decoration: none;
-}
-
-.prose a:hover {
-  transition: color 0.3s ease-in-out;
-  color: #ec8a6a; /* coral 500 — lighter on hover */
 }
 
 /* Subscriber-Only Section */
@@ -1328,26 +1170,6 @@ figure {
 
 .bml-featured__body {
   max-width: 760px;
-}
-
-.bml-featured__all {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  text-decoration: none;
-  white-space: nowrap;
-  margin-left: auto;
-}
-
-.bml-featured__all:hover { color: var(--accent-text); }
-
-/* Info variant — shown when there are multiple featured posts but no
-   featured_tag is set, so we can show count without a destination link. */
-.bml-featured__all--info {
-  color: var(--text-mute);
-  cursor: default;
 }
 
 /* ── Shared "surface" shell — bg / border / hover used by every card-like
