@@ -1155,50 +1155,6 @@ video {
   transition-duration:300ms
 }
 
-/* Hide scrollbar but keep functionality */
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari, Opera */
-}
-
-/* Carousel drag and scroll-snap */
-
-.carousel-wrapper {
-  cursor: grab;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  scroll-snap-type: x mandatory;
-}
-
-.carousel-wrapper .post-card {
-  scroll-snap-align: start;
-}
-
-.carousel-wrapper.dragging {
-  cursor: grabbing;
-  scroll-snap-type: none !important;
-}
-
-.carousel-wrapper a {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  -webkit-user-drag: none;
-}
-
-.carousel-wrapper.dragging a {
-  pointer-events: none;
-}
-
 /* ── Design tokens (redesign brief) ──
    Light = default :root, dark = .dark on <html>. CSS custom properties so
    templates can use them in inline gradients/overlays without a build step. */
@@ -1445,17 +1401,13 @@ ul{
 /* Sidebar list reset */
 
 #sideNav ul,
-#sideNav ol,
-.sidebar-links ul,
-.categories-toggle ul{
+#sideNav ol{
   margin-bottom:0px;
   list-style-type:none;
   padding-left:0px
 }
 
-#sideNav li,
-.sidebar-links li,
-.categories-toggle li{
+#sideNav li{
   margin-bottom:0px
 }
 
@@ -1549,8 +1501,7 @@ header .meta{
   color:rgb(255 255 255 / var(--tw-text-opacity, 1));
   transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration:300ms;
-  background-color: #e9805d
+  transition-duration:300ms
 }
 
 .gh-btn.gh-portal-close:hover{
@@ -2491,30 +2442,6 @@ figure {
 
 .bml-featured__head .bml-label-mono {
   color: var(--accent-text);
-}
-
-.bml-featured__title {
-  font-family: var(--font-mono);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin: 0;
-}
-
-.bml-featured__title a {
-  color: var(--accent-text);
-  text-decoration: none;
-}
-
-.bml-featured__title a:hover {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-
-.bml-featured__body {
-  max-width: 760px;
 }
 
 /* ── Shared "surface" shell — bg / border / hover used by every card-like
