@@ -17,7 +17,7 @@ npm run test:ci      # gscan --fatal --verbose
 
 - **After editing `input.css` (or a file it `@import`s), run `npm run build:css` and commit `assets/css/main.css`.** It is the only stylesheet the site loads. If a `.bml-*` rule doesn't seem to apply, suspect a stale `main.css` first.
 - **Pushing to `main` deploys to the live site.** `.github/workflows/to-ghost.yml` uploads the repo as the theme via `TryGhost/action-deploy-theme`.
-- Gulp (`npm run dev`, `npm run all`) only writes `assets/built/` (PostCSS copies, a `casper.js` bundle) and live-reloads `.hbs`. Templates load nothing from `assets/built/`; never edit it. `run-gulp.yml` targets `master` and never runs. `gulpfile.js` still says "Casper" (the upstream theme) in places.
+- Gulp (`npm run dev`, `npm run all`, and `npm test` via `pretest`) only writes `assets/built/` (PostCSS copies, a `casper.js` bundle) and live-reloads `.hbs`. Templates load nothing from `assets/built/`; it is gitignored, never edit it. `gulpfile.js` still says "Casper" (the upstream theme) in places.
 
 ## Design system
 
@@ -48,7 +48,7 @@ Also `--accent-soft` / `--accent-line` (12% / 30% coral) for tints and borders, 
 - Plain `--accent` as text only on surfaces that are dark in both modes. These "dark islands" redeclare tokens: `.bml-terminal` (all text tokens + `--accent-text`) and `.bml-post-hero` / `.bml-page-hero` (`--accent-text`, since text sits on the darkened image). `.bml-card__tag` (dark pill on the card image) uses `--accent` directly.
 - Dark-mode targets on `--bg`: `--text-dim` 7.7:1 (AAA body text), `--text-mute` 4.9:1 (AA). Recheck ratios when changing any text or surface value.
 - Tailwind's `text-accent` is the raw `#e9805d` — it fails on light surfaces.
-- Legacy Tailwind colors (`orangeValencia`, `anthracite`, `dark*`) and the `.prose` rules near the top of `input.css` are pre-2026 leftovers; templates no longer use `.prose`. Don't build on them.
+- Legacy Tailwind colors (`orangeValencia`, `anthracite`, `dark*`) are pre-2026 leftovers. Don't build on them.
 
 ### Conventions
 
@@ -85,7 +85,7 @@ Partials:
 ## Ghost custom settings
 
 Defined in `package.json` → `config.custom`, read as `{{@custom.key}}`.
-- homepage: `hero_title` (terminal `whoami`), `hero_description` (HTML; terminal `cat focus.txt`), `projects_tag` (default `projects`; drives the three project bands), `cta_primary_label/url`, `cta_secondary_label/url`. `featured_tag` is defined but no template uses it.
+- homepage: `hero_title` (terminal `whoami`), `hero_description` (HTML; terminal `cat focus.txt`), `projects_tag` (default `projects`; drives the three project bands), `cta_primary_label/url`, `cta_secondary_label/url`.
 - sidebar: `sidebar_status`, `sidebar_link{1,2,3}_text/url` (links 1 and 2 show GitHub and LinkedIn icons).
 - site-wide: `contact_email` (terminal `contact`; falls back to `hello@example.com`).
 
