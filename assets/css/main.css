@@ -1269,10 +1269,10 @@ a:focus{
   outline-offset:2px
 }
 
-a:hover:hover{
-  --tw-text-opacity:1;
-  color:rgb(233 128 93 / var(--tw-text-opacity, 1));
-  color: #e9805d
+/* Plain a:hover (0,1,1) so .bml-*:hover rules (0,2,0) can override it. */
+
+a:hover {
+  color: var(--accent-text);
 }
 
 /* Bookmark card styles moved to assets/css/bookmarks.css (Stage 5b) */
@@ -1297,21 +1297,10 @@ h2,
 h3,
 h4,
 h5,
-h6{
-  font-family:"Atkinson Hyperlegible Mono", ui-monospace, Menlo, Consolas, monospace !important;
-  --tw-text-opacity:1 !important;
-  color:rgb(233 128 93 / var(--tw-text-opacity, 1)) !important;
-  color: #e9805d !important
-}
-
-h1:is(.dark *),
-h2:is(.dark *),
-h3:is(.dark *),
-h4:is(.dark *),
-h5:is(.dark *),
-h6:is(.dark *){
-  --tw-text-opacity:1 !important;
-  color:rgb(238 150 120 / var(--tw-text-opacity, 1)) !important
+h6 {
+  /* Default only — no !important, so .bml-* component colors apply. */
+  font-family:"Atkinson Hyperlegible Mono", ui-monospace, Menlo, Consolas, monospace;
+  color: var(--accent-text);
 }
 
 /* Prevent transitions on page load */
@@ -2154,7 +2143,7 @@ figure {
 
 .bml-sidebar__nav-link:hover {
   background: var(--accent-soft);
-  color: var(--text);
+  color: var(--accent-text);
 }
 
 .bml-sidebar__nav-item.is-current .bml-sidebar__nav-link {
@@ -2298,7 +2287,7 @@ figure {
 
 .bml-sidebar__ext-link:hover {
   background: var(--accent-soft);
-  color: var(--text);
+  color: var(--accent-text);
 }
 
 .bml-sidebar__ext-icon {
@@ -3056,7 +3045,10 @@ figure {
 }
 
 .bml-post-row__link:hover .bml-post-row__title {
-  color: var(--accent-text);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 .bml-post-row__thumb {
@@ -3119,7 +3111,7 @@ figure {
   font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--text);
+  color: var(--accent-text);
   margin: 0;
   line-height: 1.35;
   transition: color 150ms ease;
@@ -3181,6 +3173,8 @@ figure {
 
 .bml-post-hero,
 .bml-page-hero {
+  /* Text sits on a darkened image in both modes — keep the bright coral. */
+  --accent-text: var(--accent);
   position: relative;
   width: 100%;
   background-color: var(--card);
@@ -3459,17 +3453,17 @@ figure {
 
 .bml-prose h3 {
   font-size: 18px;
-  color: var(--text);
+  color: var(--accent-text);
 }
 
 .bml-prose h4 {
   font-size: 16px;
-  color: var(--text);
+  color: var(--accent-text);
 }
 
 .bml-prose h5, .bml-prose h6 {
   font-size: 14px;
-  color: var(--text);
+  color: var(--accent-text);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
