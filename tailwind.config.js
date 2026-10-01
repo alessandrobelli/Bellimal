@@ -32,8 +32,8 @@ module.exports = {
 
         // Text scale on dark
         textPrimary: "#e6e7ea",
-        textDim: "#a7adb8",
-        textMute: "#6e7480",
+        textDim: "#b0b6c1",
+        textMute: "#8a909c",
 
         // Single accent (coral) — keeps the orangeValencia name for backwards
         // compatibility with existing templates and posts; values are the
