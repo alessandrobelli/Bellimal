@@ -87,9 +87,8 @@ Partials:
 Defined in `package.json` → `config.custom`, read as `{{@custom.key}}`.
 - homepage: `hero_title` (terminal `whoami`), `hero_description` (HTML; terminal `cat focus.txt`), `projects_tag` (default `projects`; drives the three project bands), `cta_primary_label/url`, `cta_secondary_label/url`.
 - sidebar: `sidebar_status`, `sidebar_link{1,2,3}_text/url` (links 1 and 2 show GitHub and LinkedIn icons).
-- site-wide: `contact_email` (terminal `contact`; falls back to `hello@example.com`).
 
-Ghost only knows the `homepage` and `post` groups; `sidebar` and `site-wide` land under Site-wide (that's the gscan recommendation `npm test` prints). New defaults only apply on theme re-activation, so templates keep `{{#if}}…{{else}}fallback{{/if}}`.
+Ghost only knows the `homepage` and `post` groups; `sidebar` lands under Site-wide (that's the gscan recommendation `npm test` prints). New defaults only apply on theme re-activation, so templates keep `{{#if}}…{{else}}fallback{{/if}}`.
 
 ## Gotchas
 

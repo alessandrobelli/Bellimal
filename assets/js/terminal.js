@@ -34,7 +34,7 @@
 
   var heroTitle = readText("hero-title");
   var heroDescription = readText("hero-description");
-  var contactEmail = readText("contact");
+  var CONTACT_URL = "https://alessandrobelli.dev/#contact";
   var nav = readList("nav", ["label", "url", "slug"]);
   var tags = readList("tags", ["name", "slug", "url", "count"]);
   var posts = readList("posts", [
@@ -191,7 +191,7 @@
       printLine("  cat <slug>      open a page");
       printLine("  posts           latest posts");
       printLine("  tags            available tags");
-      printLine("  contact         email + clipboard");
+      printLine("  contact         contact link + clipboard");
       printLine("  clear           clear screen");
       printLine("  theme           toggle light/dark");
     },
@@ -276,11 +276,10 @@
       commands.tags();
     },
     contact: function () {
-      var email = contactEmail || "hello@example.com";
-      printLine(email);
+      printLine(CONTACT_URL, { href: CONTACT_URL });
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard
-          .writeText(email)
+          .writeText(CONTACT_URL)
           .then(function () {
             printLine("(copied to clipboard)");
           })
