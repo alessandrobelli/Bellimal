@@ -35,42 +35,31 @@
   {{!-- Band 2 ── // FEATURED: one project, hero treatment.
         Prefer a project tagged @custom.projects_tag AND featured:true.
         If none, fall back to the most recent project in the tag.
-        If no project exists at all, the section silently skips. --}}
+        If no project exists at all, the section silently skips.
+        Band 3 ── // MORE PROJECTS renders inside each branch so it can
+        leave out the featured post by id (filter strings can't branch). --}}
   {{#get "posts" filter="tag:{{@custom.projects_tag}}+featured:true"
                  limit="1" include="tags,authors"}}
     {{#if posts}}
-      {{#foreach posts}}{{> "featured-section" label="featured projects"}}{{/foreach}}
+      {{#foreach posts}}
+        {{> "featured-section" label="featured projects"}}
+        {{> "more-projects" exclude=id}}
+      {{/foreach}}
     {{else}}
       {{#get "posts" filter="tag:{{@custom.projects_tag}}"
                      limit="1" include="tags,authors"}}
-        {{#foreach posts}}{{> "featured-section" label="featured projects"}}{{/foreach}}
+        {{#foreach posts}}
+          {{> "featured-section" label="featured projects"}}
+          {{> "more-projects" exclude=id}}
+        {{/foreach}}
       {{/get}}
-    {{/if}}
-  {{/get}}
-
-  {{!-- Band 3 ── // MORE PROJECTS: 2-/3-column grid of mini cards.
-        Renders only when 2+ projects exist (otherwise the only project
-        is already in the Featured band above and we'd show it twice). --}}
-  {{#get "posts" filter="tag:{{@custom.projects_tag}}"
-                 limit="6" include="tags,authors"}}
-    {{#if posts.[1]}}
-      <section class="bml-listing">
-        <header class="bml-listing__head">
-          <span class="bml-label-mono">// more projects</span>
-          <a href="{{#if @custom.cta_primary_url}}{{@custom.cta_primary_url}}{{else}}/tag/projects/{{/if}}" class="bml-posts__all">
-            all projects ({{pagination.total}}) →
-          </a>
-        </header>
-        <div class="bml-card-grid">
-          {{#foreach posts}}{{> "post-card"}}{{/foreach}}
-        </div>
-      </section>
     {{/if}}
   {{/get}}
 
   {{!-- Band 4 ── // LATEST WRITING: editorial list of non-project posts.
         tag:-X is NQL's "not tagged X" filter — projects don't appear
-        twice on the page. --}}
+        twice on the page. The "all posts" count comes from the blog tag,
+        because that is what /blog/ lists. --}}
   {{#get "posts" filter="tag:-{{@custom.projects_tag}}"
                  limit="5" include="tags,authors"}}
     {{#if posts}}
@@ -78,7 +67,7 @@
         <header class="bml-posts__head">
           <span class="bml-label-mono">// latest writing</span>
           <a href="/blog/" class="bml-posts__all">
-            all posts ({{pagination.total}}) →
+            all posts ({{#get "tags" filter="slug:blog" include="count.posts" limit="1"}}{{#foreach tags}}{{count.posts}}{{/foreach}}{{/get}}) →
           </a>
         </header>
         <ul class="bml-posts__list">

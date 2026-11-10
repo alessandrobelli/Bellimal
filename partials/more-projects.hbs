@@ -1,0 +1,22 @@
+{{!-- // MORE PROJECTS: 2-/3-column grid of mini cards. Invoked from inside
+     the homepage featured-project loop. Caller passes:
+       exclude — id of the featured project, left out of the grid
+     Renders only when another project exists. The count comes from the
+     projects tag (same number as the sidebar chip), not from this
+     filtered query. --}}
+{{#get "posts" filter="tag:{{@custom.projects_tag}}+id:-{{exclude}}"
+               limit="6" include="tags,authors"}}
+  {{#if posts}}
+    <section class="bml-listing">
+      <header class="bml-listing__head">
+        <span class="bml-label-mono">// more projects</span>
+        <a href="{{#if @custom.cta_primary_url}}{{@custom.cta_primary_url}}{{else}}/tag/projects/{{/if}}" class="bml-posts__all">
+          all projects ({{#get "tags" filter="slug:{{@custom.projects_tag}}" include="count.posts" limit="1"}}{{#foreach tags}}{{count.posts}}{{/foreach}}{{/get}}) →
+        </a>
+      </header>
+      <div class="bml-card-grid">
+        {{#foreach posts}}{{> "post-card"}}{{/foreach}}
+      </div>
+    </section>
+  {{/if}}
+{{/get}}
